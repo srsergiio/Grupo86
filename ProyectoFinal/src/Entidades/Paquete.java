@@ -1,4 +1,5 @@
 package Entidades;
+import Entidades.Ciudad;
 
 public class Paquete {
 
