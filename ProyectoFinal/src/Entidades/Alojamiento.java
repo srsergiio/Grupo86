@@ -1,5 +1,7 @@
 package Entidades;
 
+import java.util.Date;
+
 public class Alojamiento {
 
     private int idAlojamiento;
