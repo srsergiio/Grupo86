@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 03-10-2023 a las 17:56:54
+-- Tiempo de generación: 05-10-2023 a las 15:26:24
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -75,7 +75,8 @@ CREATE TABLE `cliente` (
 CREATE TABLE `paquete` (
   `costoPasaje` int(11) NOT NULL,
   `estadia` int(11) NOT NULL,
-  `idPaquete` int(11) NOT NULL
+  `idPaquete` int(11) NOT NULL,
+  `costoEstadia` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -90,7 +91,9 @@ CREATE TABLE `pasaje` (
   `ciudadOrigen` int(11) NOT NULL,
   `estado` tinyint(1) NOT NULL,
   `idPasaje` int(11) NOT NULL,
-  `ciudadDestino` int(11) NOT NULL
+  `ciudadDestino` int(11) NOT NULL,
+  `fechaIda` date NOT NULL,
+  `fechaVuelta` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -147,7 +150,8 @@ ALTER TABLE `paquete`
 ALTER TABLE `pasaje`
   ADD PRIMARY KEY (`idPasaje`),
   ADD KEY `ciudadDestino` (`ciudadDestino`),
-  ADD KEY `pasaje_ibfk_1` (`ciudadOrigen`);
+  ADD KEY `pasaje_ibfk_1` (`ciudadOrigen`),
+  ADD KEY `importe` (`importe`);
 
 --
 -- Indices de la tabla `reserva`
@@ -216,14 +220,19 @@ ALTER TABLE `cliente`
 --
 ALTER TABLE `paquete`
   ADD CONSTRAINT `paquete_ibfk_1` FOREIGN KEY (`estadia`) REFERENCES `alojamiento` (`idAlojamiento`),
-  ADD CONSTRAINT `paquete_ibfk_2` FOREIGN KEY (`costoPasaje`) REFERENCES `pasaje` (`idPasaje`);
+  ADD CONSTRAINT `paquete_ibfk_2` FOREIGN KEY (`costoPasaje`) REFERENCES `pasaje` (`idPasaje`),
+  ADD CONSTRAINT `paquete_ibfk_3` FOREIGN KEY (`idPaquete`) REFERENCES `cliente` (`idCliente`),
+  ADD CONSTRAINT `paquete_ibfk_4` FOREIGN KEY (`idPaquete`) REFERENCES `pasaje` (`idPasaje`),
+  ADD CONSTRAINT `paquete_ibfk_5` FOREIGN KEY (`idPaquete`) REFERENCES `alojamiento` (`idAlojamiento`),
+  ADD CONSTRAINT `paquete_ibfk_6` FOREIGN KEY (`idPaquete`) REFERENCES `reserva` (`idReserva`);
 
 --
 -- Filtros para la tabla `pasaje`
 --
 ALTER TABLE `pasaje`
   ADD CONSTRAINT `pasaje_ibfk_1` FOREIGN KEY (`ciudadOrigen`) REFERENCES `cliente` (`origen`),
-  ADD CONSTRAINT `pasaje_ibfk_2` FOREIGN KEY (`ciudadDestino`) REFERENCES `ciudad` (`idCiudad`);
+  ADD CONSTRAINT `pasaje_ibfk_2` FOREIGN KEY (`ciudadDestino`) REFERENCES `ciudad` (`idCiudad`),
+  ADD CONSTRAINT `pasaje_ibfk_3` FOREIGN KEY (`importe`) REFERENCES `paquete` (`costoPasaje`);
 
 --
 -- Filtros para la tabla `reserva`
