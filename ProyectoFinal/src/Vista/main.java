@@ -18,5 +18,5 @@ public class main {
    Alojamiento depto= new Alojamiento(098,f1,f2,true,"ninguno",16,c2);
    
    Paquete p1 = new Paquete(001,c1,c2,);
-   
+   //holap
 }
