@@ -11,6 +11,7 @@ public class Ciudad {
         this.pais = pais;
         this.estado = estado;
         this.provincia = provincia;
+        
     }
 
     public int getIdCiudad() {
@@ -67,4 +68,31 @@ public class Ciudad {
     private boolean estado;
 
     private String provincia;
+    
+    private Double ejeX;
+    private Double ejeY;
+
+    
+    public Double getEjeX() {
+        return ejeX;
+    }
+
+    public void setEjeX(Double ejeX) {
+        this.ejeX = ejeX;
+    }
+
+    public Double getEjeY() {
+        return ejeY;
+    }
+
+    public void setEjeY(Double ejeY) {
+        this.ejeY = ejeY;
+    }
+   
+    
+    public Double distancia(Ciudad c1 , Ciudad c2){
+        double diffX = c1.getEjeX() - c2.getEjeX();
+        double diffY = c1.getEjeY() - c2.getEjeY();
+        return Math.sqrt(diffX * diffX + diffY * diffY);
+    }
 }
