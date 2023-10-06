@@ -59,6 +59,16 @@ public class Ciudad {
         return "Ciudad{" + "idCiudad=" + idCiudad + ", nombre=" + nombre + ", pais=" + pais + ", estado=" + estado + ", provincia=" + provincia + '}';
     }
 
+    public Ciudad(int idCiudad, String nombre, String pais, boolean estado, String provincia, Double ejeX, Double ejeY) {
+        this.idCiudad = idCiudad;
+        this.nombre = nombre;
+        this.pais = pais;
+        this.estado = estado;
+        this.provincia = provincia;
+        this.ejeX = ejeX;
+        this.ejeY = ejeY;
+    }
+
     private int idCiudad;
 
     private String nombre;

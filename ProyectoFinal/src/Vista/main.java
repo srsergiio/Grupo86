@@ -9,15 +9,26 @@ import Entidades.*;
 import Entidades.Alojamiento;
 import Entidades.Ciudad;
 import Entidades.Paquete;
+import Entidades.Cliente;
 
 public class main {
-    Date f1 = new Date(2023, 11, 23);
-    Date f2 = new Date(2024,2,23);
-   Ciudad c1 = new Ciudad(1,"Ciudad de Buenos Aires","Argentina",true,"buenos Aires"); 
-   Ciudad c2 = new Ciudad(1,"Ciudad de Cordoba","Argentina",true,"Cordoba");
-   Alojamiento depto= new Alojamiento(098,f1,f2,true,"ninguno",16,c2);
-   
-   Paquete p1 = new Paquete(001,c1,c2,);
-   //holap
-   //hola 3 
+
+
+   //1 - CL: Consulto Pais , Provincia , Ciudad( locasion)
+    
+   //2 - BD: me da  alojamientos, tipo de transportes 
+    
+   //3 - CL : selecciono 1  de cada 1
+    
+   //4 - se muestra presupuesto en pantalla s
+    
+   //5 - OPC MODIFICAR o CONTINUAR     
+    
+   //6 - COMPRAR  o RESERVA ,CANSELAR 
+    
+   //7 -BD: GUARDA DATOS CLIENTE.
+
+    Cliente cliente= new Cliente("sergio","esquivel","sesquivelsaibene@gmail.com",38827457);
+    Ciudad ciudad_uno= new Ciudad(001, "Mar del Plata", "Argentina", true, "Buenos Aires", 1, 2);
+    
 }

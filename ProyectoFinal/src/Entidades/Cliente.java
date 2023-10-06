@@ -1,10 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Entidades;
-
+import Entidades.Ciudad;
 
 public class Cliente {
 
@@ -45,17 +40,26 @@ public class Cliente {
         return "Cliente{" + "nombre=" + nombre + ", apellido=" + apellido + ", correo=" + correo + ", dni=" + dni + '}';
     }
 
-    public Cliente(String nombre, String apellido, String correo, int dni) {
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.dni = dni;
+    public Cliente() {
     }
 
-    public Cliente() {
+    public Cliente(String nombre, String apellido, String correo, int dni, int telefono, Ciudad origen) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.correo = correo;
+        this.dni = dni;
+        this.telefono = telefono;
+        this.origen = origen;
+    }
+
+    public Cliente(String nombre, int dni, Ciudad origen) {
+        this.nombre = nombre;
+        this.dni = dni;
+        this.origen = origen;
     }
     
    private String nombre ,apellido,correo;
-   private int dni;
-    
+   private int dni,telefono;
+   Ciudad origen;
     
 }
