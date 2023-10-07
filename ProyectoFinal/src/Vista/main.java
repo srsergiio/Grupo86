@@ -28,7 +28,7 @@ public class main {
     
    //7 -BD: GUARDA DATOS CLIENTE.
 
-    Cliente cliente= new Cliente("sergio","esquivel","sesquivelsaibene@gmail.com",38827457);
-    Ciudad ciudad_uno= new Ciudad(001, "Mar del Plata", "Argentina", true, "Buenos Aires", 1, 2);
+    Cliente cliente= new Cliente();
+    Ciudad ciudad_uno= new Ciudad();
     
 }
