@@ -12,6 +12,7 @@ import javax.swing.*;
 public class Conexion {
     
     private static final String URL="jdbc:mariadb://localhost/";
+ 
     private static final String DB="proyectofinal"; //nombre de la base de datos
     private static final String USUARIO="root";
     private static final String PASSWORD="";

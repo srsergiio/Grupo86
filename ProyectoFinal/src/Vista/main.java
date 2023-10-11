@@ -6,10 +6,7 @@
 package Vista;
 import java.util.Date;
 import Entidades.*;
-import Entidades.Alojamiento;
-import Entidades.Ciudad;
-import Entidades.Paquete;
-import Entidades.Cliente;
+import AccesoDatos.*;
 
 import java.util.List;
 
@@ -35,4 +32,13 @@ public class main {
     Cliente cliente= new Cliente();
     Ciudad ciudad_uno= new Ciudad();
     
+    
+    
+    
+    
+    public static void Main(String [] main){
+        Conexion.getConexion();
+        
+        
+    }
 }
