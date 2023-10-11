@@ -1,3 +1,5 @@
+package Vista;
+
 
 import AccesoDatos.Conexion;
 import java.sql.Connection;
