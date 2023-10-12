@@ -30,10 +30,5 @@ public class Algoridmo {
        }
 
         
-        
-     public static void main (String [] main ){
-         
-     }   
-        
-        
+      
 }

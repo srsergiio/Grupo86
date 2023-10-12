@@ -9,6 +9,6 @@ package AccesoDatos;
  *
  * @author Administrador
  */
-public class CiudadData {
+public class CiudadData  extends Algoridmo {
     
 }
