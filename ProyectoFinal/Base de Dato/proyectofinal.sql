@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 09-10-2023 a las 17:10:48
+-- Tiempo de generación: 12-10-2023 a las 15:22:12
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.0.28
 
@@ -43,23 +43,10 @@ CREATE TABLE `alojamiento` (
 --
 
 INSERT INTO `alojamiento` (`idAlojamiento`, `fechaI`, `fechaF`, `tipo`, `servicio`, `importeD`, `ciudad`, `estado`) VALUES
-(2, '2023-12-01', '2023-12-07', 'Hotel', 'Desayuno incluido', 150, 1, 1),
-(3, '2024-01-20', '2024-01-27', 'Apartamento', 'Desayuno incluido', 200, 2, 1),
-(4, '2024-02-01', '2024-02-07', 'Cabaña', 'Desayuno incluido', 180, 3, 1),
-(5, '2024-02-15', '2024-02-22', 'Hotel', 'Desayuno incluido', 150, 4, 1),
-(6, '2024-03-01', '2024-03-07', 'Hostel', 'Desayuno incluido', 50, 5, 1),
-(7, '2024-03-15', '2024-03-22', 'Apartamento', 'Sin servicio', 200, 6, 1),
-(9, '2024-02-15', '2024-02-22', 'Hotel', 'Desayuno incluido', 150, 4, 1),
-(10, '2024-03-01', '2024-03-07', 'Hostel', 'Desayuno incluido', 50, 5, 1),
-(11, '2024-03-15', '2024-03-22', 'Apartamento', 'Sin servicio', 200, 6, 1),
-(13, '2024-02-01', '2024-02-07', 'Cabaña', 'Desayuno incluido', 180, 3, 1),
-(14, '2024-02-15', '2024-02-22', 'Hotel', 'Desayuno incluido', 150, 4, 1),
-(15, '2024-03-01', '2024-03-07', 'Hostel', 'Desayuno incluido', 50, 5, 1),
-(16, '2024-03-15', '2024-03-22', 'Apartamento', 'Sin servicio', 200, 6, 1),
-(18, '2024-02-01', '2024-02-07', 'Cabaña', 'Desayuno incluido', 180, 3, 1),
-(19, '2024-02-15', '2024-02-22', 'Hotel', 'Desayuno incluido', 150, 4, 1),
-(20, '2024-03-01', '2024-03-07', 'Hostel', 'Desayuno incluido', 50, 5, 1),
-(21, '2024-03-15', '2024-03-22', 'Apartamento', 'Sin servicio', 200, 6, 1);
+(24, '2024-06-21', '2024-09-20', 'cabaña', 'sin servicio', 35, 13, 1),
+(25, '2024-12-21', '2025-03-20', 'hotel 2 estrellas', 'desayuno', 50, 14, 1),
+(26, '2025-06-21', '2025-09-20', 'hotel 3 estrellas', 'desayuno,tv,pileta', 80, 15, 1),
+(27, '2026-06-21', '2026-09-20', 'hotel 4 estrellas', 'desayuno,tv,wifi,pileta', 100, 16, 1);
 
 -- --------------------------------------------------------
 
@@ -80,18 +67,10 @@ CREATE TABLE `ciudad` (
 --
 
 INSERT INTO `ciudad` (`idCiudad`, `nombre`, `provincia`, `pais`, `estado`) VALUES
-(1, 'Puerto Iguazú', 'Misiones', 'Argentina', 1),
-(2, 'Bariloche', 'Río Negro', 'Argentina', 1),
-(3, 'Mendoza', 'Mendoza', 'Argentina', 1),
-(4, 'Ushuaia', 'Tierra del Fuego', 'Argentina', 1),
-(5, 'El Calafate', 'Santa Cruz', 'Argentina', 1),
-(6, 'Mar del Plata', 'Buenos Aires', 'Argentina', 1),
-(7, 'Cancún', 'Quintana Roo', 'México', 1),
-(8, 'Roma', 'Lazio', 'Italia', 1),
-(9, 'París', 'Isla de Francia', 'Francia', 1),
-(10, 'Tokio', 'Kanto', 'Japón', 1),
-(11, 'Nueva York', 'Nueva York', 'Estados Unidos', 1),
-(12, 'Sídney', 'Nueva Gales del Sur', 'Australia', 1);
+(13, 'san miguel', 'Buenos Aires', 'Argentina', 1),
+(14, 'Córdoba', 'Córdoba', 'Argentina', 1),
+(15, 'Ciudad de La Punta', 'San luis', 'Argentina', 1),
+(16, 'Montevideo', 'Montevideo', 'Urugauy', 1);
 
 -- --------------------------------------------------------
 
@@ -100,23 +79,22 @@ INSERT INTO `ciudad` (`idCiudad`, `nombre`, `provincia`, `pais`, `estado`) VALUE
 --
 
 CREATE TABLE `cliente` (
+  `idCliente` int(11) NOT NULL,
   `nombre` varchar(60) NOT NULL,
   `apellido` varchar(60) NOT NULL,
-  `origen` int(60) NOT NULL,
-  `idCliente` int(11) NOT NULL,
-  `dni` int(11) NOT NULL
+  `dni` int(11) NOT NULL,
+  `CiudadOrigen` int(60) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `cliente`
 --
 
-INSERT INTO `cliente` (`nombre`, `apellido`, `origen`, `idCliente`, `dni`) VALUES
-('Juan', 'Pérez', 1, 3, 12345678),
-('María', 'González', 2, 4, 87654321),
-('Carlos', 'Rodríguez', 3, 5, 11223344),
-('Ana', 'Martínez', 4, 6, 44332211),
-('Pedro', 'García', 5, 7, 99887766);
+INSERT INTO `cliente` (`idCliente`, `nombre`, `apellido`, `dni`, `CiudadOrigen`) VALUES
+(8, 'sergio', 'esquivel', 38827457, 13),
+(9, 'franco', 'sanchez', 12345678, 14),
+(10, 'lola', 'altamiranda', 12342535, 13),
+(11, 'Paulina', 'Paulina', 98623442, 13);
 
 -- --------------------------------------------------------
 
@@ -125,11 +103,20 @@ INSERT INTO `cliente` (`nombre`, `apellido`, `origen`, `idCliente`, `dni`) VALUE
 --
 
 CREATE TABLE `paquete` (
-  `costoPasaje` int(11) NOT NULL,
-  `estadia` int(11) NOT NULL,
   `idPaquete` int(11) NOT NULL,
-  `costoEstadia` int(11) NOT NULL
+  `costoEstadia` int(11) NOT NULL,
+  `costoPasaje` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `paquete`
+--
+
+INSERT INTO `paquete` (`idPaquete`, `costoEstadia`, `costoPasaje`) VALUES
+(1, 24, 27),
+(2, 25, 28),
+(3, 26, 29),
+(4, 27, 30);
 
 -- --------------------------------------------------------
 
@@ -138,37 +125,25 @@ CREATE TABLE `paquete` (
 --
 
 CREATE TABLE `pasaje` (
+  `idPasaje` int(11) NOT NULL,
   `tipoTransporte` varchar(60) NOT NULL,
+  `fechaIda` date NOT NULL,
+  `fechaVuelta` date NOT NULL,
+  `estado` tinyint(1) NOT NULL,
   `importe` int(11) NOT NULL,
   `ciudadOrigen` int(11) NOT NULL,
-  `estado` tinyint(1) NOT NULL,
-  `idPasaje` int(11) NOT NULL,
-  `ciudadDestino` int(11) NOT NULL,
-  `fechaIda` date NOT NULL,
-  `fechaVuelta` date NOT NULL
+  `ciudadDestino` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `pasaje`
 --
 
-INSERT INTO `pasaje` (`tipoTransporte`, `importe`, `ciudadOrigen`, `estado`, `idPasaje`, `ciudadDestino`, `fechaIda`, `fechaVuelta`) VALUES
-('Avión', 500, 1, 1, 9, 2, '2024-02-01', '2024-02-07'),
-('Autobús', 200, 2, 1, 10, 3, '2024-02-15', '2024-02-22'),
-('Tren', 300, 3, 1, 11, 4, '2024-03-01', '2024-03-07'),
-('Avión', 600, 4, 1, 12, 5, '2024-03-15', '2024-03-22'),
-('Autobús', 250, 5, 1, 13, 6, '2024-04-01', '2024-04-07'),
-('Avión', 500, 1, 1, 15, 2, '2024-02-01', '2024-02-07'),
-('Autobús', 200, 2, 1, 16, 3, '2024-02-15', '2024-02-22'),
-('Tren', 300, 3, 1, 17, 4, '2024-03-01', '2024-03-07'),
-('Avión', 600, 4, 1, 18, 5, '2024-03-15', '2024-03-22'),
-('Autobús', 250, 5, 1, 19, 6, '2024-04-01', '2024-04-07'),
-('Avión', 500, 1, 1, 21, 2, '2024-02-01', '2024-02-07'),
-('Autobús', 200, 2, 1, 22, 3, '2024-02-15', '2024-02-22'),
-('Tren', 300, 3, 1, 23, 4, '2024-03-01', '2024-03-07'),
-('Avión', 600, 4, 1, 24, 5, '2024-03-15', '2024-03-22'),
-('Autobús', 250, 5, 1, 25, 6, '2024-04-01', '2024-04-07'),
-('Tren', 350, 5, 1, 26, 7, '2024-04-15', '2024-04-22');
+INSERT INTO `pasaje` (`idPasaje`, `tipoTransporte`, `fechaIda`, `fechaVuelta`, `estado`, `importe`, `ciudadOrigen`, `ciudadDestino`) VALUES
+(27, 'BUS ', '2024-06-20', '2024-09-20', 1, 100, 13, 15),
+(28, 'BUS', '2024-12-20', '2025-03-20', 1, 100, 13, 14),
+(29, 'BUS', '2025-06-20', '2025-09-20', 1, 100, 13, 15),
+(30, 'BUS', '2026-06-20', '2026-09-20', 1, 100, 13, 16);
 
 -- --------------------------------------------------------
 
@@ -181,10 +156,15 @@ CREATE TABLE `reserva` (
   `idCliente` int(11) NOT NULL,
   `idPaquete` int(11) NOT NULL,
   `fechaReserva` date NOT NULL,
-  `fechaViaje` date NOT NULL,
-  `cliente` int(11) NOT NULL,
-  `paquetes` int(11) NOT NULL
+  `fechaViaje` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `reserva`
+--
+
+INSERT INTO `reserva` (`idReserva`, `idCliente`, `idPaquete`, `fechaReserva`, `fechaViaje`) VALUES
+(1, 8, 1, '2023-10-12', 20240620);
 
 --
 -- Índices para tablas volcadas
@@ -208,29 +188,31 @@ ALTER TABLE `ciudad`
 --
 ALTER TABLE `cliente`
   ADD PRIMARY KEY (`idCliente`),
-  ADD KEY `origen` (`origen`);
+  ADD KEY `origen` (`CiudadOrigen`);
 
 --
 -- Indices de la tabla `paquete`
 --
 ALTER TABLE `paquete`
   ADD PRIMARY KEY (`idPaquete`),
-  ADD KEY `estadia` (`estadia`),
-  ADD KEY `costoPasaje` (`costoPasaje`);
+  ADD KEY `costoPasaje` (`costoPasaje`),
+  ADD KEY `paquete_ibfk_6` (`costoEstadia`);
 
 --
 -- Indices de la tabla `pasaje`
 --
 ALTER TABLE `pasaje`
   ADD PRIMARY KEY (`idPasaje`),
-  ADD KEY `ciudadDestino` (`ciudadDestino`),
-  ADD KEY `pasaje_ibfk_1` (`ciudadOrigen`);
+  ADD KEY `ciudadDestino` (`ciudadDestino`);
 
 --
 -- Indices de la tabla `reserva`
 --
 ALTER TABLE `reserva`
-  ADD PRIMARY KEY (`idReserva`);
+  ADD PRIMARY KEY (`idReserva`),
+  ADD UNIQUE KEY `fechaViaje` (`fechaViaje`),
+  ADD KEY `idCliente` (`idCliente`),
+  ADD KEY `idPaquete` (`idPaquete`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -240,37 +222,37 @@ ALTER TABLE `reserva`
 -- AUTO_INCREMENT de la tabla `alojamiento`
 --
 ALTER TABLE `alojamiento`
-  MODIFY `idAlojamiento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `idAlojamiento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT de la tabla `ciudad`
 --
 ALTER TABLE `ciudad`
-  MODIFY `idCiudad` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `idCiudad` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT de la tabla `cliente`
 --
 ALTER TABLE `cliente`
-  MODIFY `idCliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `idCliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `paquete`
 --
 ALTER TABLE `paquete`
-  MODIFY `idPaquete` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idPaquete` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `pasaje`
 --
 ALTER TABLE `pasaje`
-  MODIFY `idPasaje` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `idPasaje` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT de la tabla `reserva`
 --
 ALTER TABLE `reserva`
-  MODIFY `idReserva` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idReserva` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Restricciones para tablas volcadas
@@ -286,31 +268,27 @@ ALTER TABLE `alojamiento`
 -- Filtros para la tabla `cliente`
 --
 ALTER TABLE `cliente`
-  ADD CONSTRAINT `cliente_ibfk_1` FOREIGN KEY (`origen`) REFERENCES `ciudad` (`idCiudad`);
+  ADD CONSTRAINT `cliente_ibfk_1` FOREIGN KEY (`CiudadOrigen`) REFERENCES `ciudad` (`idCiudad`);
 
 --
 -- Filtros para la tabla `paquete`
 --
 ALTER TABLE `paquete`
-  ADD CONSTRAINT `paquete_ibfk_1` FOREIGN KEY (`estadia`) REFERENCES `alojamiento` (`idAlojamiento`),
   ADD CONSTRAINT `paquete_ibfk_2` FOREIGN KEY (`costoPasaje`) REFERENCES `pasaje` (`idPasaje`),
-  ADD CONSTRAINT `paquete_ibfk_3` FOREIGN KEY (`idPaquete`) REFERENCES `cliente` (`idCliente`),
-  ADD CONSTRAINT `paquete_ibfk_4` FOREIGN KEY (`idPaquete`) REFERENCES `pasaje` (`idPasaje`),
-  ADD CONSTRAINT `paquete_ibfk_5` FOREIGN KEY (`idPaquete`) REFERENCES `alojamiento` (`idAlojamiento`),
-  ADD CONSTRAINT `paquete_ibfk_6` FOREIGN KEY (`idPaquete`) REFERENCES `reserva` (`idReserva`);
+  ADD CONSTRAINT `paquete_ibfk_6` FOREIGN KEY (`costoEstadia`) REFERENCES `alojamiento` (`idAlojamiento`);
 
 --
 -- Filtros para la tabla `pasaje`
 --
 ALTER TABLE `pasaje`
-  ADD CONSTRAINT `pasaje_ibfk_1` FOREIGN KEY (`ciudadOrigen`) REFERENCES `cliente` (`origen`),
   ADD CONSTRAINT `pasaje_ibfk_2` FOREIGN KEY (`ciudadDestino`) REFERENCES `ciudad` (`idCiudad`);
 
 --
 -- Filtros para la tabla `reserva`
 --
 ALTER TABLE `reserva`
-  ADD CONSTRAINT `reserva_ibfk_1` FOREIGN KEY (`idReserva`) REFERENCES `cliente` (`idCliente`);
+  ADD CONSTRAINT `reserva_ibfk_1` FOREIGN KEY (`idCliente`) REFERENCES `cliente` (`idCliente`),
+  ADD CONSTRAINT `reserva_ibfk_2` FOREIGN KEY (`idPaquete`) REFERENCES `paquete` (`idPaquete`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
