@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 12-10-2023 a las 15:22:12
+-- Tiempo de generación: 13-10-2023 a las 00:10:45
 -- Versión del servidor: 10.4.28-MariaDB
--- Versión de PHP: 8.0.28
+-- Versión de PHP: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -83,18 +83,19 @@ CREATE TABLE `cliente` (
   `nombre` varchar(60) NOT NULL,
   `apellido` varchar(60) NOT NULL,
   `dni` int(11) NOT NULL,
-  `CiudadOrigen` int(60) DEFAULT NULL
+  `CiudadOrigen` int(60) DEFAULT NULL,
+  `Estado` tinyint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `cliente`
 --
 
-INSERT INTO `cliente` (`idCliente`, `nombre`, `apellido`, `dni`, `CiudadOrigen`) VALUES
-(8, 'sergio', 'esquivel', 38827457, 13),
-(9, 'franco', 'sanchez', 12345678, 14),
-(10, 'lola', 'altamiranda', 12342535, 13),
-(11, 'Paulina', 'Paulina', 98623442, 13);
+INSERT INTO `cliente` (`idCliente`, `nombre`, `apellido`, `dni`, `CiudadOrigen`, `Estado`) VALUES
+(8, 'sergio', 'esquivel', 38827457, 13, 1),
+(9, 'franco', 'sanchez', 12345678, 14, 1),
+(10, 'lola', 'altamiranda', 12342535, 13, 1),
+(11, 'Paulina', 'Roldan', 98623442, 13, 1);
 
 -- --------------------------------------------------------
 
