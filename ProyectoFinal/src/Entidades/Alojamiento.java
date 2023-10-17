@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Alojamiento {
 
-    public Alojamiento(int idAlojamiento, Date fichaIn, Date fichaOn, Boolean estado, String servicio, double importeDiario, Ciudad CiudadDest) {
+    public Alojamiento(int idAlojamiento, Date fichaIn, Date fichaOn, Boolean estado, String servicio, double importeDiario, Ciudad CiudadDest, String tipo) {
         this.idAlojamiento = idAlojamiento;
         this.fichaIn = fichaIn;
         this.fichaOn = fichaOn;
@@ -12,6 +12,7 @@ public class Alojamiento {
         this.servicio = servicio;
         this.importeDiario = importeDiario;
         this.CiudadDest = CiudadDest;
+        this.tipo= tipo;
     }
 
     public Alojamiento() {
@@ -73,9 +74,17 @@ public class Alojamiento {
         this.CiudadDest = CiudadDest;
     }
 
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+    
     @Override
     public String toString() {
-        return "Alojamiento{" + "idAlojamiento=" + idAlojamiento + ", fichaIn=" + fichaIn + ", fichaOn=" + fichaOn + ", estado=" + estado + ", servicio=" + servicio + ", importeDiario=" + importeDiario + ", CiudadDest=" + CiudadDest + '}';
+        return "Alojamiento{" + "idAlojamiento=" + idAlojamiento + ", fichaIn=" + fichaIn + ", fichaOn=" + fichaOn + ", estado=" + estado + ", servicio=" + servicio + ", importeDiario=" + importeDiario + ", CiudadDest=" + CiudadDest + ", tipo="+ tipo + '}';
     }
 
     private int idAlojamiento;
@@ -91,4 +100,6 @@ public class Alojamiento {
     private double importeDiario;
 
     private Ciudad CiudadDest;
+    
+    private String tipo;
 }

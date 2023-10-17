@@ -1,8 +1,13 @@
 package Vista;
 
 
+import AccesoDatos.CiudadData;
 import AccesoDatos.Conexion;
+import AccesoDatos.clienteData;
+import Entidades.Alojamiento;
+import Entidades.Ciudad;
 import java.sql.Connection;
+import java.util.List;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -23,5 +28,6 @@ public class ProyectoFinal {
         // TODO code application logic here
          Connection con=Conexion.getConexion();
     }
-    
 }
+
+

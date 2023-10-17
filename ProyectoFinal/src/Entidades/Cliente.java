@@ -50,11 +50,19 @@ public class Cliente {
     public void setIdCliente(int idCliente) {
         this.idCliente = idCliente;
     }
+
+    public boolean isEstado() {
+        return estado;
+    }
+
+    public void setEstado(boolean estado) {
+        this.estado = estado;
+    }
     
    
     @Override
     public String toString() {
-        return "Cliente{" + "nombre=" + nombre + ", apellido=" + apellido + ", correo=" + correo + ", dni=" + dni + ", CiudadOrigen" + CiudadOrigen + ", idCliente" + idCliente +'}';
+        return "Cliente{" + "nombre=" + nombre + ", apellido=" + apellido + ", correo=" + correo + ", dni=" + dni + ", CiudadOrigen" + CiudadOrigen + ", idCliente" + idCliente +", estado=" + estado + '}';
     }
 
     public Cliente() {
@@ -70,15 +78,16 @@ public class Cliente {
     }
     
 
-    public Cliente(String nombre, int dni, int CiudadOrigen, int idCliente) {
+    public Cliente(String nombre, int dni, int CiudadOrigen, int idCliente, boolean estado) {
         this.nombre = nombre;
         this.dni = dni;
         this.CiudadOrigen = CiudadOrigen;
         this.idCliente= idCliente;
+        this.estado= estado;
     }
     
    private String nombre ,apellido,correo;
    private int dni,telefono;
    private int CiudadOrigen, idCliente;
-    
+   private boolean estado;
 }
