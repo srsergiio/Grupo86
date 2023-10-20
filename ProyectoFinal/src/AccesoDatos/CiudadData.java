@@ -100,7 +100,7 @@ public class CiudadData  extends Algoridmo {
     }
      
      
-     public List<Ciudad> listarCiudad(){
+     public  List<Ciudad> listarCiudad(){
           List <Ciudad> ciudades =new ArrayList<>();
           try{
              String sql = "SELECT * FROM ciudad WHERE estado=1";

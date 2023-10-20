@@ -16,6 +16,7 @@ public class mainVista extends javax.swing.JFrame {
      */
     public mainVista() {
         initComponents();
+        //main 
     }
 
     /**
@@ -31,9 +32,10 @@ public class mainVista extends javax.swing.JFrame {
         jCheckBoxMenuItem1 = new javax.swing.JCheckBoxMenuItem();
         escritorio = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
+        EscritorioDespegar = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -41,6 +43,18 @@ public class mainVista extends javax.swing.JFrame {
         jCheckBoxMenuItem1.setText("jCheckBoxMenuItem1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(1280, 720));
+
+        escritorio.setPreferredSize(new java.awt.Dimension(400, 400));
+        escritorio.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+                escritorioAncestorRemoved(evt);
+            }
+        });
 
         javax.swing.GroupLayout escritorioLayout = new javax.swing.GroupLayout(escritorio);
         escritorio.setLayout(escritorioLayout);
@@ -53,18 +67,26 @@ public class mainVista extends javax.swing.JFrame {
             .addGap(0, 279, Short.MAX_VALUE)
         );
 
-        jMenu1.setText("Cliente");
-        jMenuBar1.add(jMenu1);
+        EscritorioDespegar.setText("Cliente");
+        EscritorioDespegar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EscritorioDespegarActionPerformed(evt);
+            }
+        });
+        jMenuBar1.add(EscritorioDespegar);
 
         jMenu3.setText("Administracion");
 
-        jMenuItem2.setText("jMenuItem2");
+        jMenuItem2.setText("Agregar Transporte");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem2ActionPerformed(evt);
             }
         });
         jMenu3.add(jMenuItem2);
+
+        jMenuItem3.setText("Agregar Alojamiento");
+        jMenu3.add(jMenuItem3);
 
         jMenuBar1.add(jMenu3);
 
@@ -74,11 +96,11 @@ public class mainVista extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(escritorio)
+            .addComponent(escritorio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(escritorio)
+            .addComponent(escritorio, javax.swing.GroupLayout.DEFAULT_SIZE, 279, Short.MAX_VALUE)
         );
 
         pack();
@@ -86,7 +108,19 @@ public class mainVista extends javax.swing.JFrame {
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         // TODO add your handling code here:
+       Despegar();
+        
     }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void EscritorioDespegarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EscritorioDespegarActionPerformed
+        // TODO add your handling code here:\
+      
+    }//GEN-LAST:event_EscritorioDespegarActionPerformed
+
+    private void escritorioAncestorRemoved(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_escritorioAncestorRemoved
+        // TODO add your handling code here:
+       
+    }//GEN-LAST:event_escritorioAncestorRemoved
 
     /**
      * @param args the command line arguments
@@ -125,12 +159,23 @@ public class mainVista extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenu EscritorioDespegar;
     private javax.swing.JDesktopPane escritorio;
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
-    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
     // End of variables declaration//GEN-END:variables
+
+    public  void Despegar(){
+        escritorio.removeAll();
+        escritorio.repaint();
+        Despegar despegar = new Despegar();
+        despegar.setVisible(true);
+        escritorio.add(despegar);
+        escritorio.moveToFront(despegar);
+    }
+
 }
