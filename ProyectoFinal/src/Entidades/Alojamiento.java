@@ -18,6 +18,10 @@ public class Alojamiento {
     public Alojamiento() {
     }
 
+    public Alojamiento(int idAlojamiento, java.sql.Date fechaI, java.sql.Date fechaF, String tipo, String servicio, int importeD, int ciudad, boolean estado) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     public int getIdAlojamiento() {
         return idAlojamiento;
     }
