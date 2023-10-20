@@ -16,11 +16,22 @@ import java.sql.Statement;
  */
 public class paqueteData {
     
+    //getPaqueteId()
+    
+    
     public static int getCostoEstadia(int id){
-        return 1;
+        return 1/*alojamientoData.getImporte(id)*/;
 }
     
     public static int getCostoPasaje(int id){
     return pasajeData.getImporte(id);
+    
+    //getTipoTransporte
+    
+    //getEstado
+    
 }
+    
+    
+    //
 }

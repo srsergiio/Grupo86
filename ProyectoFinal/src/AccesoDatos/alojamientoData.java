@@ -11,4 +11,9 @@ package AccesoDatos;
  */
 public class alojamientoData {
     
+    //double o int getImporte(id);
+    
+    
+    
+    
 }
