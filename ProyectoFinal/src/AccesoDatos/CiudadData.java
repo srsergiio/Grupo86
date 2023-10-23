@@ -121,6 +121,28 @@ public class CiudadData  extends Algoridmo {
                     }
         return ciudades;
     }
+     public List<Ciudad> listarCiudad2(){
+    List <Ciudad> ciudades = new ArrayList<>();
+    try{
+        String sql = "SELECT * FROM ciudad WHERE estado=1";
+        PreparedStatement ps= con.prepareStatement(sql);
+        ResultSet rs= ps.executeQuery();
+        while (rs.next()){
+            Ciudad ciudad= new Ciudad();
+            ciudad.setIdCiudad(rs.getInt("idCiudad"));
+            ciudad.setNombre(rs.getString("nombre"));
+            ciudad.setProvincia(rs.getString("provincia"));
+            ciudad.setPais(rs.getString("pais"));
+            ciudad.setEstado(true);
+            ciudades.add(ciudad);
+        }
+        ps.close();
+    }catch(SQLException ex){
+        JOptionPane.showMessageDialog(null, "Error al acceder a la tabla ciudad"+ex.getMessage());
+    }
+    return ciudades;
+}
+
      
       // Método para obtener transportes disponibles en una ciudad
       public List<Pasaje> obtenerTransportesPorDestino(Ciudad destino) {

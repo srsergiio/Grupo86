@@ -71,7 +71,7 @@ public class Ciudad {
 
     private int idCiudad;
 
-    private String nombre;
+    public String nombre;
 
     private String pais;
 
