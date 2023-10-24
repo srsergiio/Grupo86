@@ -5,6 +5,8 @@
  */
 package Vista;
 
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Administrador
@@ -15,7 +17,9 @@ public class VistaPaquete extends javax.swing.JInternalFrame {
      * Creates new form NewJInternalFrame
      */
     public VistaPaquete() {
+        //ejecutar apenas aparece main
         initComponents();
+        dibujar_Columna();
     }
 
     /**
@@ -30,6 +34,8 @@ public class VistaPaquete extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         paquetes_Turisticos = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
+
+        setPreferredSize(new java.awt.Dimension(648, 467));
 
         paquetes_Turisticos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -57,19 +63,19 @@ public class VistaPaquete extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 482, Short.MAX_VALUE)
+                        .addComponent(jButton1))
+                    .addComponent(jScrollPane1))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(59, 59, 59)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 86, Short.MAX_VALUE)
+                .addGap(30, 30, 30)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton1)
                 .addContainerGap())
         );
@@ -87,4 +93,13 @@ public class VistaPaquete extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable paquetes_Turisticos;
     // End of variables declaration//GEN-END:variables
+
+    
+    
+    public void dibujar_Columna(){
+        String[] columnNames = {"ID", "Ciudad Origen", "Ciudad Destino", "FechaI", "Fecha V", "Costo"};
+        DefaultTableModel model = new DefaultTableModel(columnNames, 0);
+        paquetes_Turisticos.setModel(model);
+    }
+    
 }
