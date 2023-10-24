@@ -21,7 +21,7 @@ public class Despegar extends javax.swing.JInternalFrame {
      */
     public Despegar() {
         initComponents();
-        AutoCargarOrigen();
+        CargarCiudades();
     }
 
     /**
@@ -48,7 +48,7 @@ public class Despegar extends javax.swing.JInternalFrame {
         Titulo_Catidad_Persona = new javax.swing.JLabel();
         Desplegable_Catidad_Persona = new javax.swing.JSpinner();
         Titulo_Catidad_Habitantes = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        BuscarPaquetes = new javax.swing.JButton();
 
         setForeground(java.awt.Color.white);
 
@@ -80,10 +80,15 @@ public class Despegar extends javax.swing.JInternalFrame {
 
         Titulo_Catidad_Habitantes.setText("Habitaciones");
 
-        jButton1.setText("Buscar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        BuscarPaquetes.setText("Buscar");
+        BuscarPaquetes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                BuscarPaquetesMouseClicked(evt);
+            }
+        });
+        BuscarPaquetes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                BuscarPaquetesActionPerformed(evt);
             }
         });
 
@@ -129,7 +134,7 @@ public class Despegar extends javax.swing.JInternalFrame {
                                             .addComponent(Titulo_Catidad_Habitantes))
                                         .addGap(0, 0, Short.MAX_VALUE))))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton1)
+                        .addComponent(BuscarPaquetes)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
@@ -162,7 +167,7 @@ public class Despegar extends javax.swing.JInternalFrame {
                             .addComponent(Desplegable_Catidad_Habitantes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(Titulo_Catidad_Persona))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(BuscarPaquetes)
                 .addGap(55, 55, 55))
         );
 
@@ -197,12 +202,49 @@ public class Despegar extends javax.swing.JInternalFrame {
           
     }//GEN-LAST:event_Desplegable_OrigenActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void BuscarPaquetesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarPaquetesActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_BuscarPaquetesActionPerformed
+
+    private void BuscarPaquetesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BuscarPaquetesMouseClicked
+        // TODO add your handling code here:
+        
+        
+        ArrayList<Object> datos = new ArrayList<>();
+
+// Obtener los valores de los JSpinners
+datos.add(Desplegable_Catidad_Habitantes.getValue());
+datos.add(Desplegable_Catidad_Persona.getValue());
+
+// Obtener los valores seleccionados en los JComboBox
+datos.add(Desplegable_Destino.getSelectedItem());
+datos.add(Desplegable_Origen.getSelectedItem());
+
+// Obtener las fechas seleccionadas en los JDateChoosers
+datos.add(Desplegable_fecha_ida.getDate());
+datos.add(Desplegable_fecha_vuelta.getDate());
+
+// Imprimir los datos en la consola
+for (Object dato : datos) {
+    System.out.println(dato);
+}
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    }//GEN-LAST:event_BuscarPaquetesMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BuscarPaquetes;
     private javax.swing.JSpinner Desplegable_Catidad_Habitantes;
     private javax.swing.JSpinner Desplegable_Catidad_Persona;
     private javax.swing.JComboBox<String> Desplegable_Destino;
@@ -213,7 +255,6 @@ public class Despegar extends javax.swing.JInternalFrame {
     private javax.swing.JLabel Titulo_Catidad_Habitantes;
     private javax.swing.JLabel Titulo_Catidad_Persona;
     private javax.swing.JLabel Titulo_Ventana;
-    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel titulo_Destino;
     private javax.swing.JLabel titulo_Origen;
@@ -221,7 +262,7 @@ public class Despegar extends javax.swing.JInternalFrame {
     private javax.swing.JLabel titulo_fecha_vuelta;
     // End of variables declaration//GEN-END:variables
 
-public void AutoCargarOrigen(){
+public void CargarCiudades(){
      Desplegable_Origen.removeAllItems();
      Desplegable_Destino.removeAllItems();
      CiudadData c = new CiudadData();

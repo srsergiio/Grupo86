@@ -9,12 +9,12 @@ package Vista;
  *
  * @author Administrador
  */
-public class VistaRersevas extends javax.swing.JInternalFrame {
+public class VistaReservas extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form VistaRersevas
      */
-    public VistaRersevas() {
+    public VistaReservas() {
         initComponents();
     }
 
