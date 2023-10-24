@@ -20,6 +20,9 @@ public class VistaPaquete extends javax.swing.JInternalFrame {
         //ejecutar apenas aparece main
         initComponents();
         dibujar_Columna();
+        
+ 
+
     }
 
     /**
@@ -97,9 +100,29 @@ public class VistaPaquete extends javax.swing.JInternalFrame {
     
     
     public void dibujar_Columna(){
-        String[] columnNames = {"ID", "Ciudad Origen", "Ciudad Destino", "FechaI", "Fecha V", "Costo"};
+        String[] columnNames = {"ID", "Origen", "Destino", "FechaI", "FechaV","Descripcion", "Costo"};
         DefaultTableModel model = new DefaultTableModel(columnNames, 0);
         paquetes_Turisticos.setModel(model);
     }
     
+    
+  public void modeloDeColocarItem(){
+      
+      
+             // Obtén el modelo de la tabla
+DefaultTableModel model = (DefaultTableModel) paquetes_Turisticos.getModel();
+
+// Crea un array con los datos de la fila
+Object[] row = new Object[6]; // Ajusta el tamaño del array según el número de columnas de tu tabla
+row[0] = "ID";
+row[1] = "Origen";
+row[2] = "Destino";
+// Continúa llenando el array con los datos que desees
+
+// Añade la fila al modelo
+model.addRow(row);
+
+// Asigna el modelo a la tabla
+paquetes_Turisticos.setModel(model);
+  }    
 }
