@@ -5,17 +5,41 @@
  */
 package Vista;
 
+import AccesoDatos.reservaData;
+import Entidades.Reserva;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Administrador
  */
 public class VistaReservas extends javax.swing.JInternalFrame {
+    private reservaData ReservaData;
 
     /**
      * Creates new form VistaRersevas
      */
     public VistaReservas() {
-        initComponents();
+        initComponents(); 
+        ReservaData = new reservaData();
+        List<Reserva> reservas = reservaData.listarReserva();
+        String[] columnas = {"ID Reserva", "ID Cliente", "ID Paquete", "Fecha Reserva", "Fecha Viaje"};
+        
+
+        
+        DefaultTableModel modeloTabla = new DefaultTableModel(columnas, 0);
+         for (Reserva reserva : reservas) {
+            modeloTabla.addRow(new Object[]{
+                reserva.getIdReserva(),
+                reserva.getIdCliente(),
+                reserva.getIdPaquete(),
+                reserva.getFechaReserva(),
+                reserva.getFechaViaje()
+            });
+        }
+         jTable1.setModel(modeloTabla);
+
     }
 
     /**
@@ -68,4 +92,5 @@ public class VistaReservas extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
+
 }
