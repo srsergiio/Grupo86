@@ -5,6 +5,9 @@
  */
 package AccesoDatos;
 import Entidades.Paquete;
+import Entidades.Ciudad;
+import AccesoDatos.CiudadData;
+import Entidades.Pasaje;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -16,23 +19,31 @@ import java.util.ArrayList;
  * @author Administrador
  */
 public class paqueteData {
+    Connection con ;
+    public paqueteData() {
+       this.con = Conexion.getConexion();
+    }
     
-    public static ArrayList<int[]> getPaqueteData() {
-    ArrayList<paquete> lista = new ArrayList<>();
+    
+    
+    
+    public ArrayList<Paquete> getPaqueteData() {
+    ArrayList<Paquete> lista = new ArrayList<>();
     String sql = "SELECT idPaquete, costoEstadia, costoPasaje FROM paquete";
-    Connection con = Conexion.getConexion();
     try {
         Statement stmt = con.createStatement();
         ResultSet rs = stmt.executeQuery(sql);
         while(rs.next()){
             //aca creo una entidad paquete.
-            int[] datos = new int[3];
+     
             Paquete paquete = new Paquete();
             // asigno  sus valores
-            datos[0] = rs.getInt("idPaquete");
-            datos[1] = rs.getInt("costoEstadia");
-            datos[2] = rs.getInt("costoPasaje");
-            lista.add(datos);
+            paquete.setIdPaquete(rs.getInt("idPaquete"));
+            paquete.setOrigen(new CiudadData().buscarPorId(new pasajeData().getCiudadOrigen(rs.getInt("costoPasaje"))));
+            paquete.setDestino(new CiudadData().buscarPorId(new pasajeData().getCiudadDestino(rs.getInt("costoPasaje"))));
+            paquete.setAlojamiento( new alojamientoData().getAlojamiento(rs.getInt("costoPasaje")));
+            paquete.setPasaje(/*(Pasaje)*/new pasajeData().getPasajeData(rs.getInt("costoPasaje")));
+            lista.add(paquete);
         }
     } catch (SQLException e) {
         e.printStackTrace();
@@ -48,18 +59,13 @@ public class paqueteData {
 
     
     
-    public static int getCostoEstadia(int id){
+    public  int getCostoEstadia(int id){
         return 1/*alojamientoData.getImporte(id)*/;
 }
     
-    public static int getCostoPasaje(int id){
-    return pasajeData.getImporte(id);
-    
-    //getTipoTransporte
-    
-    //getEstado
-    
-}
+    public  int getCostoPasaje(int id){
+        return new pasajeData().getImporte(id); 
+    }
     
     
     //

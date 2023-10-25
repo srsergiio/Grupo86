@@ -216,7 +216,7 @@ public class mainVista extends javax.swing.JFrame {
         Despegar();
     }//GEN-LAST:event_Pantalla_Despegar_ActionPerformed
 
-    public static void main(String args[]) {
+    public static void main(String args[])  {
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {

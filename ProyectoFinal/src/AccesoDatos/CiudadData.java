@@ -74,7 +74,7 @@ public class CiudadData  extends Algoridmo {
 
     return ciudad;
 }     
-     public Ciudad buscarPorId(int id) {
+     public  Ciudad buscarPorId(int id) {
          Ciudad ciudad=null;
          String sql= "SELECT nombre, provincia, pais FROM ciudad WHERE idCiudad = ? AND estado = 1";
          PreparedStatement ps=null;

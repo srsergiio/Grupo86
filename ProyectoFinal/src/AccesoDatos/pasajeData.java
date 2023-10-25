@@ -14,18 +14,29 @@ import java.sql.Statement;
 import java.util.Date;
 
 public class pasajeData {
+    private final Connection con;
+    
+    public pasajeData() {
+         this.con=Conexion.getConexion();
+    }
     
     
 
-    public static void getPasajeData(int id){
+    public  Pasaje getPasajeData(int id){
         String sql="SELECT * FROM `pasaje` WHERE `idPasaje`="+id;
-        Connection con=Conexion.getConexion();
+        Pasaje pasaje= new Pasaje();
     try {
         Statement stmt = con.createStatement();
         ResultSet rs = stmt.executeQuery(sql);
         while(rs.next()){
             System.out.println("idPasaje: " + rs.getInt("idPasaje"));
             // Añade aquí más campos según sea necesario
+            pasaje.setIdPasaje(/*(int)*/rs.getInt("idPasaje"));
+            pasaje.setTipoTransporte(/*(String)*/rs.getString("tipoTransporte"));
+            pasaje.setImporte(/*(double)*/rs.getDouble("importe"));
+            pasaje.setNombreCiudadOrigen(/*(ciudad)*/new CiudadData().buscarPorId(rs.getInt("ciudadOrigen")));
+            pasaje.setEstado(/*(boolean)*/rs.getBoolean("estado"));
+            
         }
     } catch (SQLException e) {
         e.printStackTrace();
@@ -36,14 +47,17 @@ public class pasajeData {
             e.printStackTrace();
         }
     }
+    return pasaje;
 }
+    
+    
 
-public static String getTipoTransporte(int id){
+public  String getTipoTransporte(int id){
     String sql="SELECT tipoTransporte FROM `pasaje` WHERE `idPasaje`="+id;
     Connection con=Conexion.getConexion();
     String tipoTransporte = null;
     try {
-        Statement stmt = con.createStatement();
+        Statement stmt = this.con.createStatement();
         ResultSet rs = stmt.executeQuery(sql);
         if(rs.next()){
             tipoTransporte = rs.getString("tipoTransporte");
@@ -59,9 +73,8 @@ public static String getTipoTransporte(int id){
     }
     return tipoTransporte;
 }
-public static Date getFechaIda(int id){
+public  Date getFechaIda(int id){
     String sql="SELECT fechaIda FROM `pasaje` WHERE `idPasaje`="+id;
-    Connection con=Conexion.getConexion();
     Date fechaIda = null;
     try {
         Statement stmt = con.createStatement();
@@ -81,9 +94,8 @@ public static Date getFechaIda(int id){
     return fechaIda;
 }
 
-public static Date getFechaVuelta(int id){
+public  Date getFechaVuelta(int id){
     String sql="SELECT fechaVuelta FROM `pasaje` WHERE `idPasaje`="+id;
-    Connection con=Conexion.getConexion();
     Date fechaVuelta = null;
     try {
         Statement stmt = con.createStatement();
@@ -103,9 +115,8 @@ public static Date getFechaVuelta(int id){
     return fechaVuelta;
 }
 
-public static boolean getEstado(int id){
+public  boolean getEstado(int id){
     String sql="SELECT estado FROM `pasaje` WHERE `idPasaje`="+id;
-    Connection con=Conexion.getConexion();
     boolean estado = false;
     try {
         Statement stmt = con.createStatement();
@@ -126,9 +137,8 @@ public static boolean getEstado(int id){
 }
 
 
-public static int getImporte(int id){
-    String sql="SELECT importe FROM `pasaje` WHERE `idPasaje`="+id;
-    Connection con=Conexion.getConexion();
+public  int getImporte(int id){
+    String sql="SELECT importe FROM `pasaje` WHERE `idPasaje`="+id;   
     int importe = 0;
     try {
         Statement stmt = con.createStatement();
@@ -148,9 +158,9 @@ public static int getImporte(int id){
     return importe;
 }
 
-public static int getCiudadOrigen(int id){
+public  int getCiudadOrigen(int id){
     String sql="SELECT ciudadOrigen FROM `pasaje` WHERE `idPasaje`="+id;
-    Connection con=Conexion.getConexion();
+   
     int ciudadOrigen = 0;
     try {
         Statement stmt = con.createStatement();
@@ -170,9 +180,8 @@ public static int getCiudadOrigen(int id){
     return ciudadOrigen;
 }
 
- public static int getCiudadDestino(int id){
+ public  int getCiudadDestino(int id){
     String sql="SELECT ciudadDestino FROM `pasaje` WHERE `idPasaje`="+id;
-    Connection con=Conexion.getConexion();
     int ciudadDestino = 0;
     try {
         Statement stmt = con.createStatement();
@@ -192,9 +201,8 @@ public static int getCiudadOrigen(int id){
     return ciudadDestino;
 }
  
- public static void setCiudadDestino(int id, int nuevaCiudadDestino){
+ public  void setCiudadDestino(int id, int nuevaCiudadDestino){
     String sql="UPDATE `pasaje` SET `ciudadDestino` = ? WHERE `idPasaje` = ?";
-    Connection con=Conexion.getConexion();
     try {
         PreparedStatement pstmt = con.prepareStatement(sql);
         pstmt.setInt(1, nuevaCiudadDestino);
@@ -211,10 +219,13 @@ public static int getCiudadOrigen(int id){
     }
 }
  
+ public static Pasaje getPasje(int id){
+     
+     
+     return new Pasaje();
+ }
+ 
  
 
-    public static void main (String []main){
-      //sdasda  getPasajeData(27);
-       System.out.println (getTipoTransporte(27));
-    }
+   
 }

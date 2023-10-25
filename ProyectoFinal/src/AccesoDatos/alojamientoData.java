@@ -25,11 +25,11 @@ public class alojamientoData {
     
     
     
-    
-
-    public alojamientoData(Connection conexion) {
-        con = conexion;
+    public alojamientoData() {
+         this.con=Conexion.getConexion();
     }
+
+  
     
     public List<Alojamiento> alojamientosDisponibles (Ciudad ciudad, Date ingreso, Date salida){
         
@@ -114,6 +114,33 @@ public class alojamientoData {
             return null;
         }  
         
+        
+        public Alojamiento getAlojamiento(int id) {
+    Alojamiento alojamiento = null;
+    try {
+        String sql = "SELECT * FROM alojamiento WHERE idAlojamiento = ?";
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setInt(1, id);
+        ResultSet rs = ps.executeQuery();
+        if (rs.next()) {
+            int idAlojamiento = rs.getInt("idAlojamiento");
+            Date fichaIn = rs.getDate("fichaIn");
+            Date fichaOn = rs.getDate("fichaOn");
+            Boolean estado = rs.getBoolean("estado");
+            String servicio = rs.getString("servicio");
+            double importeDiario = rs.getDouble("importeDiario");
+            Ciudad CiudadDest = null/* You need to fetch the Ciudad object based on its ID here */;
+            String tipo = rs.getString("tipo");
+            
+            alojamiento = new Alojamiento(idAlojamiento, fichaIn, fichaOn, estado, servicio, importeDiario, CiudadDest, tipo);
+        }
+        ps.close();
+    } catch (SQLException ex) {
+        System.out.println("Error al buscar el alojamiento: " + ex);
+    }
+    return alojamiento;
+}
+ 
 
 }
 
