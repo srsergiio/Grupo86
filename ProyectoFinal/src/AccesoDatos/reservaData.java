@@ -50,4 +50,32 @@ public class reservaData {
                     }
         return reservas;
     }
+    public List<String> obtenerNombresClientesConReservas() {
+    List<String> nombresClientes = new ArrayList<>();
+    try {
+        String sql = "SELECT DISTINCT c.nombre, c.apellido " +
+                     "FROM cliente c " +
+                     "INNER JOIN reserva r ON c.idCliente = r.idCliente";
+        PreparedStatement ps = con.prepareStatement(sql);
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+            String nombreCliente = rs.getString("nombre") + " " + rs.getString("apellido");
+            nombresClientes.add(nombreCliente);
+        }
+        ps.close();
+        } catch (SQLException ex) {
+            
+           JOptionPane.showMessageDialog(null, "Error al obtener los nombres de los clientes con reservas: " + ex.getMessage());
+        }
+    return nombresClientes;
+    }
+    
 }
+
+
+
+
+
+
+
+

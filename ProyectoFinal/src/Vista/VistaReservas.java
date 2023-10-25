@@ -24,18 +24,22 @@ public class VistaReservas extends javax.swing.JInternalFrame {
         initComponents(); 
         ReservaData = new reservaData();
         List<Reserva> reservas = reservaData.listarReserva();
-        String[] columnas = {"ID Reserva", "ID Cliente", "ID Paquete", "Fecha Reserva", "Fecha Viaje"};
+        List<String> nombresClientes = ReservaData.obtenerNombresClientesConReservas();
+        String[] columnas = {"ID Reserva", "ID Cliente","Nombre Cliente" ,"ID Paquete", "Fecha Reserva", "Fecha Viaje"};
         
 
         
         DefaultTableModel modeloTabla = new DefaultTableModel(columnas, 0);
-         for (Reserva reserva : reservas) {
+        for (int i = 0; i < reservas.size(); i++) {
+            Reserva reserva = reservas.get(i);
             modeloTabla.addRow(new Object[]{
                 reserva.getIdReserva(),
                 reserva.getIdCliente(),
+                nombresClientes.get(i),
                 reserva.getIdPaquete(),
                 reserva.getFechaReserva(),
-                reserva.getFechaViaje()
+                reserva.getFechaViaje(),
+                
             });
         }
          jTable1.setModel(modeloTabla);
@@ -73,8 +77,8 @@ public class VistaReservas extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 592, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
