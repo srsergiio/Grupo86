@@ -136,6 +136,11 @@ public class mainVista extends javax.swing.JFrame {
         insert_BD.add(Pasaje);
 
         Ciudad.setText("Ciudad");
+        Ciudad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CiudadActionPerformed(evt);
+            }
+        });
         insert_BD.add(Ciudad);
 
         jMenuItem2.setText("Alojamiento");
@@ -225,6 +230,12 @@ public class mainVista extends javax.swing.JFrame {
         // TODO add your handling code here:
         VistaInsertCliente();
     }//GEN-LAST:event_ClienteActionPerformed
+
+    private void CiudadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CiudadActionPerformed
+        // TODO add your handling code here:
+        
+        VistaInsertCiudad();
+    }//GEN-LAST:event_CiudadActionPerformed
 
     public static void main(String args[])  {
         try {
@@ -318,5 +329,16 @@ public class mainVista extends javax.swing.JFrame {
         InsertCliente.setVisible(true);
         escritorio.add(InsertCliente);
         escritorio.moveToFront(InsertCliente);
+    }
+    
+    
+    public  void VistaInsertCiudad(){
+        escritorio.removeAll();
+        escritorio.repaint();
+        InsertCiudad InsertCiudad = new InsertCiudad();
+        
+        InsertCiudad.setVisible(true);
+        escritorio.add(InsertCiudad);
+        escritorio.moveToFront(InsertCiudad);
     }
 }

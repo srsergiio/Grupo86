@@ -5,6 +5,7 @@
  */
 package Vista;
 
+import AccesoDatos.CiudadData;
 import AccesoDatos.paqueteData;
 import AccesoDatos.pasajeData;
 import AccesoDatos.reservaData;
@@ -119,18 +120,25 @@ public class VistaPaquete extends javax.swing.JInternalFrame {
          // Ajusta el tamaño del array según el número de columnas de tu tabla
         row[0] = /*IdReserva*/reservas.listarReserva().get(i).getIdReserva();
         int IDpaquete = reservas.listarReserva().get(i).getIdPaquete();
+        System.out.println("IDpaquete : " +IDpaquete);
+        //que id pasaje tiene este paquete ?
         int IDpasaje = new paqueteData().getCostoPasaje(IDpaquete);
+        System.out.println("IDpasaje  : tiene que ser 27  : " +IDpasaje);
+        //cual es el nombre de la ciudad con este id ?
+        int IDCiudadOrigen = new pasajeData().getCiudadOrigen(IDpasaje);
+        System.out.println("IDCiudadOrigen : " +IDCiudadOrigen);
+        //nombre de la ciudad con este ID
+        String ciudadOrigen = new CiudadData().buscarPorId(IDCiudadOrigen).getNombre();
+        
         System.out.println(IDpaquete);
         System.out.println(IDpasaje);
         
-        row[1] = /*"Origen"*/new pasajeData().getCiudadOrigen(IDpasaje);
+        row[1] = /*"Origen"*/ciudadOrigen;
         row[2] = "Destino";
         row[3] = "s";
         row[4] = "FechaV ";
         row[5] = "Descripcion";
-        int IDreserva= reservas.listarReserva().get(i).;
-        Double costoPasaje=;
-        Double Estadia=0.0;
+       
         row[6] = "Costo";
         
     }
