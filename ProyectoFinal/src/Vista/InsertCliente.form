@@ -127,37 +127,28 @@
   </Layout>
   <SubComponents>
     <Component class="javax.swing.JTextField" name="insert_Nombre_">
-      <Properties>
-        <Property name="text" type="java.lang.String" value=" Escriba su nombre"/>
-      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="insert_Nombre_ActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="TituloNombre">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Nombre :"/>
+        <Property name="text" type="java.lang.String" value="Ingrese su nombre :"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="TituloApellido">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Apellido :"/>
+        <Property name="text" type="java.lang.String" value="Ingrese su apellido :"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="TituloDNI">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Dni :"/>
+        <Property name="text" type="java.lang.String" value="Ingrese su Dni :"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="insert_Apellido_">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Ingrese Apellido."/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="insert_DNI_">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Ingrese DNI."/>
-      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="insert_DNI_ActionPerformed"/>
       </Events>
@@ -171,6 +162,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Insert"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonInsertActionPerformed"/>
+      </Events>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane3">
       <AuxValues>
@@ -179,7 +173,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTable" name="jTable2">
+        <Component class="javax.swing.JTable" name="jTableCd">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
               <Table columnCount="4" rowCount="4">

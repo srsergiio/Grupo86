@@ -5,17 +5,44 @@
  */
 package Vista;
 
+import AccesoDatos.CiudadData;
+import AccesoDatos.Conexion;
+import AccesoDatos.clienteData;
+import Entidades.Ciudad;
+import Entidades.Cliente;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Administrador
  */
 public class InsertCliente extends javax.swing.JInternalFrame {
-
-    /**
-     * Creates new form InsertCliente
-     */
+    private final Connection con;
+    
     public InsertCliente() {
         initComponents();
+        
+        this.con=Conexion.getConexion(); 
+        Connection conexion = Conexion.getConexion();
+        clienteData ClienteData = new clienteData(con);
+        CiudadData ciudadData = new CiudadData(con);
+        
+        
+        DefaultTableModel ciudadTableModel = new DefaultTableModel();
+        
+        ciudadTableModel.addColumn("Nombre de la Ciudad");
+        ciudadTableModel.addColumn("IdCiudad");
+        ciudadTableModel.addColumn("Seleccionar");
+        List<Ciudad> ciudadesDisponibles = ciudadData.listarCiudad(); 
+        
+        for (Ciudad ciudad : ciudadesDisponibles) {
+        ciudadTableModel.addRow(new Object[]{ciudad.getNombre(), ciudad.getIdCiudad(), true});
+        }
+         jTableCd.setModel(ciudadTableModel);
     }
 
     /**
@@ -40,7 +67,7 @@ public class InsertCliente extends javax.swing.JInternalFrame {
         Titulo = new javax.swing.JLabel();
         jButtonInsert = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        jTableCd = new javax.swing.JTable();
         TituloDNI1 = new javax.swing.JLabel();
 
         jTextArea1.setColumns(20);
@@ -60,22 +87,18 @@ public class InsertCliente extends javax.swing.JInternalFrame {
         ));
         jScrollPane2.setViewportView(jTable1);
 
-        insert_Nombre_.setText(" Escriba su nombre");
         insert_Nombre_.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 insert_Nombre_ActionPerformed(evt);
             }
         });
 
-        TituloNombre.setText("Nombre :");
+        TituloNombre.setText("Ingrese su nombre :");
 
-        TituloApellido.setText("Apellido :");
+        TituloApellido.setText("Ingrese su apellido :");
 
-        TituloDNI.setText("Dni :");
+        TituloDNI.setText("Ingrese su Dni :");
 
-        insert_Apellido_.setText("Ingrese Apellido.");
-
-        insert_DNI_.setText("Ingrese DNI.");
         insert_DNI_.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 insert_DNI_ActionPerformed(evt);
@@ -85,8 +108,13 @@ public class InsertCliente extends javax.swing.JInternalFrame {
         Titulo.setText("Nuevo Cliente");
 
         jButtonInsert.setText("Insert");
+        jButtonInsert.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonInsertActionPerformed(evt);
+            }
+        });
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        jTableCd.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -97,7 +125,7 @@ public class InsertCliente extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane3.setViewportView(jTable2);
+        jScrollPane3.setViewportView(jTableCd);
 
         TituloDNI1.setText("Ciudad Disponible :");
 
@@ -169,6 +197,49 @@ public class InsertCliente extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_insert_DNI_ActionPerformed
 
+    private void jButtonInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInsertActionPerformed
+       String nombre = insert_Nombre_.getText();
+    String apellido = insert_Apellido_.getText();
+    String dniText = insert_DNI_.getText();
+    Integer idCiudad = null;
+    
+    if (dniText.matches("\\d+")) {
+        int dni = Integer.parseInt(dniText);
+
+        
+        for (int i = 0; i < jTableCd.getRowCount(); i++) {
+            Boolean seleccionada = (Boolean) jTableCd.getValueAt(i, 2);
+            if (seleccionada) {
+            idCiudad = (int) jTableCd.getValueAt(i, 1);
+            System.out.println("IdCiudad seleccionada: " + idCiudad); // Agrega esta línea para imprimir el valor
+            break;
+          }
+        }
+        
+        if (idCiudad != null) {
+            Cliente cliente = new Cliente();
+            cliente.setNombre(nombre);
+            cliente.setApellido(apellido);
+            cliente.setDni(dni);
+            cliente.setCiudadOrigen(idCiudad);
+
+            try {
+                clienteData.agregarCliente(cliente);
+                JOptionPane.showMessageDialog(this, "Cliente agregado correctamente");
+                insert_Nombre_.setText("");
+                insert_Apellido_.setText("");
+                insert_DNI_.setText("");
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(this, "Error al agregar cliente: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Por favor, seleccione una ciudad de origen.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    } else {
+        JOptionPane.showMessageDialog(this, "El DNI debe contener solo números.", "Error", JOptionPane.ERROR_MESSAGE);
+    }
+    }//GEN-LAST:event_jButtonInsertActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Titulo;
@@ -184,7 +255,7 @@ public class InsertCliente extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
+    private javax.swing.JTable jTableCd;
     private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
 }

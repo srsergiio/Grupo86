@@ -58,6 +58,14 @@ public class Cliente {
     public void setEstado(boolean estado) {
         this.estado = estado;
     }
+
+    public Ciudad getCiudad() {
+        return ciudad;
+    }
+
+    public void setCiudad(Ciudad ciudad) {
+        this.ciudad = ciudad;
+    }
     
    
     @Override
@@ -90,4 +98,5 @@ public class Cliente {
    private int dni,telefono;
    private int CiudadOrigen, idCliente;
    private boolean estado;
+    private Ciudad ciudad;
 }

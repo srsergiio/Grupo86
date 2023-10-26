@@ -22,28 +22,34 @@ import javax.swing.JOptionPane;
  * @author Administrador
  */
 public class clienteData {
-    private final Connection con;
+    private static Connection con;
     private List<Cliente> clientes;
     private CiudadData cd= new CiudadData();
     
     public clienteData() {
         clientes = new ArrayList<>();
-        this.con=Conexion.getConexion();  
-        
+           
+        if (con == null) {
+            con = Conexion.getConexion(); 
+        }
+    }
+    public clienteData(Connection con) {
+        this.con = con;
     }
     
-     public void agregarCliente(Cliente cliente){
-           String sql= "INSERT INTO cliente(nombre, apellido, dni, CiudadOrigen) VALUES (?,?,?,?)";
+     public static void agregarCliente(Cliente nuevoCliente)throws SQLException {
+           String sql= "INSERT INTO cliente(nombre, apellido, dni, CiudadOrigen, estado) VALUES (?,?,?,?,?)";
            try {
             PreparedStatement ps=con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            ps.setString(1, cliente.getNombre());
-            ps.setString(2, cliente.getApellido());
-            ps.setInt(3, cliente.getDni());
-            ps.setInt(4, cliente.getCiudadOrigen());
+            ps.setString(1, nuevoCliente.getNombre());
+            ps.setString(2, nuevoCliente.getApellido());
+            ps.setInt(3, nuevoCliente.getDni());
+            ps.setInt(4, nuevoCliente.getCiudadOrigen());
+            ps.setInt(5, nuevoCliente.isEstado() ? 1:0);
             ps.executeUpdate();
             ResultSet rs= ps.getGeneratedKeys();
             if(rs.next()){
-                cliente.setIdCliente(rs.getInt(1));
+                nuevoCliente.setIdCliente(rs.getInt(1));
                 JOptionPane.showMessageDialog(null, "Cliente agregado");  
             }
             ps.close(); 
@@ -112,4 +118,5 @@ public class clienteData {
      }
     return ciudadesOrigenDisponibles;
     }
+ 
 }
