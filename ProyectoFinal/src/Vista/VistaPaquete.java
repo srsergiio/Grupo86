@@ -5,6 +5,9 @@
  */
 package Vista;
 
+import AccesoDatos.paqueteData;
+import AccesoDatos.pasajeData;
+import AccesoDatos.reservaData;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -20,7 +23,7 @@ public class VistaPaquete extends javax.swing.JInternalFrame {
         //ejecutar apenas aparece main
         initComponents();
         dibujar_Columna();
-        
+        modeloDeColocarItem();
  
 
     }
@@ -107,22 +110,34 @@ public class VistaPaquete extends javax.swing.JInternalFrame {
     
     
   public void modeloDeColocarItem(){
-      
-      
-             // Obtén el modelo de la tabla
-DefaultTableModel model = (DefaultTableModel) paquetes_Turisticos.getModel();
-
-// Crea un array con los datos de la fila
-Object[] row = new Object[6]; // Ajusta el tamaño del array según el número de columnas de tu tabla
-row[0] = "ID";
-row[1] = "Origen";
-row[2] = "Destino";
-// Continúa llenando el array con los datos que desees
-
-// Añade la fila al modelo
-model.addRow(row);
-
-// Asigna el modelo a la tabla
-paquetes_Turisticos.setModel(model);
+    // Obtén el modelo de la tabla
+    DefaultTableModel model = (DefaultTableModel) paquetes_Turisticos.getModel();
+    // Crea un array con los datos de la fila
+    Object[] row = new Object[7];
+    reservaData reservas = new reservaData();
+     for (int i = 0; i<reservas.listarReserva().size();i++){
+         // Ajusta el tamaño del array según el número de columnas de tu tabla
+        row[0] = /*IdReserva*/reservas.listarReserva().get(i).getIdReserva();
+        int IDpaquete = reservas.listarReserva().get(i).getIdPaquete();
+        int IDpasaje = new paqueteData().getCostoPasaje(IDpaquete);
+        System.out.println(IDpaquete);
+        System.out.println(IDpasaje);
+        
+        row[1] = /*"Origen"*/new pasajeData().getCiudadOrigen(IDpasaje);
+        row[2] = "Destino";
+        row[3] = "s";
+        row[4] = "FechaV ";
+        row[5] = "Descripcion";
+        int IDreserva= reservas.listarReserva().get(i).;
+        Double costoPasaje=;
+        Double Estadia=0.0;
+        row[6] = "Costo";
+        
+    }
+    // Continúa llenando el array con los datos que desees
+    // Añade la fila al modelo
+     model.addRow(row);
+    // Asigna el modelo a la tabla
+    paquetes_Turisticos.setModel(model);
   }    
 }

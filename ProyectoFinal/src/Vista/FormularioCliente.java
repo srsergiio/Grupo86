@@ -16,6 +16,7 @@ public class FormularioCliente extends javax.swing.JInternalFrame {
      */
     public FormularioCliente() {
         initComponents();
+        
     }
 
     /**

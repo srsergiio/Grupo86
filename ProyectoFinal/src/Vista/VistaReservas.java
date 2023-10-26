@@ -23,7 +23,7 @@ public class VistaReservas extends javax.swing.JInternalFrame {
     public VistaReservas() {
         initComponents(); 
         ReservaData = new reservaData();
-        List<Reserva> reservas = reservaData.listarReserva();
+        List<Reserva> reservas = new reservaData().listarReserva();
         List<String> nombresClientes = ReservaData.obtenerNombresClientesConReservas();
         String[] columnas = {"ID Reserva", "ID Cliente","Nombre Cliente" ,"ID Paquete", "Fecha Reserva", "Fecha Viaje"};
         

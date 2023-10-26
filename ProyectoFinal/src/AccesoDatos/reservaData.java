@@ -29,7 +29,7 @@ public class reservaData {
         }
     }
   
-     public static List<Reserva> listarReserva(){
+     public  List<Reserva> listarReserva(){
           List <Reserva> reservas =new ArrayList<>();
           try{
              String sql = "SELECT * FROM reserva";

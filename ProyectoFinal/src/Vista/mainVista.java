@@ -125,6 +125,11 @@ public class mainVista extends javax.swing.JFrame {
         insert_BD.setText("Insert");
 
         Cliente.setText("Cliente");
+        Cliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ClienteActionPerformed(evt);
+            }
+        });
         insert_BD.add(Cliente);
 
         Pasaje.setText("Pasaje");
@@ -216,6 +221,11 @@ public class mainVista extends javax.swing.JFrame {
         Despegar();
     }//GEN-LAST:event_Pantalla_Despegar_ActionPerformed
 
+    private void ClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClienteActionPerformed
+        // TODO add your handling code here:
+        VistaInsertCliente();
+    }//GEN-LAST:event_ClienteActionPerformed
+
     public static void main(String args[])  {
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -297,5 +307,16 @@ public class mainVista extends javax.swing.JFrame {
         VistaPaquete.setVisible(true);
         escritorio.add(VistaPaquete);
         escritorio.moveToFront(VistaPaquete);
+    }
+    
+    
+    public  void VistaInsertCliente(){
+        escritorio.removeAll();
+        escritorio.repaint();
+        InsertCliente InsertCliente = new InsertCliente();
+        
+        InsertCliente.setVisible(true);
+        escritorio.add(InsertCliente);
+        escritorio.moveToFront(InsertCliente);
     }
 }
