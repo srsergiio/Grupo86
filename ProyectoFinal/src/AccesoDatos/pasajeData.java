@@ -160,7 +160,7 @@ public  int getImporte(int id){
 
 public  int getCiudadOrigen(int id){
     String sql="SELECT ciudadOrigen FROM `pasaje` WHERE `idPasaje`="+id;
-   
+    //Connection con =Conexion.getConexion();
     int ciudadOrigen = 0;
     try {
         Statement stmt = con.createStatement();
@@ -171,14 +171,15 @@ public  int getCiudadOrigen(int id){
     } catch (SQLException e) {
         e.printStackTrace();
     } finally {
-        try {
-            if(con != null) con.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        // try {
+        //     if(con != null) con.close();
+        // } catch (SQLException e) {
+        //     e.printStackTrace();
+        // }
     }
     return ciudadOrigen;
 }
+
 
  public  int getCiudadDestino(int id){
     String sql="SELECT ciudadDestino FROM `pasaje` WHERE `idPasaje`="+id;

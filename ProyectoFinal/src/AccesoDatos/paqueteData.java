@@ -64,6 +64,7 @@ public class paqueteData {
 }
     
     public  int getCostoPasaje(int id){
+        //aca tengo que llamar a la base de datos y traer el costoPasaje de la la tabla paquete segun el id del paquete
         return new pasajeData().getImporte(id); 
     }
     
