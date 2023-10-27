@@ -22,7 +22,7 @@ import javax.swing.JOptionPane;
  * @author Administrador
  */
 public class clienteData {
-    private final Connection con;
+    public final Connection con;
     private List<Cliente> clientes;
     private CiudadData cd= new CiudadData();
     

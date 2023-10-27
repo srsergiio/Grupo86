@@ -12,6 +12,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -68,6 +70,25 @@ public class reservaData {
            JOptionPane.showMessageDialog(null, "Error al obtener los nombres de los clientes con reservas: " + ex.getMessage());
         }
     return nombresClientes;
+    }
+    
+    public boolean guardarReserva (Reserva reserva){
+        try {
+            String sql = "INSERT INTO reserva (idReserva,idCliente, idPaquete, fechaReserva, fechaViaje) VALUES (?,?,?,?,?)";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, reserva.getIdReserva());
+            ps.setInt(2, reserva.getIdCliente());
+            ps.setInt(3, reserva.getIdPaquete());
+            ps.setDate(4, new java.sql.Date(reserva.getFechaReserva().getTime()));               
+            ps.setDate(5, new java.sql.Date(reserva.getFechaReserva().getTime()));
+            
+            int filasInsertadas = ps.executeUpdate();
+              return filasInsertadas == 1;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(reservaData.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
     }
     
 }
