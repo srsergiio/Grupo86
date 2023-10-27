@@ -22,12 +22,10 @@ import java.util.Date;
  */
 public class paqueteData {
     Connection con ;
+    
     public paqueteData() {
        this.con = Conexion.getConexion();
     }
-    
-    
-    
     
     public ArrayList<Paquete> getPaqueteData() {
     ArrayList<Paquete> lista = new ArrayList<>();
@@ -58,22 +56,64 @@ public class paqueteData {
     }
     return lista;
 }
-
     
-    
-    public  int getCostoEstadia(int id){
-        return 1/*alojamientoData.getImporte(id)*/;
-}
-    
-    public  int getCostoPasaje(int id){
-        //aca tengo que llamar a la base de datos y traer el costoPasaje de la la tabla paquete segun el id del paquete
-        return new pasajeData().getImporte(id); 
+    public  int getCostoPaquete(int id){
+        return get_alojamiento_ImporteD(id)+get_pasaje_Importe(id); 
     }
     
+    public int get_ID_Pasaje(int idPaquete) {
+        int costoPasaje = 0;
+        String sql = "SELECT costoPasaje FROM paquete WHERE idPaquete = ?";
+        
+        try {
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setInt(1, idPaquete);
+            ResultSet rs = stmt.executeQuery();
+            
+            if(rs.next()){
+                costoPasaje = rs.getInt("costoPasaje");
+            }
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if(con != null) con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        
+        return costoPasaje;
+    } 
+        
+    public int get_ID_alojamiento(int idPaquete) {
+        int costoEstadia = 0;
+        String sql = "SELECT costoEstadia FROM paquete WHERE idPaquete = ?";
+        
+        try {
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setInt(1, idPaquete);
+            ResultSet rs = stmt.executeQuery();
+            
+            if(rs.next()){
+                costoEstadia = rs.getInt("costoEstadia");
+            }
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if(con != null) con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        
+        return costoEstadia;
+    }    
     
-    //
-    
-     public Pasaje getPasaje(int idPaquete) {
+    public Pasaje get_pasaje_Pasaje(int idPaquete) {
         Pasaje pasaje = null;
         String sql = "SELECT p.* FROM pasaje p JOIN paquete pa ON p.idPasaje = pa.costoPasaje WHERE pa.idPaquete = ?";
         
@@ -101,9 +141,7 @@ public class paqueteData {
         return pasaje;
     }
     
-
-    
-    public String getTipoTransporte(int idPaquete) {
+    public String get_pasaje_TipoTransporte(int idPaquete) {
         String tipoTransporte = null;
         String sql = "SELECT p.tipoTransporte FROM pasaje p JOIN paquete pa ON p.idPasaje = pa.costoPasaje WHERE pa.idPaquete = ?";
         
@@ -129,7 +167,7 @@ public class paqueteData {
         return tipoTransporte;
     }
     
-        public Date getFechaIda(int idPaquete) {
+    public Date get_pasaje_FechaIda(int idPaquete) {
         Date fechaIda = null;
         String sql = "SELECT p.fechaIda FROM pasaje p JOIN paquete pa ON p.idPasaje = pa.costoPasaje WHERE pa.idPaquete = ?";
         
@@ -155,7 +193,7 @@ public class paqueteData {
         return fechaIda;
     }
         
-            public Date getFechaVuelta(int idPaquete) {
+    public Date get_pasaje_FechaVuelta(int idPaquete) {
         Date fechaVuelta = null;
         String sql = "SELECT p.fechaVuelta FROM pasaje p JOIN paquete pa ON p.idPasaje = pa.costoPasaje WHERE pa.idPaquete = ?";
         
@@ -181,7 +219,7 @@ public class paqueteData {
         return fechaVuelta;
     }
             
-        public int getEstado(int idPaquete) {
+    public int get_pasaje_Estado(int idPaquete) {
         int estado = 0;
         String sql = "SELECT p.estado FROM pasaje p JOIN paquete pa ON p.idPasaje = pa.costoPasaje WHERE pa.idPaquete = ?";
         
@@ -207,7 +245,7 @@ public class paqueteData {
         return estado;
     }
         
-    public int getImporte(int idPaquete) {
+    public int get_pasaje_Importe(int idPaquete) {
         int importe = 0;
         String sql = "SELECT p.importe FROM pasaje p JOIN paquete pa ON p.idPasaje = pa.costoPasaje WHERE pa.idPaquete = ?";
         
@@ -232,7 +270,8 @@ public class paqueteData {
         
         return importe;
     }
-    public int getCiudadOrigen(int idPaquete) {
+    
+    public int get_pasaje_CiudadOrigen(int idPaquete) {
         int ciudadOrigen = 0;
         String sql = "SELECT p.ciudadOrigen FROM pasaje p JOIN paquete pa ON p.idPasaje = pa.costoPasaje WHERE pa.idPaquete = ?";
         
@@ -258,7 +297,7 @@ public class paqueteData {
         return ciudadOrigen;
     }
 
-    public int getCiudadDestino(int idPaquete) {
+    public int get_pasaje_CiudadDestino(int idPaquete) {
         int ciudadDestino = 0;
         String sql = "SELECT p.ciudadDestino FROM pasaje p JOIN paquete pa ON p.idPasaje = pa.costoPasaje WHERE pa.idPaquete = ?";
         
@@ -284,4 +323,185 @@ public class paqueteData {
         return ciudadDestino;
     }
     
+    public Date get_alojamiento_FechaI(int idPaquete) {
+        Date fechaI = null;
+        String sql = "SELECT a.fechaI FROM alojamiento a JOIN paquete pa ON a.idAlojamiento = pa.costoEstadia WHERE pa.idPaquete = ?";
+        
+        try {
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setInt(1, idPaquete);
+            ResultSet rs = stmt.executeQuery();
+            
+            if(rs.next()){
+                fechaI = rs.getDate("fechaI");
+            }
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if(con != null) con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        
+        return fechaI;
+    }
+        
+    public Date get_alojamiento_FechaF(int idPaquete) {
+        Date fechaF = null;
+        String sql = "SELECT a.fechaF FROM alojamiento a JOIN paquete pa ON a.idAlojamiento = pa.costoEstadia WHERE pa.idPaquete = ?";
+        
+        try {
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setInt(1, idPaquete);
+            ResultSet rs = stmt.executeQuery();
+            
+            if(rs.next()){
+                fechaF = rs.getDate("fechaF");
+            }
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if(con != null) con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        
+        return fechaF;
+    }
+    
+    public String get_alojamiento_Tipo(int idPaquete) {
+        String tipo = null;
+        String sql = "SELECT a.tipo FROM alojamiento a JOIN paquete pa ON a.idAlojamiento = pa.costoEstadia WHERE pa.idPaquete = ?";
+        
+        try {
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setInt(1, idPaquete);
+            ResultSet rs = stmt.executeQuery();
+            
+            if(rs.next()){
+                tipo = rs.getString("tipo");
+            }
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if(con != null) con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        
+        return tipo;
+    }
+    
+    public String get_alojamiento_Servicio(int idPaquete) {
+        String servicio = null;
+        String sql = "SELECT a.servicio FROM alojamiento a JOIN paquete pa ON a.idAlojamiento = pa.costoEstadia WHERE pa.idPaquete = ?";
+        
+        try {
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setInt(1, idPaquete);
+            ResultSet rs = stmt.executeQuery();
+            
+            if(rs.next()){
+                servicio = rs.getString("servicio");
+            }
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if(con != null) con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        
+        return servicio;
+    }
+        
+    public int get_alojamiento_ImporteD(int idPaquete) {
+        int importeD = 0;
+        String sql = "SELECT a.importeD FROM alojamiento a JOIN paquete pa ON a.idAlojamiento = pa.costoEstadia WHERE pa.idPaquete = ?";
+        
+        try {
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setInt(1, idPaquete);
+            ResultSet rs = stmt.executeQuery();
+            
+            if(rs.next()){
+                importeD = rs.getInt("importeD");
+            }
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if(con != null) con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        
+        return importeD;
+    }
+    
+    public int get_alojamiento_Estado(int idPaquete) {
+        int estado = 0;
+        String sql = "SELECT a.estado FROM alojamiento a JOIN paquete pa ON a.idAlojamiento = pa.costoEstadia WHERE pa.idPaquete = ?";
+        
+        try {
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setInt(1, idPaquete);
+            ResultSet rs = stmt.executeQuery();
+            
+            if(rs.next()){
+                estado = rs.getInt("estado");
+            }
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if(con != null) con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        
+        return estado;
+    }
+    
+    public int get_alojamiento_Ciudad(int idPaquete) {
+        int ciudad = 0;
+        String sql = "SELECT a.ciudad FROM alojamiento a JOIN paquete pa ON a.idAlojamiento = pa.costoEstadia WHERE pa.idPaquete = ?";
+        
+        try {
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setInt(1, idPaquete);
+            ResultSet rs = stmt.executeQuery();
+            
+            if(rs.next()){
+                ciudad = rs.getInt("ciudad");
+            }
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if(con != null) con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        
+        return ciudad;
+    }
 }
