@@ -44,7 +44,7 @@ public class reservaData {
                 reserva.setFechaViaje(rs.getInt("fechaViaje"));
                 reservas.add(reserva);
             }
-                ps.close();
+               // ps.close();
             }catch(SQLException ex){
                     JOptionPane.showMessageDialog(null, "Error al acceder a la tabla reserva"+ex.getMessage());
                     }
@@ -62,7 +62,7 @@ public class reservaData {
             String nombreCliente = rs.getString("nombre") + " " + rs.getString("apellido");
             nombresClientes.add(nombreCliente);
         }
-        ps.close();
+       // ps.close();
         } catch (SQLException ex) {
             
            JOptionPane.showMessageDialog(null, "Error al obtener los nombres de los clientes con reservas: " + ex.getMessage());

@@ -15,13 +15,22 @@ import Entidades.Ciudad;
  * @author Administrador
  */
 public class Despegar extends javax.swing.JInternalFrame {
+    ArrayList<Object> datos = new ArrayList<>();
 
+    public ArrayList<Object> getDatos() {
+        return datos;
+    }
+
+    public void setDatos(ArrayList<Object> datos) {
+        this.datos = datos;
+    }
     /**
      * Creates new form Despegar
      */
-    public Despegar() {
+    public   Despegar() {
         initComponents();
         CargarCiudades();
+       
     }
 
     /**
@@ -210,7 +219,7 @@ public class Despegar extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         
         
-        ArrayList<Object> datos = new ArrayList<>();
+        
 
 // Obtener los valores de los JSpinners
 datos.add(Desplegable_Catidad_Habitantes.getValue());
@@ -227,6 +236,7 @@ datos.add(Desplegable_fecha_vuelta.getDate());
 // Imprimir los datos en la consola
 for (Object dato : datos) {
     System.out.println(dato);
+   
 }
 
         

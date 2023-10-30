@@ -54,7 +54,7 @@ public class CiudadData  extends Algoridmo {
                 ciudad.setIdCiudad(rs.getInt(1));
                 JOptionPane.showMessageDialog(null, "Ciudad añadida con exito");
             }
-            ps.close(); 
+//            ps.close(); 
             }catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla ciudad "+ex.getMessage());
         }
@@ -74,7 +74,7 @@ public class CiudadData  extends Algoridmo {
             ciudad.setPais(rs.getString("pais"));
             ciudad.setEstado(rs.getBoolean("estado"));
         }
-        ps.close();
+//        ps.close();
     } catch (SQLException ex) {
         JOptionPane.showMessageDialog(null, "Error al acceder a la tabla ciudad: " + ex.getMessage());
     }
@@ -98,7 +98,7 @@ public class CiudadData  extends Algoridmo {
                 ciudad.setEstado(true);
             }else{
                 JOptionPane.showMessageDialog(null, "No existe la Ciudad");
-                ps.close();
+//                ps.close();
             } 
         }catch(SQLException ex){
                     JOptionPane.showMessageDialog(null, "Error al acceder a la tabla ciudad"+ex.getMessage());
@@ -122,7 +122,7 @@ public class CiudadData  extends Algoridmo {
                 ciudad.setEstado(true);
                 ciudades.add(ciudad);
             }
-                ps.close();
+//                ps.close();
             }catch(SQLException ex){
                     JOptionPane.showMessageDialog(null, "Error al acceder a la tabla ciudad"+ex.getMessage());
                     }
@@ -143,7 +143,7 @@ public class CiudadData  extends Algoridmo {
             ciudad.setEstado(true);
             ciudades.add(ciudad);
         }
-        ps.close();
+//        ps.close();
     }catch(SQLException ex){
         JOptionPane.showMessageDialog(null, "Error al acceder a la tabla ciudad"+ex.getMessage());
     }
@@ -164,7 +164,7 @@ public class CiudadData  extends Algoridmo {
         String tipoTransporte = pd.getTipoTransporte(pas.getIdPasaje());
         pas.setTipoTransporte(tipoTransporte);
         transportesDisponibles.add(pas);
-            }ps.close();
+            }//ps.close();
         }catch(SQLException ex){
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla ciudad"+ex.getMessage());
         }
@@ -183,7 +183,7 @@ public class CiudadData  extends Algoridmo {
             alojamiento.setTipo(rs.getString("tipo"));
             alojamientos.add(alojamiento);
         }
-        ps.close();
+      //  ps.close();
        } catch (SQLException ex) {
         JOptionPane.showMessageDialog(null, "Error al acceder a la tabla alojamiento: " + ex.getMessage());
        }
@@ -218,7 +218,7 @@ public class CiudadData  extends Algoridmo {
         if (rs.next()) {
             id = rs.getInt("idCiudad");
         }
-        ps.close();
+        //ps.close();
         }catch (SQLException ex) {
         JOptionPane.showMessageDialog(null, "Error al buscar la ciudad: " + ex.getMessage());
         }

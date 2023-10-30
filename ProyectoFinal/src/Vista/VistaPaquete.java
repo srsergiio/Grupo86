@@ -9,6 +9,7 @@ import AccesoDatos.CiudadData;
 import AccesoDatos.paqueteData;
 import AccesoDatos.pasajeData;
 import AccesoDatos.reservaData;
+import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -20,13 +21,15 @@ public class VistaPaquete extends javax.swing.JInternalFrame {
     /**
      * Creates new form NewJInternalFrame
      */
+   
+       
     public VistaPaquete() {
         //ejecutar apenas aparece main
         initComponents();
         dibujar_Columna();
         modeloDeColocarItem();
  
-
+        
     }
 
     /**
@@ -115,31 +118,16 @@ public class VistaPaquete extends javax.swing.JInternalFrame {
     DefaultTableModel model = (DefaultTableModel) paquetes_Turisticos.getModel();
     // Crea un array con los datos de la fila
     Object[] row = new Object[7];
-    reservaData reservas = new reservaData();
-     for (int i = 0; i<reservas.listarReserva().size();i++){
+    paqueteData ListPaquete = new paqueteData();
+     for (int i = 0; i<ListPaquete.getPaqueteData().size();i++){
          // Ajusta el tamaño del array según el número de columnas de tu tabla
-        row[0] = /*IdReserva*/reservas.listarReserva().get(i).getIdReserva();
-        int IDpaquete = reservas.listarReserva().get(i).getIdPaquete();
-        System.out.println("IDpaquete : " +IDpaquete);
-        //que id pasaje tiene este paquete ?
-        int IDpasaje = new paqueteData().getCostoPasaje(IDpaquete);
-        System.out.println("IDpasaje  : tiene que ser 27  : " +IDpasaje);
-        //cual es el nombre de la ciudad con este id ?
-        int IDCiudadOrigen = new pasajeData().getCiudadOrigen(IDpasaje);
-        System.out.println("IDCiudadOrigen : " +IDCiudadOrigen);
-        //nombre de la ciudad con este ID
-        String ciudadOrigen = new CiudadData().buscarPorId(IDCiudadOrigen).getNombre();
-        
-        System.out.println(IDpaquete);
-        System.out.println(IDpasaje);
-        
-        row[1] = /*"Origen"*/ciudadOrigen;
-        row[2] = "Destino";
-        row[3] = "s";
-        row[4] = "FechaV ";
-        row[5] = "Descripcion";
-       
-        row[6] = "Costo";
+        row[0] = /*ID*/ListPaquete.getPaqueteData().get(i).getIdPaquete();
+        row[1] = /*Origen*/"";
+        row[2] = /*Destino*/"";
+        row[3] = /*FechaI*/"";
+        row[4] = /*FechaV*/"";
+        row[5] = /*Descripcion*/"";
+        row[6] = /*Costo*/"";
         
     }
     // Continúa llenando el array con los datos que desees

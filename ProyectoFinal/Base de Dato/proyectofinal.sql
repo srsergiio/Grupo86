@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 27-10-2023 a las 15:22:42
+-- Tiempo de generación: 30-10-2023 a las 15:06:48
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.0.28
 
@@ -35,18 +35,20 @@ CREATE TABLE `alojamiento` (
   `servicio` varchar(60) NOT NULL,
   `importeD` int(11) NOT NULL,
   `ciudad` int(11) NOT NULL,
-  `estado` tinyint(1) NOT NULL
+  `estado` tinyint(1) NOT NULL,
+  `inicioTemporada` int(11) DEFAULT NULL,
+  `finTemporada` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `alojamiento`
 --
 
-INSERT INTO `alojamiento` (`idAlojamiento`, `fechaI`, `fechaF`, `tipo`, `servicio`, `importeD`, `ciudad`, `estado`) VALUES
-(24, '2024-06-21', '2024-09-20', 'cabaña', 'sin servicio', 35, 13, 1),
-(25, '2024-12-21', '2025-03-20', 'hotel 2 estrellas', 'desayuno', 50, 14, 1),
-(26, '2025-06-21', '2025-09-20', 'hotel 3 estrellas', 'desayuno,tv,pileta', 80, 15, 1),
-(27, '2026-06-21', '2026-09-20', 'hotel 4 estrellas', 'desayuno,tv,wifi,pileta', 100, 16, 1);
+INSERT INTO `alojamiento` (`idAlojamiento`, `fechaI`, `fechaF`, `tipo`, `servicio`, `importeD`, `ciudad`, `estado`, `inicioTemporada`, `finTemporada`) VALUES
+(24, '2024-06-21', '2024-09-20', 'cabaña', 'sin servicio', 35, 13, 1, NULL, NULL),
+(25, '2024-12-21', '2025-03-20', 'hotel 2 estrellas', 'desayuno', 50, 14, 1, NULL, NULL),
+(26, '2025-06-21', '2025-09-20', 'hotel 3 estrellas', 'desayuno,tv,pileta', 80, 15, 1, NULL, NULL),
+(27, '2026-06-21', '2026-09-20', 'hotel 4 estrellas', 'desayuno,tv,wifi,pileta', 100, 16, 1, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -104,15 +106,15 @@ INSERT INTO `cliente` (`idCliente`, `nombre`, `apellido`, `dni`, `CiudadOrigen`)
 
 CREATE TABLE `paquete` (
   `idPaquete` int(11) NOT NULL,
-  `costoEstadia` int(11) NOT NULL,
-  `costoPasaje` int(11) NOT NULL
+  `idAlojamiento` int(11) NOT NULL,
+  `idPasaje` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `paquete`
 --
 
-INSERT INTO `paquete` (`idPaquete`, `costoEstadia`, `costoPasaje`) VALUES
+INSERT INTO `paquete` (`idPaquete`, `idAlojamiento`, `idPasaje`) VALUES
 (1, 24, 27),
 (2, 25, 28),
 (3, 26, 29),
@@ -195,8 +197,8 @@ ALTER TABLE `cliente`
 --
 ALTER TABLE `paquete`
   ADD PRIMARY KEY (`idPaquete`),
-  ADD KEY `costoPasaje` (`costoPasaje`),
-  ADD KEY `paquete_ibfk_6` (`costoEstadia`);
+  ADD KEY `costoPasaje` (`idPasaje`),
+  ADD KEY `paquete_ibfk_6` (`idAlojamiento`);
 
 --
 -- Indices de la tabla `pasaje`
@@ -275,8 +277,8 @@ ALTER TABLE `cliente`
 -- Filtros para la tabla `paquete`
 --
 ALTER TABLE `paquete`
-  ADD CONSTRAINT `paquete_ibfk_2` FOREIGN KEY (`costoPasaje`) REFERENCES `pasaje` (`idPasaje`),
-  ADD CONSTRAINT `paquete_ibfk_6` FOREIGN KEY (`costoEstadia`) REFERENCES `alojamiento` (`idAlojamiento`);
+  ADD CONSTRAINT `paquete_ibfk_2` FOREIGN KEY (`idPasaje`) REFERENCES `pasaje` (`idPasaje`),
+  ADD CONSTRAINT `paquete_ibfk_6` FOREIGN KEY (`idAlojamiento`) REFERENCES `alojamiento` (`idAlojamiento`);
 
 --
 -- Filtros para la tabla `pasaje`

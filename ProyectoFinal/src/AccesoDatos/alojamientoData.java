@@ -53,7 +53,7 @@ public class alojamientoData {
                   int idAlojamiento = rs.getInt("idAlojamiento");
                   alojamientosDisponibles.add(alojamiento);
               }
-              ps.close();
+//              ps.close();
         } catch (SQLException ex) {
               System.out.println("No se encontraron alojamientos"+ex);        }
           return alojamientosDisponibles;
@@ -134,7 +134,7 @@ public class alojamientoData {
             
             alojamiento = new Alojamiento(idAlojamiento, fichaIn, fichaOn, estado, servicio, importeDiario, CiudadDest, tipo);
         }
-        ps.close();
+//        ps.close();
     } catch (SQLException ex) {
         System.out.println("Error al buscar el alojamiento: " + ex);
     }

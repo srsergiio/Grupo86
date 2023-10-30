@@ -40,12 +40,12 @@ public class pasajeData {
         }
     } catch (SQLException e) {
         e.printStackTrace();
-    } finally {
-        try {
-            if(con != null) con.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+//    } finally {
+//        try {
+//            if(con != null) con.close();
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
     }
     return pasaje;
 }
@@ -64,12 +64,12 @@ public  String getTipoTransporte(int id){
         }
     } catch (SQLException e) {
         e.printStackTrace();
-    } finally {
-        try {
-            if(con != null) con.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+//    }// finally {
+//        try {
+//            if(con != null) con.close();
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
     }
     return tipoTransporte;
 }
@@ -84,12 +84,12 @@ public  Date getFechaIda(int id){
         }
     } catch (SQLException e) {
         e.printStackTrace();
-    } finally {
-        try {
-            if(con != null) con.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+//    } finally {
+//        try {
+//            if(con != null) con.close();
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
     }
     return fechaIda;
 }
@@ -105,12 +105,12 @@ public  Date getFechaVuelta(int id){
         }
     } catch (SQLException e) {
         e.printStackTrace();
-    } finally {
-        try {
-            if(con != null) con.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+//    } finally {
+//        try {
+//            if(con != null) con.close();
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
     }
     return fechaVuelta;
 }
@@ -126,12 +126,12 @@ public  boolean getEstado(int id){
         }
     } catch (SQLException e) {
         e.printStackTrace();
-    } finally {
-        try {
-            if(con != null) con.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+//    } finally {
+//        try {
+//            if(con != null) con.close();
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
     }
     return estado;
 }
@@ -148,12 +148,12 @@ public  int getImporte(int id){
         }
     } catch (SQLException e) {
         e.printStackTrace();
-    } finally {
-        try {
-            if(con != null) con.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+//    } finally {
+//        try {
+//            if(con != null) con.close();
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
     }
     return importe;
 }
@@ -170,7 +170,7 @@ public  int getCiudadOrigen(int id){
         }
     } catch (SQLException e) {
         e.printStackTrace();
-    } finally {
+//    } finally {
         // try {
         //     if(con != null) con.close();
         // } catch (SQLException e) {
@@ -192,12 +192,12 @@ public  int getCiudadOrigen(int id){
         }
     } catch (SQLException e) {
         e.printStackTrace();
-    } finally {
-        try {
-            if(con != null) con.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+//    } finally {
+//        try {
+//            if(con != null) con.close();
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
     }
     return ciudadDestino;
 }
@@ -211,12 +211,12 @@ public  int getCiudadOrigen(int id){
         pstmt.executeUpdate();
     } catch (SQLException e) {
         e.printStackTrace();
-    } finally {
-        try {
-            if(con != null) con.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+//    } finally {
+//        try {
+//            if(con != null) con.close();
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
     }
 }
  

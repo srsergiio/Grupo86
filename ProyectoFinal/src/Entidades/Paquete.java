@@ -2,16 +2,18 @@ package Entidades;
 import Entidades.Ciudad;
 
 public class Paquete {
-
-    public Paquete(int idPaquete, Ciudad origen, Ciudad destino, Alojamiento alojamiento, Pasaje pasaje) {
-        this.idPaquete = idPaquete;
-        this.origen = origen;
-        this.destino = destino;
-        this.alojamiento = alojamiento;
-        this.pasaje = pasaje;
-    }
+    
+    private int idPaquete;
+    private int idAlojamiento;
+    private int idPasaje;
 
     public Paquete() {
+    }
+
+    public Paquete(int idPaquete, int idAlojamiento, int idPasaje) {
+        this.idPaquete = idPaquete;
+        this.idAlojamiento = idAlojamiento;
+        this.idPasaje = idPasaje;
     }
 
     public int getIdPaquete() {
@@ -22,53 +24,25 @@ public class Paquete {
         this.idPaquete = idPaquete;
     }
 
-    public Ciudad getOrigen() {
-        return origen;
-    }
-    
-
-    public void setOrigen(Ciudad origen) {
-        this.origen = origen;
+    public int getIdAlojamiento() {
+        return idAlojamiento;
     }
 
-    public Ciudad getDestino() {
-        return destino;
+    public void setIdAlojamiento(int idAlojamiento) {
+        this.idAlojamiento = idAlojamiento;
     }
 
-    public void setDestino(Ciudad destino) {
-        this.destino = destino;
+    public int getIdPasaje() {
+        return idPasaje;
     }
 
-    public Alojamiento getAlojamiento() {
-        return alojamiento;
-    }
-
-    public void setAlojamiento(Alojamiento alojamiento) {
-        this.alojamiento = alojamiento;
-    }
-
-    public Pasaje getPasaje() {
-        return pasaje;
-    }
-
-    public void setPasaje(Pasaje pasaje) {
-        this.pasaje = pasaje;
+    public void setIdPasaje(int idPasaje) {
+        this.idPasaje = idPasaje;
     }
 
     @Override
     public String toString() {
-        return "Paquete{" + "idPaquete=" + idPaquete + ", origen=" + origen + ", destino=" + destino + ", alojamiento=" + alojamiento + ", pasaje=" + pasaje + '}';
+        return "Paquete{" + "idPaquete=" + idPaquete + ", idAlojamiento=" + idAlojamiento + ", idPasaje=" + idPasaje + '}';
     }
-
-    private int idPaquete;
-
-    private Ciudad origen;
-
-    private Ciudad destino;
-
-    private Alojamiento alojamiento;
-
-    private Pasaje pasaje;
-    
-    
+ 
 }

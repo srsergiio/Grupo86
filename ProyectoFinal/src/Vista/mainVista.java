@@ -1,5 +1,12 @@
 package Vista;
+
+import java.util.ArrayList;
+
 public class mainVista extends javax.swing.JFrame {
+    
+    ArrayList<Object> Datos ;
+    
+    
     public mainVista() {
         initComponents();
         //Despegar();
@@ -280,7 +287,7 @@ public class mainVista extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem4;
     // End of variables declaration//GEN-END:variables
 
-    public  void Despegar(){
+    public  ArrayList<Object> Despegar(){
         escritorio.removeAll();
         escritorio.repaint();
         Despegar despegar = new Despegar();
@@ -288,6 +295,18 @@ public class mainVista extends javax.swing.JFrame {
         despegar.setVisible(true);
         escritorio.add(despegar);
         escritorio.moveToFront(despegar);
+        return despegar.getDatos();
+        
+    }
+    
+     public  void VistaPaquete( ){
+        escritorio.removeAll();
+        escritorio.repaint();
+        VistaPaquete VistaPaquete = new VistaPaquete();
+        
+        VistaPaquete.setVisible(true);
+        escritorio.add(VistaPaquete);
+        escritorio.moveToFront(VistaPaquete);
     }
     
      public  void FormularioCliente(){
@@ -310,15 +329,7 @@ public class mainVista extends javax.swing.JFrame {
         escritorio.moveToFront(VistaReservas);
     }
     
-    public  void VistaPaquete(){
-        escritorio.removeAll();
-        escritorio.repaint();
-        VistaPaquete VistaPaquete = new VistaPaquete();
-        
-        VistaPaquete.setVisible(true);
-        escritorio.add(VistaPaquete);
-        escritorio.moveToFront(VistaPaquete);
-    }
+   
     
     
     public  void VistaInsertCliente(){

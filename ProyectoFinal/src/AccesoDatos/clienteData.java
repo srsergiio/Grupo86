@@ -52,7 +52,7 @@ public class clienteData {
                 nuevoCliente.setIdCliente(rs.getInt(1));
                 JOptionPane.showMessageDialog(null, "Cliente agregado");  
             }
-            ps.close(); 
+//            ps.close(); 
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla cliente"+ex.getMessage());
         }
@@ -97,7 +97,7 @@ public class clienteData {
                 cliente.setEstado(true);
             }else{
                 JOptionPane.showMessageDialog(null, "No existe el cliente");
-                ps.close();
+//                ps.close();
             }
             
         }catch(SQLException ex){
