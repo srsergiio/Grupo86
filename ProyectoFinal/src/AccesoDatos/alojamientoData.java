@@ -7,18 +7,21 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author Administrador
  */
 public class alojamientoData {
-    private Connection con;
+    private static Connection con;
     
 
     //double o int getImporte(id);
@@ -27,6 +30,14 @@ public class alojamientoData {
     
     public alojamientoData() {
          this.con=Conexion.getConexion();
+          if (con == null) {
+            con = Conexion.getConexion(); 
+        }
+          
+    }
+
+    public alojamientoData(Connection conexion) {
+        this.con = con;
     }
 
   
@@ -140,7 +151,29 @@ public class alojamientoData {
     }
     return alojamiento;
 }
- 
-
+        public static void agregarAlojamiento(Alojamiento alojamiento)throws SQLException{
+         String sql= "INSERT INTO alojamiento(fechaI, fechaF, tipo, servicio ,importeD, ciudad, estado) VALUES (?,?,?,?,?,?,?)";
+         try{
+             PreparedStatement ps=con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+             
+             ps.setDate(1, java.sql.Date.valueOf(alojamiento.getFechaI()));
+             ps.setDate(2, java.sql.Date.valueOf(alojamiento.getFechaF()));
+             ps.setString(3, alojamiento.getTipo());
+             ps.setString(4, alojamiento.getServicio());
+             ps.setDouble(5, alojamiento.getImporteDiario());
+             ps.setInt(6, alojamiento.getCiudad().getIdCiudad());
+             ps.setBoolean(7, alojamiento.getEstado());
+             ps.executeUpdate();
+             ResultSet rs= ps.getGeneratedKeys();
+             if(rs.next()){
+                alojamiento.setIdAlojamiento(rs.getInt(1));
+                JOptionPane.showMessageDialog(null, "Alojamiento agregado con exito");
+            }
+            ps.close(); 
+            }catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla alojamiento "+ex.getMessage());
+        }
+        
+    }
 }
 

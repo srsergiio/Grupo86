@@ -59,7 +59,7 @@ public class CiudadData  extends Algoridmo {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla ciudad "+ex.getMessage());
         }
     }
-     public Ciudad obtenerCiudadPorNombre(String nombreCiudad) {
+     public static Ciudad obtenerCiudadPorNombre(String nombreCiudad) {
      Ciudad ciudad = null;
      try {
         String sql = "SELECT * FROM ciudad WHERE nombre = ?";
@@ -224,5 +224,24 @@ public class CiudadData  extends Algoridmo {
         }
      return id;
     }
+    public Ciudad buscarCiudadPorNombre(String nombreCiudad) {
+    String sql = "SELECT * FROM ciudad WHERE nombre = ?";
+    Ciudad ciudad = null;
+
+    try (PreparedStatement ps = con.prepareStatement(sql)) {
+        ps.setString(1, nombreCiudad);
+        ResultSet rs = ps.executeQuery();
+        if (rs.next()) {
+            ciudad = new Ciudad();
+            ciudad.setIdCiudad(rs.getInt("idCiudad"));
+            ciudad.setNombre(rs.getString("nombre"));
+            // Establece otros atributos de la entidad Ciudad si es necesario.
+        }
+    } catch (SQLException ex) {
+        JOptionPane.showMessageDialog(null, "error al acceder a tabla ciudad");
+    }
+
+    return ciudad;
+}
 }
 
