@@ -33,7 +33,7 @@ public class Despegar extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        Titulo_Ventana = new javax.swing.JLabel();
+        jLayeredPane1 = new javax.swing.JLayeredPane();
         jPanel1 = new javax.swing.JPanel();
         Desplegable_Catidad_Habitantes = new javax.swing.JSpinner();
         titulo_Origen = new javax.swing.JLabel();
@@ -48,14 +48,26 @@ public class Despegar extends javax.swing.JInternalFrame {
         Titulo_Catidad_Persona = new javax.swing.JLabel();
         Desplegable_Catidad_Persona = new javax.swing.JSpinner();
         Titulo_Catidad_Habitantes = new javax.swing.JLabel();
-        BuscarPaquetes = new javax.swing.JButton();
+        Btnb = new javax.swing.JButton();
+        Titulo_Ventana = new javax.swing.JLabel();
+
+        javax.swing.GroupLayout jLayeredPane1Layout = new javax.swing.GroupLayout(jLayeredPane1);
+        jLayeredPane1.setLayout(jLayeredPane1Layout);
+        jLayeredPane1Layout.setHorizontalGroup(
+            jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        jLayeredPane1Layout.setVerticalGroup(
+            jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
 
         setForeground(java.awt.Color.white);
 
-        Titulo_Ventana.setText("Paquetes turísticos ");
-        Titulo_Ventana.setMaximumSize(new java.awt.Dimension(94, 20));
-        Titulo_Ventana.setMinimumSize(new java.awt.Dimension(94, 20));
+        jPanel1.setBackground(new java.awt.Color(0, 21, 79));
 
+        titulo_Origen.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        titulo_Origen.setForeground(new java.awt.Color(244, 175, 27));
         titulo_Origen.setText("ORIGEN");
         titulo_Origen.setPreferredSize(new java.awt.Dimension(39, 44));
 
@@ -68,29 +80,58 @@ public class Despegar extends javax.swing.JInternalFrame {
 
         Flecha_Simbolo.setText("➡");
 
+        titulo_Destino.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        titulo_Destino.setForeground(new java.awt.Color(244, 175, 27));
         titulo_Destino.setText("DESTINO");
 
         Desplegable_Destino.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
+        titulo_fecha_ida.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        titulo_fecha_ida.setForeground(new java.awt.Color(244, 175, 27));
         titulo_fecha_ida.setText("Fecha de Ida");
 
+        titulo_fecha_vuelta.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        titulo_fecha_vuelta.setForeground(new java.awt.Color(244, 175, 27));
         titulo_fecha_vuelta.setText("Fecha de Vuelta");
 
+        Titulo_Catidad_Persona.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        Titulo_Catidad_Persona.setForeground(new java.awt.Color(244, 175, 27));
         Titulo_Catidad_Persona.setText("Personas");
 
+        Titulo_Catidad_Habitantes.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        Titulo_Catidad_Habitantes.setForeground(new java.awt.Color(244, 175, 27));
         Titulo_Catidad_Habitantes.setText("Habitaciones");
 
-        BuscarPaquetes.setText("Buscar");
-        BuscarPaquetes.addMouseListener(new java.awt.event.MouseAdapter() {
+        Btnb.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        Btnb.setForeground(new java.awt.Color(244, 175, 27));
+        Btnb.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imaneges/Imagen1.png"))); // NOI18N
+        Btnb.setContentAreaFilled(false);
+        Btnb.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        Btnb.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Imaneges/Imagengato fuerte.png"))); // NOI18N
+        Btnb.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Imaneges/Imagengato fuerte.png"))); // NOI18N
+        Btnb.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        Btnb.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                BuscarPaquetesMouseClicked(evt);
+                BtnbMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                BtnbMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                BtnbMouseExited(evt);
             }
         });
-        BuscarPaquetes.addActionListener(new java.awt.event.ActionListener() {
+        Btnb.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BuscarPaquetesActionPerformed(evt);
+                BtnbActionPerformed(evt);
             }
         });
+
+        Titulo_Ventana.setFont(new java.awt.Font("Ebrima", 1, 24)); // NOI18N
+        Titulo_Ventana.setForeground(new java.awt.Color(244, 175, 27));
+        Titulo_Ventana.setText("PAQUETES TURÍSTICOS");
+        Titulo_Ventana.setMaximumSize(new java.awt.Dimension(94, 20));
+        Titulo_Ventana.setMinimumSize(new java.awt.Dimension(94, 20));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -101,74 +142,87 @@ public class Despegar extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(Desplegable_Catidad_Persona, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                    .addGap(11, 11, 11)
-                                    .addComponent(Titulo_Catidad_Persona)))
-                            .addComponent(titulo_Origen, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Desplegable_fecha_ida, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Desplegable_Origen, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addGap(79, 79, 79)
+                                .addComponent(titulo_fecha_ida))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addGap(42, 42, 42)
+                                .addComponent(Desplegable_fecha_ida, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addGap(84, 84, 84)
+                                .addComponent(Desplegable_Catidad_Persona, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addGap(98, 98, 98)
+                                .addComponent(Titulo_Catidad_Persona)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(Desplegable_fecha_vuelta, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(22, 22, 22)
+                                        .addComponent(titulo_fecha_vuelta))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(46, 46, 46)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(Titulo_Catidad_Habitantes)
+                                            .addComponent(Desplegable_Catidad_Habitantes, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(titulo_fecha_ida)
-                                .addGap(122, 122, 122))
-                            .addComponent(Desplegable_Origen, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                .addGap(10, 10, 10)
+                                .addGap(12, 12, 12)
                                 .addComponent(Flecha_Simbolo)
-                                .addGap(8, 8, 8)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(titulo_Destino)
-                                    .addComponent(Desplegable_Destino, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 26, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                .addGap(30, 30, 30)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(titulo_fecha_vuelta)
-                                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(Desplegable_fecha_vuelta, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(Desplegable_Catidad_Habitantes, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(Titulo_Catidad_Habitantes))
-                                        .addGap(0, 0, Short.MAX_VALUE))))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(Desplegable_Destino, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 25, Short.MAX_VALUE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(BuscarPaquetes)
+                        .addGap(24, 24, 24)
+                        .addComponent(titulo_Origen, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(241, 241, 241)
+                        .addComponent(titulo_Destino)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Titulo_Ventana, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(163, 163, 163))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(220, 220, 220)
+                .addComponent(Btnb, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(26, 26, 26)
+                .addGap(10, 10, 10)
+                .addComponent(Titulo_Ventana, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(titulo_Origen, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(titulo_Destino))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Desplegable_Origen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Flecha_Simbolo)
-                    .addComponent(Desplegable_Destino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(32, 32, 32)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(titulo_fecha_vuelta)
-                    .addComponent(titulo_fecha_ida, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addComponent(Desplegable_Origen, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Desplegable_Destino, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Flecha_Simbolo))
+                .addGap(53, 53, 53)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(titulo_fecha_ida)
+                    .addComponent(titulo_fecha_vuelta))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(Desplegable_fecha_ida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Desplegable_fecha_vuelta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(81, 81, 81)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Titulo_Catidad_Persona)
+                    .addComponent(Titulo_Catidad_Habitantes))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(Titulo_Catidad_Habitantes)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(Desplegable_Catidad_Persona, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Desplegable_Catidad_Habitantes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(Titulo_Catidad_Persona))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
-                .addComponent(BuscarPaquetes)
-                .addGap(55, 55, 55))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Desplegable_Catidad_Persona, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Desplegable_Catidad_Habitantes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 92, Short.MAX_VALUE)
+                .addComponent(Btnb, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(17, 17, 17))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -176,23 +230,15 @@ public class Despegar extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(231, 231, 231)
-                        .addComponent(Titulo_Ventana, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(Titulo_Ventana, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(39, 39, 39))
+                .addGap(0, 3, Short.MAX_VALUE))
         );
 
         pack();
@@ -202,11 +248,11 @@ public class Despegar extends javax.swing.JInternalFrame {
           
     }//GEN-LAST:event_Desplegable_OrigenActionPerformed
 
-    private void BuscarPaquetesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarPaquetesActionPerformed
+    private void BtnbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnbActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_BuscarPaquetesActionPerformed
+    }//GEN-LAST:event_BtnbActionPerformed
 
-    private void BuscarPaquetesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BuscarPaquetesMouseClicked
+    private void BtnbMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnbMouseClicked
         // TODO add your handling code here:
         
         
@@ -240,11 +286,19 @@ for (Object dato : datos) {
         
         
         
-    }//GEN-LAST:event_BuscarPaquetesMouseClicked
+    }//GEN-LAST:event_BtnbMouseClicked
+
+    private void BtnbMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnbMouseEntered
+ Btnb.setText("Buscar");
+    }//GEN-LAST:event_BtnbMouseEntered
+
+    private void BtnbMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnbMouseExited
+        Btnb.setText("");
+    }//GEN-LAST:event_BtnbMouseExited
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BuscarPaquetes;
+    private javax.swing.JButton Btnb;
     private javax.swing.JSpinner Desplegable_Catidad_Habitantes;
     private javax.swing.JSpinner Desplegable_Catidad_Persona;
     private javax.swing.JComboBox<String> Desplegable_Destino;
@@ -255,6 +309,7 @@ for (Object dato : datos) {
     private javax.swing.JLabel Titulo_Catidad_Habitantes;
     private javax.swing.JLabel Titulo_Catidad_Persona;
     private javax.swing.JLabel Titulo_Ventana;
+    private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel titulo_Destino;
     private javax.swing.JLabel titulo_Origen;
