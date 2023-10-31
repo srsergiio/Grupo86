@@ -33,19 +33,19 @@ public class clienteData {
             con = Conexion.getConexion(); 
         }
     }
-    public clienteData(Connection con) {
-        this.con = con;
+    public clienteData(Connection conexion) {
+        this.con = conexion;
     }
     
      public static void agregarCliente(Cliente nuevoCliente)throws SQLException {
-           String sql= "INSERT INTO cliente(nombre, apellido, dni, CiudadOrigen, estado) VALUES (?,?,?,?,?)";
+           String sql= "INSERT INTO cliente(nombre, apellido, dni, CiudadOrigen) VALUES (?,?,?,?)";
            try {
             PreparedStatement ps=con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, nuevoCliente.getNombre());
             ps.setString(2, nuevoCliente.getApellido());
             ps.setInt(3, nuevoCliente.getDni());
             ps.setInt(4, nuevoCliente.getCiudadOrigen());
-            ps.setInt(5, nuevoCliente.isEstado() ? 1:0);
+            
             ps.executeUpdate();
             ResultSet rs= ps.getGeneratedKeys();
             if(rs.next()){

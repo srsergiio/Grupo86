@@ -13,6 +13,9 @@ import Entidades.Cliente;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -32,17 +35,18 @@ public class InsertCliente extends javax.swing.JInternalFrame {
         CiudadData ciudadData = new CiudadData(con);
         
         
-        DefaultTableModel ciudadTableModel = new DefaultTableModel();
-        
-        ciudadTableModel.addColumn("Nombre de la Ciudad");
-        ciudadTableModel.addColumn("IdCiudad");
-        ciudadTableModel.addColumn("Seleccionar");
+       DefaultTableModel ciudadTableModel = new DefaultTableModel();
+       ciudadTableModel.addColumn("Nombre de la Ciudad");
+       ciudadTableModel.addColumn("IdCiudad");
+
         List<Ciudad> ciudadesDisponibles = ciudadData.listarCiudad(); 
         
         for (Ciudad ciudad : ciudadesDisponibles) {
-        ciudadTableModel.addRow(new Object[]{ciudad.getNombre(), ciudad.getIdCiudad(), true});
+         ciudadTableModel.addRow(new Object[]{ciudad.getNombre(), ciudad.getIdCiudad()});
         }
-         jTableCd.setModel(ciudadTableModel);
+        jTableCd.setModel(ciudadTableModel);
+        
+      
     }
 
     /**
@@ -105,6 +109,7 @@ public class InsertCliente extends javax.swing.JInternalFrame {
             }
         });
 
+        Titulo.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         Titulo.setText("Nuevo Cliente");
 
         jButtonInsert.setText("Insert");
@@ -141,8 +146,11 @@ public class InsertCliente extends javax.swing.JInternalFrame {
                 .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(Titulo)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Titulo)
+                            .addComponent(TituloDNI1)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(118, 118, 118))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(TituloDNI)
@@ -153,12 +161,7 @@ public class InsertCliente extends javax.swing.JInternalFrame {
                             .addComponent(insert_DNI_, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(insert_Apellido_)
                             .addComponent(insert_Nombre_, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE))
-                        .addGap(236, 236, 236))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(TituloDNI1)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 118, Short.MAX_VALUE))))
+                        .addGap(236, 236, 236))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -177,7 +180,7 @@ public class InsertCliente extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(TituloDNI)
                     .addComponent(insert_DNI_, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addComponent(TituloDNI1)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -198,46 +201,50 @@ public class InsertCliente extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_insert_DNI_ActionPerformed
 
     private void jButtonInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInsertActionPerformed
-       String nombre = insert_Nombre_.getText();
+    String nombre = insert_Nombre_.getText();
     String apellido = insert_Apellido_.getText();
     String dniText = insert_DNI_.getText();
     Integer idCiudad = null;
     
+    
+    
     if (dniText.matches("\\d+")) {
         int dni = Integer.parseInt(dniText);
+    
+  
+      int filaSeleccionada = jTableCd.getSelectedRow(); // Obtén la fila seleccionada
+      if (filaSeleccionada != -1) {
+        String nombreCiudad = jTableCd.getValueAt(filaSeleccionada, 0).toString();
 
+        // Llama al método buscarCiudadPorNombre
+        CiudadData ciudadData = new CiudadData(Conexion.getConexion());
+        Ciudad ciudad = ciudadData.buscarCiudadPorNombre(nombreCiudad);
         
-        for (int i = 0; i < jTableCd.getRowCount(); i++) {
-            Boolean seleccionada = (Boolean) jTableCd.getValueAt(i, 2);
-            if (seleccionada) {
-            idCiudad = (int) jTableCd.getValueAt(i, 1);
-            System.out.println("IdCiudad seleccionada: " + idCiudad); // Agrega esta línea para imprimir el valor
-            break;
-          }
-        }
-        
-        if (idCiudad != null) {
-            Cliente cliente = new Cliente();
-            cliente.setNombre(nombre);
-            cliente.setApellido(apellido);
-            cliente.setDni(dni);
-            cliente.setCiudadOrigen(idCiudad);
-
+        if (ciudad != null) {
             try {
+                // Crea el objeto Cliente con los datos
+                Cliente cliente = new Cliente(ciudad);
+                cliente.setNombre(nombre);
+                cliente.setApellido(apellido);
+                cliente.setDni(dni);
+                cliente.setCiudadOrigen(ciudad.getIdCiudad()); // Establece el ID de la ciudad
+                
                 clienteData.agregarCliente(cliente);
+                
                 JOptionPane.showMessageDialog(this, "Cliente agregado correctamente");
                 insert_Nombre_.setText("");
                 insert_Apellido_.setText("");
                 insert_DNI_.setText("");
-            } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(this, "Error al agregar cliente: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                
+                
+                  } catch (SQLException ex) {
+                Logger.getLogger(InsertCliente.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } else {
-            JOptionPane.showMessageDialog(this, "Por favor, seleccione una ciudad de origen.", "Error", JOptionPane.ERROR_MESSAGE);
-        }
-    } else {
-        JOptionPane.showMessageDialog(this, "El DNI debe contener solo números.", "Error", JOptionPane.ERROR_MESSAGE);
-    }
+        } 
+      }
+  }
+     
+      
     }//GEN-LAST:event_jButtonInsertActionPerformed
 
 

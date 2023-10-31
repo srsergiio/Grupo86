@@ -93,10 +93,15 @@ public class Cliente {
         this.idCliente= idCliente;
         this.estado= estado;
     }
+
+    public Cliente(Ciudad ciudad) {
+        this.ciudad = ciudad;
+    }
+    
     
    private String nombre ,apellido,correo;
    private int dni,telefono;
    private int CiudadOrigen, idCliente;
    private boolean estado;
-    private Ciudad ciudad;
+   private Ciudad ciudad;
 }
