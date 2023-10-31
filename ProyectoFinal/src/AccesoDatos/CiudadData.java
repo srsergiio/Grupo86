@@ -40,8 +40,9 @@ public class CiudadData  extends Algoridmo {
     public CiudadData(Connection con) {
         this.con = con;
     }
-     public void guardarCiudad(Ciudad ciudad){
-         String sql= "INSERT INTO ciudad(nombre, provincia, pais, estado) VALUES (?,?,?,?,?)";
+    
+     public static void guardarCiudad(Ciudad ciudad){
+         String sql= "INSERT INTO ciudad(nombre, provincia, pais, estado) VALUES (?,?,?,?)";
          try{
              PreparedStatement ps=con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, ciudad.getNombre());
@@ -52,7 +53,7 @@ public class CiudadData  extends Algoridmo {
             ResultSet rs= ps.getGeneratedKeys();
             if(rs.next()){
                 ciudad.setIdCiudad(rs.getInt(1));
-                JOptionPane.showMessageDialog(null, "Ciudad añadida con exito");
+                JOptionPane.showMessageDialog(null, "Ciudad agregada con exito");
             }
             ps.close(); 
             }catch (SQLException ex) {

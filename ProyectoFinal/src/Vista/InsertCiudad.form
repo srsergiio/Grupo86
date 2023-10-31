@@ -19,36 +19,31 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="Titulo_" min="-2" max="-2" attributes="0"/>
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Component id="Titulo_ciudad" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="135" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="Titulo_provincia" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="Titulo_pais" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="125" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="Titulo_ciudad" min="-2" max="-2" attributes="0"/>
+                          <Component id="Titulo_pais" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="Titulo_provincia" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
+                      <EmptySpace min="-2" pref="112" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="Insert_Ciudad_" max="32767" attributes="0"/>
                           <Component id="Insert_Provincia_" max="32767" attributes="0"/>
                           <Component id="Insert_Pais_" alignment="0" pref="161" max="32767" attributes="0"/>
+                          <Component id="Estado" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <Component id="Titulo_" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="157" max="32767" attributes="0"/>
+              <EmptySpace pref="108" max="32767" attributes="0"/>
           </Group>
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="32767" attributes="0"/>
-              <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+              <Component id="Insert" min="-2" pref="86" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -73,9 +68,14 @@
                   <Component id="Titulo_pais" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="Insert_Pais_" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="92" max="32767" attributes="0"/>
-              <Component id="jButton1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="Estado" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="31" max="32767" attributes="0"/>
+              <Component id="Insert" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -83,43 +83,60 @@
   <SubComponents>
     <Component class="javax.swing.JLabel" name="Titulo_ciudad">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Ciudad"/>
+        <Property name="text" type="java.lang.String" value="Ingrese Ciudad:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="Insert_Ciudad_">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Ingre Nombre"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="Titulo_provincia">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Provincia"/>
+        <Property name="text" type="java.lang.String" value="Ingrese Provincia:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="Insert_Provincia_">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Ingrese nombre"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="Titulo_pais">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Pais :"/>
+        <Property name="text" type="java.lang.String" value="Ingrese Pais:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="Insert_Pais_">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Ingrese nombre"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="Titulo_">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Dialog" size="14" style="1"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="CargarCiudad"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton1">
+    <Component class="javax.swing.JButton" name="Insert">
       <Properties>
         <Property name="text" type="java.lang.String" value="Insert"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="InsertActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Estado:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="Estado">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="4">
+            <StringItem index="0" value="Item 1"/>
+            <StringItem index="1" value="Item 2"/>
+            <StringItem index="2" value="Item 3"/>
+            <StringItem index="3" value="Item 4"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
     </Component>
   </SubComponents>
 </Form>
