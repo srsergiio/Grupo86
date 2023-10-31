@@ -18,7 +18,7 @@ import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
-/**
+/*
  *
  * @author HP
  */
@@ -30,8 +30,7 @@ public class InsertAlojamiento extends javax.swing.JInternalFrame {
     public InsertAlojamiento() {
         initComponents();
         
-        jDCfechaI = new com.toedter.calendar.JDateChooser();
-        jDCfechaV= new com.toedter.calendar.JDateChooser();
+       
         
         CiudadData ciudadData = new CiudadData(Conexion.getConexion()); 
 
@@ -198,21 +197,35 @@ public class InsertAlojamiento extends javax.swing.JInternalFrame {
          
      String tipoAlojamientos = tipoAlojamiento.getText();
      String serviciosAlojamiento = servicios.getText();
-     double importeAlojamiento = Double.parseDouble(importe.getText());
+     String importeText = importe.getText();
+     
+     if (tipoAlojamientos.isEmpty() || serviciosAlojamiento.isEmpty() || importeText.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos.");
+        return; // Salir del método si hay campos faltantes
+        }
+     
+     
+     double importeAlojamiento = Double.parseDouble(importeText);
+     
+     
      java.util.Date utilFechaI = jDCfechaI.getDate();
      java.util.Date utilFechaF = jDCfechaV.getDate();
      LocalDate fechaI = utilFechaI.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
      LocalDate fechaF = utilFechaF.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();  
      String nombreCiudad = (String) jcbCiudad.getSelectedItem();
+     
+     Ciudad ciudad = new Ciudad(); // Crea una instancia válida de Ciudad
+     Alojamiento alojamiento = new Alojamiento(ciudad); // Pasa la Ciudad al constructor de Alojamiento
+
     
-     Ciudad ciudad = null;
+     
      CiudadData ciudadData = new CiudadData(Conexion.getConexion());
      ciudad = ciudadData.buscarCiudadPorNombre(nombreCiudad);
 
      String estadoAlojamiento = (String) jcbEstado.getSelectedItem();
      boolean estado = estadoAlojamiento.equals("1");
    
-     Alojamiento alojamiento = new Alojamiento();
+     
      if (ciudad != null) {
       alojamiento.setCiudad(ciudad);
       }else {
@@ -220,9 +233,9 @@ public class InsertAlojamiento extends javax.swing.JInternalFrame {
      }
      if (alojamiento != null) {
     // Accede a las propiedades y métodos de alojamiento
-} else {
+     } else {
     JOptionPane.showMessageDialog(null, "El objeto de alojamiento es nulo");
-}
+    }
 
      alojamiento.setTipo(tipoAlojamientos);
      alojamiento.setServicio(serviciosAlojamiento);
@@ -235,7 +248,7 @@ public class InsertAlojamiento extends javax.swing.JInternalFrame {
      alojamientoData AlojamientoData = new alojamientoData(Conexion.getConexion()); // Cambio en la inicialización
 
      try {
-     AlojamientoData.agregarAlojamiento(alojamiento); // Cambio en la variable
+     alojamientoData.agregarAlojamiento(alojamiento); // Cambio en la variable
      JOptionPane.showMessageDialog(this, "Alojamiento agregado correctamente");
      } catch (SQLException ex) {
      JOptionPane.showMessageDialog(this, "Error al agregar alojamiento: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
@@ -243,6 +256,9 @@ public class InsertAlojamiento extends javax.swing.JInternalFrame {
      alojamiento.setCiudad(ciudad);
      
      Ciudad ciudadAsociada = alojamiento.getCiudad();
+     
+     // Verificar si los campos están vacíos o son nulos
+   
     }//GEN-LAST:event_InsertActionPerformed
 
 

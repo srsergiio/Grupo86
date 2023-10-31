@@ -21,23 +21,17 @@ import javax.swing.JOptionPane;
  * @author Administrador
  */
 public class alojamientoData {
-    private static Connection con;
-    
+  private static Connection con;
 
-    //double o int getImporte(id);
-    
-    
-    
     public alojamientoData() {
-         this.con=Conexion.getConexion();
-          if (con == null) {
+        this.con = Conexion.getConexion();
+        if (con == null) {
             con = Conexion.getConexion(); 
         }
-          
     }
 
     public alojamientoData(Connection conexion) {
-        this.con = con;
+        this.con = conexion; // Cambiar "con" por "conexion"
     }
 
   
@@ -155,13 +149,17 @@ public class alojamientoData {
          String sql= "INSERT INTO alojamiento(fechaI, fechaF, tipo, servicio ,importeD, ciudad, estado) VALUES (?,?,?,?,?,?,?)";
          try{
              PreparedStatement ps=con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-             
              ps.setDate(1, java.sql.Date.valueOf(alojamiento.getFechaI()));
              ps.setDate(2, java.sql.Date.valueOf(alojamiento.getFechaF()));
              ps.setString(3, alojamiento.getTipo());
              ps.setString(4, alojamiento.getServicio());
              ps.setDouble(5, alojamiento.getImporteDiario());
+             if (alojamiento.getCiudad() != null) {
              ps.setInt(6, alojamiento.getCiudad().getIdCiudad());
+             } else {
+             
+             }
+  
              ps.setBoolean(7, alojamiento.getEstado());
              ps.executeUpdate();
              ResultSet rs= ps.getGeneratedKeys();

@@ -41,6 +41,10 @@ public class Alojamiento {
         this.tipo = tipo;
     }
 
+    public Alojamiento(Ciudad ciudad) {
+        this.ciudad = ciudad;
+    }
+
     public int getIdAlojamiento() {
         return idAlojamiento;
     }
