@@ -309,15 +309,15 @@ ArrayList<Object> BaseDatos = new ArrayList<>();
     private javax.swing.JMenuItem jMenuItem4;
     // End of variables declaration//GEN-END:variables
 
-    public  ArrayList<Object> Despegar(){
+    public   void Despegar(){
         escritorio.removeAll();
         escritorio.repaint();
-        Despegar despegar = new Despegar();
+        Despegar despegar = new Despegar(BaseDatos);
         
         despegar.setVisible(true);
         escritorio.add(despegar);
         escritorio.moveToFront(despegar);
-        return despegar.getDatos();
+       
         
     }
     

@@ -17,6 +17,7 @@ import Entidades.Ciudad;
 public class Despegar extends javax.swing.JInternalFrame {
     ArrayList<Object> datos = new ArrayList<>();
 
+   
     public ArrayList<Object> getDatos() {
         return datos;
     }
@@ -27,10 +28,10 @@ public class Despegar extends javax.swing.JInternalFrame {
     /**
      * Creates new form Despegar
      */
-    public   Despegar() {
+    public   Despegar(ArrayList<Object> BaseDatos) {
         initComponents();
         CargarCiudades();
-       
+        datos = BaseDatos;
     }
 
     /**
