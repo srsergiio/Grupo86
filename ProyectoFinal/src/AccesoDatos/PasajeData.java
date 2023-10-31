@@ -11,32 +11,64 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Date;
 
-public class pasajeData {
+public class PasajeData {
     private final Connection con;
     
-    public pasajeData() {
+    public PasajeData() {
          this.con=Conexion.getConexion();
     }
     
-    
+    public ArrayList<Pasaje> ListarPasajes() {
+        String sql = "SELECT * FROM `pasaje`";
+        ArrayList<Pasaje> pasajes = new ArrayList<>();
+        try {
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            while(rs.next()){
+                Pasaje pasaje = new Pasaje();
+                pasaje.setIdPasaje(rs.getInt("idPasaje"));
+                pasaje.setTipoTransporte(rs.getString("tipoTransporte"));
+                pasaje.setFechaIda(rs.getDate("fechaIda"));
+                pasaje.setFechaVuelta(rs.getDate("fechaVuelta"));
+                pasaje.setEstado(rs.getInt("estado"));
+                pasaje.setImporte(rs.getDouble("importe"));
+                pasaje.setCiudadOrigen(rs.getInt("ciudadOrigen"));
+                pasaje.setCiudadDestino(rs.getInt("ciudadDestino"));
+                pasajes.add(pasaje);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if(con != null) con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return pasajes;
+    }
+
 
     public  Pasaje getPasajeData(int id){
         String sql="SELECT * FROM `pasaje` WHERE `idPasaje`="+id;
-        Pasaje pasaje= new Pasaje();
+         Pasaje pasaje= new Pasaje();
     try {
         Statement stmt = con.createStatement();
         ResultSet rs = stmt.executeQuery(sql);
         while(rs.next()){
-            System.out.println("idPasaje: " + rs.getInt("idPasaje"));
-            // Añade aquí más campos según sea necesario
-            pasaje.setIdPasaje(/*(int)*/rs.getInt("idPasaje"));
-            pasaje.setTipoTransporte(/*(String)*/rs.getString("tipoTransporte"));
-            pasaje.setImporte(/*(double)*/rs.getDouble("importe"));
-            pasaje.setNombreCiudadOrigen(/*(ciudad)*/new CiudadData().buscarPorId(rs.getInt("ciudadOrigen")));
-            pasaje.setEstado(/*(boolean)*/rs.getBoolean("estado"));
+           
             
+            pasaje.setIdPasaje(rs.getInt("idPasaje"));
+            pasaje.setTipoTransporte(rs.getString("tipoTransporte"));
+            pasaje.setFechaIda(rs.getDate("fechaIda"));
+            pasaje.setFechaVuelta(rs.getDate("fechaVuelta"));
+            pasaje.setEstado(rs.getInt("estado"));
+            pasaje.setImporte(rs.getDouble("importe"));
+            pasaje.setCiudadOrigen(rs.getInt("ciudadOrigen"));
+            pasaje.setCiudadDestino(rs.getInt("ciudadDestino"));
         }
     } catch (SQLException e) {
         e.printStackTrace();
@@ -227,6 +259,15 @@ public  int getCiudadOrigen(int id){
  }
  
  
+
+    public static void main(String[] args) {
+        PasajeData pd = new PasajeData();
+        ArrayList<Pasaje> pasajes = pd.ListarPasajes();
+        for (Pasaje pasaje : pasajes) {
+            System.out.println(pasaje);
+        }
+    }
+
 
    
 }

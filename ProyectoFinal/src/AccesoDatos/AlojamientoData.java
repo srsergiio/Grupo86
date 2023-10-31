@@ -3,10 +3,13 @@ package AccesoDatos;
 
 import Entidades.Alojamiento;
 import Entidades.Ciudad;
+import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.date;
+import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.date;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -17,19 +20,52 @@ import java.util.logging.Logger;
  *
  * @author Administrador
  */
-public class alojamientoData {
+public class AlojamientoData {
     private Connection con;
-    
+     private List<Alojamiento> alojamientos;
 
     //double o int getImporte(id);
     
     
     
-    public alojamientoData() {
+    public AlojamientoData() {
          this.con=Conexion.getConexion();
+         alojamientos=new ArrayList<>();;
     }
 
-  
+  public List<Alojamiento> ListarAlojamientos() {
+        String sql = "SELECT * FROM `alojamiento`";
+        try {
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            while(rs.next()){
+                Alojamiento alojamiento = new Alojamiento();
+ 
+                alojamiento.setIdAlojamiento(rs.getInt("idAlojamiento"));
+                alojamiento.setFechaI(rs.getDate("fechaI"));
+                alojamiento.setFechaF(rs.getDate("fechaF"));
+                alojamiento.setTipo(rs.getString ("tipo"));
+                alojamiento.setServicio(rs.getString ("servicio"));
+                alojamiento.setImporteD(rs.getDouble("importeD"));
+                alojamiento.setCiudad(rs.getInt("ciudad"));
+                alojamiento.setEstado(rs.getInt("estado"));
+                alojamiento.setInicioTemporada(rs.getDate("inicioTemporada"));
+                alojamiento.setFinTemporada(rs.getDate("finTemporada"));
+                
+                alojamientos.add(alojamiento);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if(con != null) con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return alojamientos;
+    }
+
     
     public List<Alojamiento> alojamientosDisponibles (Ciudad ciudad, Date ingreso, Date salida){
         
@@ -97,15 +133,17 @@ public class alojamientoData {
             
             if(rs.next()){
                 int idAlojamientoEnBD = rs.getInt("idAlojamiento");
-                java.sql.Date fechaI = rs.getDate("fecha ingreso");
-                java.sql.Date fechaF = rs.getDate("fecha salida");
-                String tipo = rs.getString ("Tipo de alojamiento");
-                String servicio = rs.getString ("servicios");
-                int importeD = rs.getInt("Importe estadia");
-                int ciudad = rs.getInt("Destino");
-                boolean estado = rs.getBoolean("estado");
+                java.sql.Date fechaI = rs.getDate("fechaI");
+                java.sql.Date fechaF = rs.getDate("fechaF");
+                String tipo = rs.getString ("tipo");
+                String servicio = rs.getString ("servicio");
+                double importeD = rs.getInt("importeD");
+                int ciudad = rs.getInt("ciudad");
+                int estado = rs.getInt("estado");
+                Date inicioTemporada = rs.getDate("inicioTemporada");
+                Date finTemporada = rs.getDate("finTemporada");
                 
-                alojamiento = new Alojamiento(idAlojamiento, fechaI, fechaF, tipo, servicio, importeD, ciudad, estado);
+                alojamiento = new Alojamiento( idAlojamientoEnBD, fechaI,  fechaF, tipo, servicio,  importeD, ciudad,  estado,  inicioTemporada,  finTemporada);
             }       
             return alojamiento;
         } catch (SQLException ex) {
@@ -116,23 +154,25 @@ public class alojamientoData {
         
         
         public Alojamiento getAlojamiento(int id) {
-    Alojamiento alojamiento = null;
+    Alojamiento alojamiento = null ;
     try {
         String sql = "SELECT * FROM alojamiento WHERE idAlojamiento = ?";
         PreparedStatement ps = con.prepareStatement(sql);
         ps.setInt(1, id);
         ResultSet rs = ps.executeQuery();
         if (rs.next()) {
-            int idAlojamiento = rs.getInt("idAlojamiento");
-            Date fichaIn = rs.getDate("fichaIn");
-            Date fichaOn = rs.getDate("fichaOn");
-            Boolean estado = rs.getBoolean("estado");
-            String servicio = rs.getString("servicio");
-            double importeDiario = rs.getDouble("importeDiario");
-            Ciudad CiudadDest = null/* You need to fetch the Ciudad object based on its ID here */;
-            String tipo = rs.getString("tipo");
-            
-            alojamiento = new Alojamiento(idAlojamiento, fichaIn, fichaOn, estado, servicio, importeDiario, CiudadDest, tipo);
+           int idAlojamientoEnBD = rs.getInt("idAlojamiento");
+                java.sql.Date fechaI = rs.getDate("fechaI");
+                java.sql.Date fechaF = rs.getDate("fechaF");
+                String tipo = rs.getString ("tipo");
+                String servicio = rs.getString ("servicio");
+                double importeD = rs.getInt("importeD");
+                int ciudad = rs.getInt("ciudad");
+                int estado = rs.getInt("estado");
+                Date inicioTemporada = rs.getDate("inicioTemporada");
+                Date finTemporada = rs.getDate("finTemporada");
+          
+                alojamiento = new Alojamiento( idAlojamientoEnBD, fechaI,  fechaF, tipo, servicio,  importeD, ciudad,  estado,  inicioTemporada,  finTemporada);
         }
 //        ps.close();
     } catch (SQLException ex) {
@@ -140,7 +180,14 @@ public class alojamientoData {
     }
     return alojamiento;
 }
- 
+ public static void main (String [] main){
+     //test 
+     AlojamientoData alojamientoData = new AlojamientoData();
+     List<Alojamiento> listalojamientoData = alojamientoData.ListarAlojamientos();
+     for( int i = 0 ; i<listalojamientoData.size() ; i++){
+         System.out.println(listalojamientoData.get(i));
+     }
+ }
 
 }
 

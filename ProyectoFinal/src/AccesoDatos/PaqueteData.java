@@ -20,15 +20,15 @@ import java.util.Date;
  *
  * @author Administrador
  */
-public class paqueteData {
+public class PaqueteData {
     Connection con ;
-    public paqueteData() {
+    public PaqueteData() {
        this.con = Conexion.getConexion();
     }
     
-    public ArrayList<Paquete> getPaqueteData() {
+    public ArrayList<Paquete> ListarPaqueteData() {
     ArrayList<Paquete> lista = new ArrayList<>();
-    String sql = "SELECT idPaquete, costoEstadia, costoPasaje FROM paquete";
+    String sql = "SELECT * FROM paquete";
     try {
         Statement stmt = con.createStatement();
         ResultSet rs = stmt.executeQuery(sql);
@@ -52,5 +52,12 @@ public class paqueteData {
 //    }
     return lista;
 }
-
+public static void main (String [] main){
+     //test 
+     PaqueteData PaqueteData = new PaqueteData();
+     ArrayList <Paquete> listaPaqueteData = PaqueteData.ListarPaqueteData();
+     for( int i = 0 ; i<listaPaqueteData.size() ; i++){
+         System.out.println(listaPaqueteData.get(i));
+     }
+ }
 }

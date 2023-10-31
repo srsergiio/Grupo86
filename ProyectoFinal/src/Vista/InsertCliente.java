@@ -7,7 +7,7 @@ package Vista;
 
 import AccesoDatos.CiudadData;
 import AccesoDatos.Conexion;
-import AccesoDatos.clienteData;
+import AccesoDatos.ClienteData;
 import Entidades.Ciudad;
 import Entidades.Cliente;
 import java.sql.Connection;
@@ -28,7 +28,7 @@ public class InsertCliente extends javax.swing.JInternalFrame {
         
         this.con=Conexion.getConexion(); 
         Connection conexion = Conexion.getConexion();
-        clienteData ClienteData = new clienteData(con);
+        ClienteData ClienteData = new ClienteData(con);
         CiudadData ciudadData = new CiudadData(con);
         
         
@@ -224,7 +224,7 @@ public class InsertCliente extends javax.swing.JInternalFrame {
             cliente.setCiudadOrigen(idCiudad);
 
             try {
-                clienteData.agregarCliente(cliente);
+                ClienteData.agregarCliente(cliente);
                 JOptionPane.showMessageDialog(this, "Cliente agregado correctamente");
                 insert_Nombre_.setText("");
                 insert_Apellido_.setText("");

@@ -6,9 +6,9 @@
 package Vista;
 
 import AccesoDatos.CiudadData;
-import AccesoDatos.paqueteData;
-import AccesoDatos.pasajeData;
-import AccesoDatos.reservaData;
+import AccesoDatos.PaqueteData;
+import AccesoDatos.PasajeData;
+import AccesoDatos.ReservaData;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
@@ -118,7 +118,7 @@ public class VistaPaquete extends javax.swing.JInternalFrame {
     DefaultTableModel model = (DefaultTableModel) paquetes_Turisticos.getModel();
     // Crea un array con los datos de la fila
     Object[] row = new Object[7];
-    paqueteData ListPaquete = new paqueteData();
+    PaqueteData ListPaquete = new PaqueteData();
      for (int i = 0; i<ListPaquete.getPaqueteData().size();i++){
          // Ajusta el tamaño del array según el número de columnas de tu tabla
         row[0] = /*ID*/ListPaquete.getPaqueteData().get(i).getIdPaquete();

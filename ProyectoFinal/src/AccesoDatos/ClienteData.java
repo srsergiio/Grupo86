@@ -21,22 +21,48 @@ import javax.swing.JOptionPane;
  *
  * @author Administrador
  */
-public class clienteData {
+public class ClienteData {
     private static Connection con;
     private List<Cliente> clientes;
     private CiudadData cd= new CiudadData();
     
-    public clienteData() {
+    public ClienteData() {
         clientes = new ArrayList<>();
            
         if (con == null) {
             con = Conexion.getConexion(); 
         }
     }
-    public clienteData(Connection con) {
+    public ClienteData(Connection con) {
         this.con = con;
     }
     
+    public List<Cliente> ListarClientes() {
+        String sql = "SELECT * FROM `cliente`";
+        try {
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            while(rs.next()){
+                Cliente cliente = new Cliente();
+                cliente.setIdCliente(rs.getInt("idCliente"));
+                cliente.setNombre(rs.getString("nombre"));
+                cliente.setApellido(rs.getString("apellido"));
+                cliente.setDni(rs.getInt("dni"));
+                cliente.setCiudadOrigen(rs.getInt("CiudadOrigen"));
+                clientes.add(cliente);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if(con != null) con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return clientes;
+    }
+   
      public static void agregarCliente(Cliente nuevoCliente)throws SQLException {
            String sql= "INSERT INTO cliente(nombre, apellido, dni, CiudadOrigen, estado) VALUES (?,?,?,?,?)";
            try {
@@ -45,7 +71,7 @@ public class clienteData {
             ps.setString(2, nuevoCliente.getApellido());
             ps.setInt(3, nuevoCliente.getDni());
             ps.setInt(4, nuevoCliente.getCiudadOrigen());
-            ps.setInt(5, nuevoCliente.isEstado() ? 1:0);
+      
             ps.executeUpdate();
             ResultSet rs= ps.getGeneratedKeys();
             if(rs.next()){
@@ -94,7 +120,7 @@ public class clienteData {
                 cliente.setApellido(rs.getString("apellido"));
                 cliente.setDni(rs.getInt("dni"));
                 cliente.setCiudadOrigen(rs.getInt("CiudadOrigen"));
-                cliente.setEstado(true);
+            
             }else{
                 JOptionPane.showMessageDialog(null, "No existe el cliente");
 //                ps.close();
@@ -118,5 +144,14 @@ public class clienteData {
      }
     return ciudadesOrigenDisponibles;
     }
- 
+    public static void main(String []main){
+     
+     //test 
+     ClienteData BDcliente = new ClienteData();
+     List<Cliente> clientes = BDcliente.ListarClientes();
+     for( int i = 0 ; i<clientes.size() ; i++){
+         System.out.println(clientes.get(i));
+     }
+     
+    }
 }

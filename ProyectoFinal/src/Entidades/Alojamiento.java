@@ -3,23 +3,31 @@ package Entidades;
 import java.util.Date;
 
 public class Alojamiento {
-
-    public Alojamiento(int idAlojamiento, Date fichaIn, Date fichaOn, Boolean estado, String servicio, double importeDiario, Ciudad CiudadDest, String tipo) {
-        this.idAlojamiento = idAlojamiento;
-        this.fichaIn = fichaIn;
-        this.fichaOn = fichaOn;
-        this.estado = estado;
-        this.servicio = servicio;
-        this.importeDiario = importeDiario;
-        this.CiudadDest = CiudadDest;
-        this.tipo= tipo;
-    }
-
+    private int idAlojamiento;
+    private Date fechaI;
+    private Date fechaF;
+    private String tipo;
+    private String servicio;
+    private double importeD;
+    private int ciudad;
+    private int estado;
+    private Date inicioTemporada;
+    private Date finTemporada;
+    
     public Alojamiento() {
     }
 
-    public Alojamiento(int idAlojamiento, java.sql.Date fechaI, java.sql.Date fechaF, String tipo, String servicio, int importeD, int ciudad, boolean estado) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Alojamiento(int idAlojamiento, Date fechaI, Date fechaF, String tipo, String servicio, double importeD, int ciudad, int estado, Date inicioTemporada, Date finTemporada) {
+        this.idAlojamiento = idAlojamiento;
+        this.fechaI = fechaI;
+        this.fechaF = fechaF;
+        this.tipo = tipo;
+        this.servicio = servicio;
+        this.importeD = importeD;
+        this.ciudad = ciudad;
+        this.estado = estado;
+        this.inicioTemporada = inicioTemporada;
+        this.finTemporada = finTemporada;
     }
 
     public int getIdAlojamiento() {
@@ -30,28 +38,28 @@ public class Alojamiento {
         this.idAlojamiento = idAlojamiento;
     }
 
-    public Date getFichaIn() {
-        return fichaIn;
+    public Date getFechaI() {
+        return fechaI;
     }
 
-    public void setFichaIn(Date fichaIn) {
-        this.fichaIn = fichaIn;
+    public void setFechaI(Date fechaI) {
+        this.fechaI = fechaI;
     }
 
-    public Date getFichaOn() {
-        return fichaOn;
+    public Date getFechaF() {
+        return fechaF;
     }
 
-    public void setFichaOn(Date fichaOn) {
-        this.fichaOn = fichaOn;
+    public void setFechaF(Date fechaF) {
+        this.fechaF = fechaF;
     }
 
-    public Boolean getEstado() {
-        return estado;
+    public String getTipo() {
+        return tipo;
     }
 
-    public void setEstado(Boolean estado) {
-        this.estado = estado;
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
     public String getServicio() {
@@ -62,48 +70,50 @@ public class Alojamiento {
         this.servicio = servicio;
     }
 
-    public double getImporteDiario() {
-        return importeDiario;
+    public double getImporteD() {
+        return importeD;
     }
 
-    public void setImporteDiario(double importeDiario) {
-        this.importeDiario = importeDiario;
+    public void setImporteD(double importeD) {
+        this.importeD = importeD;
     }
 
-    public Ciudad getCiudadDest() {
-        return CiudadDest;
+    public int getCiudad() {
+        return ciudad;
     }
 
-    public void setCiudadDest(Ciudad CiudadDest) {
-        this.CiudadDest = CiudadDest;
+    public void setCiudad(int ciudad) {
+        this.ciudad = ciudad;
     }
 
-    public String getTipo() {
-        return tipo;
+    public int getEstado() {
+        return estado;
     }
 
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
+    public void setEstado(int estado) {
+        this.estado = estado;
     }
-    
+
+    public Date getInicioTemporada() {
+        return inicioTemporada;
+    }
+
+    public void setInicioTemporada(Date inicioTemporada) {
+        this.inicioTemporada = inicioTemporada;
+    }
+
+    public Date getFinTemporada() {
+        return finTemporada;
+    }
+
+    public void setFinTemporada(Date finTemporada) {
+        this.finTemporada = finTemporada;
+    }
+
     @Override
     public String toString() {
-        return "Alojamiento{" + "idAlojamiento=" + idAlojamiento + ", fichaIn=" + fichaIn + ", fichaOn=" + fichaOn + ", estado=" + estado + ", servicio=" + servicio + ", importeDiario=" + importeDiario + ", CiudadDest=" + CiudadDest + ", tipo="+ tipo + '}';
+        return "Alojamiento{" + "idAlojamiento=" + idAlojamiento + ", fechaI=" + fechaI + ", fechaF=" + fechaF + ", tipo=" + tipo + ", servicio=" + servicio + ", importeD=" + importeD + ", ciudad=" + ciudad + ", estado=" + estado + ", inicioTemporada=" + inicioTemporada + ", finTemporada=" + finTemporada + '}';
     }
 
-    private int idAlojamiento;
-
-    private Date fichaIn;
-
-    private Date fichaOn;
-
-    private Boolean estado;
-
-    private String servicio;
-
-    private double importeDiario;
-
-    private Ciudad CiudadDest;
-    
-    private String tipo;
+   
 }

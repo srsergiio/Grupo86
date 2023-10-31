@@ -25,29 +25,74 @@ import javax.swing.JOptionPane;
  */
 public class CiudadData  extends Algoridmo {
     private List<Ciudad> ciudades;
-    
-    private pasajeData pd;
+    private PasajeData pd;
     private static Connection con;
-     public CiudadData() {
-       
+    
+    public CiudadData() {
         ciudades = new ArrayList<>();  
-        pd= new pasajeData();
+        pd= new PasajeData();
          if (con == null) {
             con = Conexion.getConexion(); 
         }
     }
-
+    
     public CiudadData(Connection con) {
-        this.con = con;
+        ciudades = new ArrayList<>();  
+        pd= new PasajeData();
+         if (con == null) {
+            this.con = con; 
+        }
     }
-     public void guardarCiudad(Ciudad ciudad){
+    public static List<Ciudad> listarCiudad(){
+          List <Ciudad> ciudades =new ArrayList<>();
+          try{
+             String sql = "SELECT * FROM ciudad WHERE estado=1";
+             PreparedStatement ps= con.prepareStatement(sql);
+             ResultSet rs= ps.executeQuery();
+          while (rs.next()){
+                Ciudad ciudad= new Ciudad();
+                ciudad.setIdCiudad(rs.getInt("idCiudad"));
+                ciudad.setNombre(rs.getString("nombre"));
+                ciudad.setProvincia(rs.getString("provincia"));
+                ciudad.setPais(rs.getString("pais"));
+                ciudad.setEstado(rs.getInt("estado"));
+                ciudades.add(ciudad);
+            }
+                ps.close();
+            }catch(SQLException ex){
+                    JOptionPane.showMessageDialog(null, "Error al acceder a la tabla ciudad"+ex.getMessage());
+                    }
+        return ciudades;
+    }
+    public List<Ciudad> listarCiudad2(){
+    List <Ciudad> ciudades = new ArrayList<>();
+    try{
+        String sql = "SELECT * FROM ciudad WHERE estado=1";
+        PreparedStatement ps= con.prepareStatement(sql);
+        ResultSet rs= ps.executeQuery();
+        while (rs.next()){
+            Ciudad ciudad= new Ciudad();
+            ciudad.setIdCiudad(rs.getInt("idCiudad"));
+            ciudad.setNombre(rs.getString("nombre"));
+            ciudad.setProvincia(rs.getString("provincia"));
+            ciudad.setPais(rs.getString("pais"));
+            ciudad.setEstado(rs.getInt("estado"));
+            ciudades.add(ciudad);
+        }
+//        ps.close();
+    }catch(SQLException ex){
+        JOptionPane.showMessageDialog(null, "Error al acceder a la tabla ciudad"+ex.getMessage());
+    }
+    return ciudades;
+}
+    public void guardarCiudad(Ciudad ciudad){
          String sql= "INSERT INTO ciudad(nombre, provincia, pais, estado) VALUES (?,?,?,?,?)";
          try{
              PreparedStatement ps=con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, ciudad.getNombre());
             ps.setString(2, ciudad.getProvincia());
             ps.setString(3, ciudad.getPais());
-            ps.setBoolean(4, ciudad.isEstado());
+            ps.setInt(4, ciudad.isEstado());
             ps.executeUpdate();
             ResultSet rs= ps.getGeneratedKeys();
             if(rs.next()){
@@ -59,7 +104,7 @@ public class CiudadData  extends Algoridmo {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla ciudad "+ex.getMessage());
         }
     }
-     public Ciudad obtenerCiudadPorNombre(String nombreCiudad) {
+    public Ciudad obtenerCiudadPorNombre(String nombreCiudad) {
      Ciudad ciudad = null;
      try {
         String sql = "SELECT * FROM ciudad WHERE nombre = ?";
@@ -72,16 +117,16 @@ public class CiudadData  extends Algoridmo {
             ciudad.setNombre(rs.getString("nombre"));
             ciudad.setProvincia(rs.getString("provincia"));
             ciudad.setPais(rs.getString("pais"));
-            ciudad.setEstado(rs.getBoolean("estado"));
+            ciudad.setEstado(rs.getInt("estado"));
         }
-//        ps.close();
+        ps.close();
     } catch (SQLException ex) {
         JOptionPane.showMessageDialog(null, "Error al acceder a la tabla ciudad: " + ex.getMessage());
     }
 
     return ciudad;
 }     
-     public  Ciudad buscarPorId(int id) {
+    public  Ciudad buscarPorId(int id) {
          Ciudad ciudad=null;
          String sql= "SELECT nombre, provincia, pais FROM ciudad WHERE idCiudad = ? AND estado = 1";
          PreparedStatement ps=null;
@@ -95,64 +140,17 @@ public class CiudadData  extends Algoridmo {
                 ciudad.setNombre(rs.getString("nombre"));
                 ciudad.setProvincia(rs.getString("provincia"));
                 ciudad.setPais(rs.getString("pais"));
-                ciudad.setEstado(true);
+                ciudad.setEstado(rs.getInt("estado"));
             }else{
                 JOptionPane.showMessageDialog(null, "No existe la Ciudad");
-//                ps.close();
+                ps.close();
             } 
         }catch(SQLException ex){
                     JOptionPane.showMessageDialog(null, "Error al acceder a la tabla ciudad"+ex.getMessage());
                     }
         return ciudad;
-    }
-     
-     
-     public static List<Ciudad> listarCiudad(){
-          List <Ciudad> ciudades =new ArrayList<>();
-          try{
-             String sql = "SELECT * FROM ciudad WHERE estado=1";
-             PreparedStatement ps= con.prepareStatement(sql);
-             ResultSet rs= ps.executeQuery();
-          while (rs.next()){
-                Ciudad ciudad= new Ciudad();
-                ciudad.setIdCiudad(rs.getInt("idCiudad"));
-                ciudad.setNombre(rs.getString("nombre"));
-                ciudad.setProvincia(rs.getString("provincia"));
-                ciudad.setPais(rs.getString("pais"));
-                ciudad.setEstado(true);
-                ciudades.add(ciudad);
-            }
-//                ps.close();
-            }catch(SQLException ex){
-                    JOptionPane.showMessageDialog(null, "Error al acceder a la tabla ciudad"+ex.getMessage());
-                    }
-        return ciudades;
-    }
-     public List<Ciudad> listarCiudad2(){
-    List <Ciudad> ciudades = new ArrayList<>();
-    try{
-        String sql = "SELECT * FROM ciudad WHERE estado=1";
-        PreparedStatement ps= con.prepareStatement(sql);
-        ResultSet rs= ps.executeQuery();
-        while (rs.next()){
-            Ciudad ciudad= new Ciudad();
-            ciudad.setIdCiudad(rs.getInt("idCiudad"));
-            ciudad.setNombre(rs.getString("nombre"));
-            ciudad.setProvincia(rs.getString("provincia"));
-            ciudad.setPais(rs.getString("pais"));
-            ciudad.setEstado(true);
-            ciudades.add(ciudad);
-        }
-//        ps.close();
-    }catch(SQLException ex){
-        JOptionPane.showMessageDialog(null, "Error al acceder a la tabla ciudad"+ex.getMessage());
-    }
-    return ciudades;
-}
-
-     
-     
-      public List<Pasaje> obtenerTransportesPorDestino(Ciudad destino) {
+    }     
+    public List<Pasaje> obtenerTransportesPorDestino(Ciudad destino) {
         List<Pasaje> transportesDisponibles = new ArrayList<>();
         try{
         String sql = "SELECT * FROM pasaje";
@@ -170,7 +168,7 @@ public class CiudadData  extends Algoridmo {
         }
         return transportesDisponibles;
     }
-      public List<Alojamiento> obtenerAlojamientosPorDestino(Ciudad destino) {
+    public List<Alojamiento> obtenerAlojamientosPorDestino(Ciudad destino) {
       List<Alojamiento> alojamientos = new ArrayList<>();
       try {
         String sql = "SELECT * FROM alojamiento WHERE ciudad = ?";
@@ -189,7 +187,7 @@ public class CiudadData  extends Algoridmo {
        }
        return alojamientos;
     }
-       public List<Ciudad> obtenerCiudadesDisponibles() {
+    public List<Ciudad> obtenerCiudadesDisponibles() {
         List<Ciudad> ciudadesDisponibles = new ArrayList<>();
         String sql = "SELECT * FROM ciudad WHERE estado = true";
         try (PreparedStatement ps = con.prepareStatement(sql);
@@ -200,7 +198,7 @@ public class CiudadData  extends Algoridmo {
                 ciudad.setNombre(rs.getString("nombre"));
                 ciudad.setProvincia(rs.getString("provincia"));
                 ciudad.setPais(rs.getString("pais"));
-                ciudad.setEstado(rs.getBoolean("estado"));
+                ciudad.setEstado(rs.getInt("estado"));
                 ciudadesDisponibles.add(ciudad);
             }
         } catch (SQLException ex) {
@@ -208,7 +206,7 @@ public class CiudadData  extends Algoridmo {
         }
         return ciudadesDisponibles;
     }
-       public static int buscarIdPorNombre(String nombreCiudad) {
+    public static int buscarIdPorNombre(String nombreCiudad) {
        int id = -1; 
        String sql = "SELECT idCiudad FROM ciudad WHERE nombre = ? AND estado = 1";
         try{
@@ -224,5 +222,15 @@ public class CiudadData  extends Algoridmo {
         }
      return id;
     }
+    
+     public static void main(String []main){
+     
+     //test 
+     CiudadData CiudadData = new CiudadData();
+     List<Ciudad> Ciudad = CiudadData.listarCiudad();
+     for( int i = 0 ; i<Ciudad.size() ; i++){
+         System.out.println(Ciudad.get(i));
+     }}
+     
 }
 

@@ -5,7 +5,7 @@
  */
 package Vista;
 
-import AccesoDatos.reservaData;
+import AccesoDatos.ReservaData;
 import Entidades.Reserva;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
@@ -15,15 +15,15 @@ import javax.swing.table.DefaultTableModel;
  * @author Administrador
  */
 public class VistaReservas extends javax.swing.JInternalFrame {
-    private reservaData ReservaData;
+    private ReservaData ReservaData;
 
     /**
      * Creates new form VistaRersevas
      */
     public VistaReservas() {
         initComponents(); 
-        ReservaData = new reservaData();
-        List<Reserva> reservas = new reservaData().listarReserva();
+        ReservaData = new ReservaData();
+        List<Reserva> reservas = new ReservaData().listarReserva();
         List<String> nombresClientes = ReservaData.obtenerNombresClientesConReservas();
         String[] columnas = {"ID Reserva", "ID Cliente","Nombre Cliente" ,"ID Paquete", "Fecha Reserva", "Fecha Viaje"};
         

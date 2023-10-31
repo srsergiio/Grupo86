@@ -18,11 +18,11 @@ import javax.swing.JOptionPane;
  *
  * @author Administrador
  */
-public class reservaData {
+public class ReservaData {
     private List<Reserva> reservas;
     private static Connection con;
    
-    public reservaData(){
+    public ReservaData(){
         reservas = new ArrayList<>(); 
          if (con == null) {
             con = Conexion.getConexion(); 
