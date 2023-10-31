@@ -40,8 +40,7 @@ public class ReservaData {
                 reserva.setIdReserva(rs.getInt("idReserva"));
                 reserva.setIdCliente(rs.getInt("idCliente"));
                 reserva.setIdPaquete(rs.getInt("idPaquete"));
-                reserva.setFechaReserva(rs.getDate("fechaReserva"));
-                reserva.setFechaViaje(rs.getInt("fechaViaje"));
+                
                 reservas.add(reserva);
             }
                // ps.close();
@@ -69,7 +68,14 @@ public class ReservaData {
         }
     return nombresClientes;
     }
-    
+     public static void main (String [] main){
+     //test 
+     ReservaData ReservaData = new ReservaData();
+     List<Reserva> ListaReservaData = ReservaData.listarReserva();
+     for( int i = 0 ; i<ListaReservaData.size() ; i++){
+         System.out.println(ListaReservaData.get(i));
+     }
+ }
 }
 
 

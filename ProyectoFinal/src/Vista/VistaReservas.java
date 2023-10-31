@@ -37,8 +37,7 @@ public class VistaReservas extends javax.swing.JInternalFrame {
                 reserva.getIdCliente(),
                 nombresClientes.get(i),
                 reserva.getIdPaquete(),
-                reserva.getFechaReserva(),
-                reserva.getFechaViaje(),
+          
                 
             });
         }

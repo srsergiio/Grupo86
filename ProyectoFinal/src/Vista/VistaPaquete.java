@@ -119,9 +119,9 @@ public class VistaPaquete extends javax.swing.JInternalFrame {
     // Crea un array con los datos de la fila
     Object[] row = new Object[7];
     PaqueteData ListPaquete = new PaqueteData();
-     for (int i = 0; i<ListPaquete.getPaqueteData().size();i++){
+     for (int i = 0; i<ListPaquete.ListarPaqueteData().size();i++){
          // Ajusta el tamaño del array según el número de columnas de tu tabla
-        row[0] = /*ID*/ListPaquete.getPaqueteData().get(i).getIdPaquete();
+        row[0] = /*ID*/ListPaquete.ListarPaqueteData().get(i).getIdPaquete();
         row[1] = /*Origen*/"";
         row[2] = /*Destino*/"";
         row[3] = /*FechaI*/"";

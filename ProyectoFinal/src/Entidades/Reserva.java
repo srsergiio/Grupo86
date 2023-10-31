@@ -12,19 +12,18 @@ import java.util.Date;
  * @author HP
  */
 public class Reserva {
-    private int idReserva, idCliente, idPaquete, fechaViaje;
-    private Date fechaReserva;
+    private int idReserva, idCliente, idPaquete;
+
     
     public Reserva(){
         
     }
 
-    public Reserva(int idReserva, int idCliente, int idPaquete, int fechaViaje, Date fechaReserva) {
+    public Reserva(int idReserva, int idCliente, int idPaquete) {
         this.idReserva = idReserva;
         this.idCliente = idCliente;
         this.idPaquete = idPaquete;
-        this.fechaViaje = fechaViaje;
-        this.fechaReserva = fechaReserva;
+
     }
 
     public int getIdReserva() {
@@ -51,25 +50,12 @@ public class Reserva {
         this.idPaquete = idPaquete;
     }
 
-    public int getFechaViaje() {
-        return fechaViaje;
-    }
-
-    public void setFechaViaje(int fechaViaje) {
-        this.fechaViaje = fechaViaje;
-    }
-
-    public Date getFechaReserva() {
-        return fechaReserva;
-    }
-
-    public void setFechaReserva(Date fechaReserva) {
-        this.fechaReserva = fechaReserva;
-    }
-
     @Override
     public String toString() {
-        return "Reserva{" + "idReserva=" + idReserva + ", idCliente=" + idCliente + ", idPaquete=" + idPaquete + ", fechaViaje=" + fechaViaje + ", fechaReserva=" + fechaReserva + '}';
+        return "Reserva{" + "idReserva=" + idReserva + ", idCliente=" + idCliente + ", idPaquete=" + idPaquete + '}';
     }
+
+
+
     
 }

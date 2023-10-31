@@ -23,7 +23,7 @@ import javax.swing.JOptionPane;
  *
  * @author Administrador
  */
-public class CiudadData  extends Algoridmo {
+public class CiudadData  {
     private List<Ciudad> ciudades;
     private PasajeData pd;
     private static Connection con;
