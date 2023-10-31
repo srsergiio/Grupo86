@@ -1,16 +1,38 @@
 package Vista;
 
+
+import AccesoDatos.*;
+import Entidades.*;
+
 import java.util.ArrayList;
 
 public class mainVista extends javax.swing.JFrame {
     
-    ArrayList<Object> Datos ;
-    
+ArrayList<Object> BaseDatos = new ArrayList<>();
+
+
+
+ 
     
     public mainVista() {
         initComponents();
+        BaseDatos.add((ArrayList<Alojamiento>)new AlojamientoData().ListarAlojamientos());
+        BaseDatos.add(new CiudadData().listarCiudad2());
+        BaseDatos.add(new ClienteData().ListarClientes());
+        BaseDatos.add(new PaqueteData().ListarPaqueteData());
+        BaseDatos.add(new PasajeData().ListarPasajes());
+        BaseDatos.add(new ReservaData().listarReserva());
+        
+        for(int i = 0 ;i<BaseDatos.size();i++){
+            ArrayList<Object> temp = (ArrayList<Object>) BaseDatos.get(i);
+            for(int j = 0 ;j<temp.size();j++){
+                System.out.println(temp.get(j));
+            }
+        }
         //Despegar();
         //main 
+        
+        
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

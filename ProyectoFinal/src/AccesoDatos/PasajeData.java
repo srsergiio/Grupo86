@@ -41,12 +41,12 @@ public class PasajeData {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-        } finally {
-            try {
-                if(con != null) con.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+//        } finally {
+//            try {
+//                if(con != null) con.close();
+//            } catch (SQLException e) {
+//                e.printStackTrace();
+//            }
         }
         return pasajes;
     }

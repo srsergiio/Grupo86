@@ -58,7 +58,7 @@ public class CiudadData  {
                 ciudad.setEstado(rs.getInt("estado"));
                 ciudades.add(ciudad);
             }
-                ps.close();
+               // ps.close();
             }catch(SQLException ex){
                     JOptionPane.showMessageDialog(null, "Error al acceder a la tabla ciudad"+ex.getMessage());
                     }

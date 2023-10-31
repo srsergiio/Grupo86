@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 30-10-2023 a las 15:06:48
+-- Tiempo de generación: 01-11-2023 a las 00:13:45
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.0.28
 
@@ -36,8 +36,8 @@ CREATE TABLE `alojamiento` (
   `importeD` int(11) NOT NULL,
   `ciudad` int(11) NOT NULL,
   `estado` tinyint(1) NOT NULL,
-  `inicioTemporada` int(11) DEFAULT NULL,
-  `finTemporada` int(11) DEFAULT NULL
+  `inicioTemporada` date DEFAULT NULL,
+  `finTemporada` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -156,17 +156,15 @@ INSERT INTO `pasaje` (`idPasaje`, `tipoTransporte`, `fechaIda`, `fechaVuelta`, `
 CREATE TABLE `reserva` (
   `idReserva` int(11) NOT NULL,
   `idCliente` int(11) NOT NULL,
-  `idPaquete` int(11) NOT NULL,
-  `fechaReserva` date NOT NULL,
-  `fechaViaje` int(11) NOT NULL
+  `idPaquete` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `reserva`
 --
 
-INSERT INTO `reserva` (`idReserva`, `idCliente`, `idPaquete`, `fechaReserva`, `fechaViaje`) VALUES
-(1, 8, 1, '2023-10-12', 20240620);
+INSERT INTO `reserva` (`idReserva`, `idCliente`, `idPaquete`) VALUES
+(1, 8, 1);
 
 --
 -- Índices para tablas volcadas
@@ -213,7 +211,6 @@ ALTER TABLE `pasaje`
 --
 ALTER TABLE `reserva`
   ADD PRIMARY KEY (`idReserva`),
-  ADD UNIQUE KEY `fechaViaje` (`fechaViaje`),
   ADD KEY `idCliente` (`idCliente`),
   ADD KEY `idPaquete` (`idPaquete`);
 
