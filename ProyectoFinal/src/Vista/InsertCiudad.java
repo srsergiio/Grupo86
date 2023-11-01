@@ -14,6 +14,7 @@ import Entidades.Reserva;
 import java.util.ArrayList;
 import AccesoDatos.*;
 import Entidades.*;
+import javax.swing.DefaultComboBoxModel;
 
 /**
  *
@@ -39,6 +40,7 @@ public class InsertCiudad extends javax.swing.JInternalFrame {
         ListarPasaje= ( ArrayList<Pasaje>) this.BaseDatos.get(4);
         ListarReserva= ( ArrayList<Reserva>) this.BaseDatos.get(5);
         initComponents();
+        Estadojbc();
     }
 
     /**
@@ -57,51 +59,55 @@ public class InsertCiudad extends javax.swing.JInternalFrame {
         Titulo_pais = new javax.swing.JLabel();
         Insert_Pais_ = new javax.swing.JTextField();
         Titulo_ = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        Insert = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        Estado = new javax.swing.JComboBox<>();
 
-        Titulo_ciudad.setText("Ciudad");
+        Titulo_ciudad.setText("Ingrese Ciudad:");
 
-        Insert_Ciudad_.setText("Ingre Nombre");
+        Titulo_provincia.setText("Ingrese Provincia:");
 
-        Titulo_provincia.setText("Provincia");
+        Titulo_pais.setText("Ingrese Pais:");
 
-        Insert_Provincia_.setText("Ingrese nombre");
-
-        Titulo_pais.setText("Pais :");
-
-        Insert_Pais_.setText("Ingrese nombre");
-
+        Titulo_.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         Titulo_.setText("CargarCiudad");
 
-        jButton1.setText("Insert");
+        Insert.setText("Insert");
+        Insert.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                InsertActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("Estado:");
+
+        Estado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Insert, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35))
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Titulo_)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(Titulo_ciudad)
-                                .addGap(135, 135, 135))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(Titulo_provincia)
-                                    .addComponent(Titulo_pais))
-                                .addGap(125, 125, 125)))
+                            .addComponent(Titulo_provincia)
+                            .addComponent(Titulo_pais)
+                            .addComponent(Titulo_ciudad)
+                            .addComponent(jLabel1))
+                        .addGap(111, 111, 111)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(Insert_Ciudad_)
                             .addComponent(Insert_Provincia_)
-                            .addComponent(Insert_Pais_, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)))
-                    .addComponent(Titulo_))
-                .addContainerGap(157, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(47, 47, 47))
+                            .addComponent(Insert_Pais_, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
+                            .addComponent(Estado, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(94, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -118,18 +124,44 @@ public class InsertCiudad extends javax.swing.JInternalFrame {
                     .addComponent(Insert_Provincia_, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Titulo_pais)
-                    .addComponent(Insert_Pais_, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 92, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addContainerGap())
+                    .addComponent(Insert_Pais_, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Titulo_pais))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(Estado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addComponent(Insert)
+                .addGap(18, 18, 18))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void InsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InsertActionPerformed
+        // TODO add your handling code here:
+      String nombre = Insert_Ciudad_.getText();
+      String provincia = Insert_Provincia_.getText();
+      String pais = Insert_Pais_.getText();
+      String estadoCiudad = (String) Estado.getSelectedItem();
+      int estado = estadoCiudad.equals("1") ? 1 : 0;
+
+      Ciudad nuevaCiudad = new Ciudad();
+      nuevaCiudad.setNombre(nombre);
+      nuevaCiudad.setProvincia(provincia);
+      nuevaCiudad.setPais(pais);
+      nuevaCiudad.setEstado(estado);
+
+      CiudadData ciudadData = new CiudadData(Conexion.getConexion());
+
+      ciudadData.guardarCiudad(nuevaCiudad);
+
+    }//GEN-LAST:event_InsertActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> Estado;
+    private javax.swing.JButton Insert;
     private javax.swing.JTextField Insert_Ciudad_;
     private javax.swing.JTextField Insert_Pais_;
     private javax.swing.JTextField Insert_Provincia_;
@@ -137,6 +169,19 @@ public class InsertCiudad extends javax.swing.JInternalFrame {
     private javax.swing.JLabel Titulo_ciudad;
     private javax.swing.JLabel Titulo_pais;
     private javax.swing.JLabel Titulo_provincia;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
+
+  private void Estadojbc(){
+      DefaultComboBoxModel<String> estadoModel = new DefaultComboBoxModel<>();
+      estadoModel.addElement("0"); 
+      estadoModel.addElement("1"); 
+      Estado.setModel(estadoModel);       
+   }
+
+
+
+
 }
+
+
