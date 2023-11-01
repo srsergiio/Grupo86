@@ -17,7 +17,7 @@ ArrayList<Object> BaseDatos = new ArrayList<>();
     
     public mainVista() {
         initComponents();
-
+     
         
         
         BaseDatos.add((ArrayList<Alojamiento>)new AlojamientoData().ListarAlojamientos());
@@ -46,6 +46,7 @@ ArrayList<Object> BaseDatos = new ArrayList<>();
         jCheckBoxMenuItem1 = new javax.swing.JCheckBoxMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
         escritorio = new javax.swing.JDesktopPane();
+        fondo = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         Pantallas_ = new javax.swing.JMenu();
         Pantalla_Despegar_ = new javax.swing.JMenuItem();
@@ -79,18 +80,29 @@ ArrayList<Object> BaseDatos = new ArrayList<>();
             }
         });
 
+        fondo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imaneges/fondo.jpg"))); // NOI18N
+
+        escritorio.setLayer(fondo, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
         javax.swing.GroupLayout escritorioLayout = new javax.swing.GroupLayout(escritorio);
         escritorio.setLayout(escritorioLayout);
         escritorioLayout.setHorizontalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 700, Short.MAX_VALUE)
+            .addGroup(escritorioLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(fondo, javax.swing.GroupLayout.PREFERRED_SIZE, 694, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(0, Short.MAX_VALUE))
         );
         escritorioLayout.setVerticalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 500, Short.MAX_VALUE)
+            .addGroup(escritorioLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(fondo, javax.swing.GroupLayout.PREFERRED_SIZE, 512, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        Pantallas_.setText("Pantallas");
+        Pantallas_.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imaneges/1491313934-more_83000.png"))); // NOI18N
         Pantallas_.addMouseWheelListener(new java.awt.event.MouseWheelListener() {
             public void mouseWheelMoved(java.awt.event.MouseWheelEvent evt) {
                 Pantallas_MouseWheelMoved(evt);
@@ -108,7 +120,8 @@ ArrayList<Object> BaseDatos = new ArrayList<>();
         });
 
         Pantalla_Despegar_.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_D, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
-        Pantalla_Despegar_.setText("Despegar");
+        Pantalla_Despegar_.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imaneges/business_ticket_2363.png"))); // NOI18N
+        Pantalla_Despegar_.setText("Boleteria");
         Pantalla_Despegar_.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Pantalla_Despegar_ActionPerformed(evt);
@@ -192,17 +205,13 @@ ArrayList<Object> BaseDatos = new ArrayList<>();
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(escritorio, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(escritorio, javax.swing.GroupLayout.PREFERRED_SIZE, 699, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 1, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(escritorio, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(escritorio, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 511, Short.MAX_VALUE)
         );
 
         pack();
@@ -305,6 +314,7 @@ ArrayList<Object> BaseDatos = new ArrayList<>();
     private javax.swing.JMenuItem Pasaje;
     private javax.swing.JMenuItem VistaReservas_;
     private javax.swing.JDesktopPane escritorio;
+    private javax.swing.JLabel fondo;
     private javax.swing.JMenu insert_BD;
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
     private javax.swing.JMenuBar jMenuBar1;

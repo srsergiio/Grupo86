@@ -12,6 +12,7 @@ import java.util.List;
 import Entidades.Ciudad;
 import javax.swing.JDesktopPane;
 
+
 /**
  *
  * @author Administrador
@@ -58,7 +59,6 @@ public class Despegar extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        Titulo_Ventana = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         Desplegable_Catidad_Habitantes = new javax.swing.JSpinner();
         titulo_Origen = new javax.swing.JLabel();
@@ -74,12 +74,10 @@ public class Despegar extends javax.swing.JInternalFrame {
         Desplegable_Catidad_Persona = new javax.swing.JSpinner();
         Titulo_Catidad_Habitantes = new javax.swing.JLabel();
         BuscarPaquetes = new javax.swing.JButton();
+        Titulo_Ventana = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setForeground(java.awt.Color.white);
-
-        Titulo_Ventana.setText("Paquetes turísticos ");
-        Titulo_Ventana.setMaximumSize(new java.awt.Dimension(94, 20));
-        Titulo_Ventana.setMinimumSize(new java.awt.Dimension(94, 20));
 
         titulo_Origen.setText("ORIGEN");
         titulo_Origen.setPreferredSize(new java.awt.Dimension(39, 44));
@@ -117,6 +115,12 @@ public class Despegar extends javax.swing.JInternalFrame {
             }
         });
 
+        Titulo_Ventana.setText("Paquetes turísticos ");
+        Titulo_Ventana.setMaximumSize(new java.awt.Dimension(94, 20));
+        Titulo_Ventana.setMinimumSize(new java.awt.Dimension(94, 20));
+
+        jLabel1.setText("jLabel1");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -145,7 +149,7 @@ public class Despegar extends javax.swing.JInternalFrame {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(titulo_Destino)
                                     .addComponent(Desplegable_Destino, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 26, Short.MAX_VALUE))
+                                .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                 .addGap(30, 30, 30)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -160,12 +164,21 @@ public class Despegar extends javax.swing.JInternalFrame {
                                         .addGap(0, 0, Short.MAX_VALUE))))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(BuscarPaquetes)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(221, 221, 221)
+                        .addComponent(Titulo_Ventana, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(300, 300, 300))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(26, 26, 26)
+                .addContainerGap()
+                .addComponent(Titulo_Ventana, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(titulo_Origen, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(titulo_Destino))
@@ -191,7 +204,9 @@ public class Despegar extends javax.swing.JInternalFrame {
                             .addComponent(Desplegable_Catidad_Persona, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(Desplegable_Catidad_Habitantes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(Titulo_Catidad_Persona))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(13, 13, 13)
                 .addComponent(BuscarPaquetes)
                 .addGap(55, 55, 55))
         );
@@ -201,23 +216,15 @@ public class Despegar extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(231, 231, 231)
-                        .addComponent(Titulo_Ventana, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(Titulo_Ventana, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(39, 39, 39))
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -278,6 +285,7 @@ for (Object dato : BaseDatos) {
     private javax.swing.JLabel Titulo_Catidad_Habitantes;
     private javax.swing.JLabel Titulo_Catidad_Persona;
     private javax.swing.JLabel Titulo_Ventana;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel titulo_Destino;
     private javax.swing.JLabel titulo_Origen;
