@@ -33,7 +33,7 @@ ArrayList<Object> BaseDatos = new ArrayList<>();
                 System.out.println(temp.get(j));
             }
         }
-        //Despegar();
+        Despegar();
         //main 
         
         
@@ -317,7 +317,7 @@ ArrayList<Object> BaseDatos = new ArrayList<>();
         escritorio.removeAll();
         escritorio.repaint();
       
-        Despegar despegar = new Despegar(BaseDatos);
+        Despegar despegar = new Despegar(BaseDatos ,escritorio);
         
         despegar.setVisible(true);
         escritorio.add(despegar);

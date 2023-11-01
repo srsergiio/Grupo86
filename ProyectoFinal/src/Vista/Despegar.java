@@ -10,6 +10,7 @@ import Entidades.*;
 import java.util.ArrayList;
 import java.util.List;
 import Entidades.Ciudad;
+import javax.swing.JDesktopPane;
 
 /**
  *
@@ -24,14 +25,14 @@ public class Despegar extends javax.swing.JInternalFrame {
     ArrayList<Paquete> ListarPaquete ;
     ArrayList<Pasaje> ListarPasaje ;
     ArrayList<Reserva> ListarReserva ;
-    
+    JDesktopPane escritorio;
     
     
   
     /**
      * Creates new form Despegar
      */
-    public   Despegar(ArrayList<Object> BaseDatos) {//1.1modificamos el constructor para resivir la basededatos
+    public   Despegar(ArrayList<Object> BaseDatos ,JDesktopPane escritorio) {//1.1modificamos el constructor para resivir la basededatos
         initComponents();
        //Paso2 : Cargamos la Basededatos con la base de dato del constuctor modificado 
         this.BaseDatos = BaseDatos;
@@ -42,8 +43,11 @@ public class Despegar extends javax.swing.JInternalFrame {
         ListarPaquete= ( ArrayList<Paquete>) this.BaseDatos.get(3);
         ListarPasaje= ( ArrayList<Pasaje>) this.BaseDatos.get(4);
         ListarReserva= ( ArrayList<Reserva>) this.BaseDatos.get(5);
+        this.escritorio= escritorio;
         CargarCiudades();
     }
+
+ 
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -244,22 +248,19 @@ BaseDatos.add(Desplegable_Origen.getSelectedItem());
 // Obtener las fechas seleccionadas en los JDateChoosers
 BaseDatos.add(Desplegable_fecha_ida.getDate());
 BaseDatos.add(Desplegable_fecha_vuelta.getDate());
-
+       ArrayList<Object> metadatos =new ArrayList();
+       metadatos.add(Desplegable_Origen.getSelectedItem());
+       metadatos.add(Desplegable_Destino.getSelectedItem());
+       metadatos.add(Desplegable_fecha_ida.getDate());
+       metadatos.add(Desplegable_fecha_vuelta.getDate());
+       metadatos.add(Desplegable_Catidad_Persona.getValue());
+       metadatos.add(Desplegable_Catidad_Habitantes.getValue());
 // Imprimir los datos en la consola
 for (Object dato : BaseDatos) {
     System.out.println(dato);
    
 }
-
-        
-        
-        
-        
-        
-        
-        
-        
-        
+    VistaPaquete( metadatos);  
         
         
     }//GEN-LAST:event_BuscarPaquetesMouseClicked
@@ -300,5 +301,15 @@ public void CargarCiudades(){
 
         
 }
+
+     public  void VistaPaquete(  ArrayList<Object> metadatos){
+        escritorio.removeAll();
+        escritorio.repaint();
+        VistaPaquete VistaPaquete = new VistaPaquete(BaseDatos ,escritorio,metadatos);
+  
+        VistaPaquete.setVisible(true);
+        escritorio.add(VistaPaquete);
+        escritorio.moveToFront(VistaPaquete);
+    }
 
 }
