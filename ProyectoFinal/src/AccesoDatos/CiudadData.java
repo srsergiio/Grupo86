@@ -86,7 +86,7 @@ public class CiudadData  {
     return ciudades;
 }
     public void guardarCiudad(Ciudad ciudad){
-         String sql= "INSERT INTO ciudad(nombre, provincia, pais, estado) VALUES (?,?,?,?,?)";
+         String sql= "INSERT INTO ciudad(nombre, provincia, pais,estado) VALUES (?,?,?,?)";
          try{
              PreparedStatement ps=con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, ciudad.getNombre());
@@ -222,7 +222,25 @@ public class CiudadData  {
         }
      return id;
     }
-    
+    public Ciudad buscarCiudadPorNombre(String nombreCiudad) {
+    String sql = "SELECT * FROM ciudad WHERE nombre = ?";
+    Ciudad ciudad = null;
+
+    try (PreparedStatement ps = con.prepareStatement(sql)) {
+        ps.setString(1, nombreCiudad);
+        ResultSet rs = ps.executeQuery();
+        if (rs.next()) {
+            ciudad = new Ciudad();
+            ciudad.setIdCiudad(rs.getInt("idCiudad"));
+            ciudad.setNombre(rs.getString("nombre"));
+            // Establece otros atributos de la entidad Ciudad si es necesario.
+        }
+    } catch (SQLException ex) {
+        JOptionPane.showMessageDialog(null, "error al acceder a tabla ciudad");
+    }
+
+        return ciudad;
+}
      public static void main(String []main){
      
      //test 
@@ -232,5 +250,7 @@ public class CiudadData  {
          System.out.println(Ciudad.get(i));
      }}
      
+     
+
 }
 

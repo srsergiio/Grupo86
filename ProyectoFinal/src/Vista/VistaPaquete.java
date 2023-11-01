@@ -178,7 +178,7 @@ public class VistaPaquete extends javax.swing.JInternalFrame {
      public  void FormularioCliente(){
         escritorio.removeAll();
         escritorio.repaint();
-        FormularioCliente FormularioCliente = new FormularioCliente(BaseDatos , escritorio, idPaquete );
+        GeneraReserva FormularioCliente = new GeneraReserva(BaseDatos , escritorio, idPaquete );
         
         FormularioCliente.setVisible(true);
         escritorio.add(FormularioCliente);

@@ -5,19 +5,14 @@
  */
 package Vista;
 
-import AccesoDatos.CiudadData;
-import AccesoDatos.Conexion;
-import AccesoDatos.ClienteData;
-import Entidades.Alojamiento;
-import Entidades.Ciudad;
-import Entidades.Cliente;
-import Entidades.Paquete;
-import Entidades.Pasaje;
-import Entidades.Reserva;
+import AccesoDatos.*;
+import Entidades.*;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -52,16 +47,16 @@ public class InsertCliente extends javax.swing.JInternalFrame {
         
         
         DefaultTableModel ciudadTableModel = new DefaultTableModel();
-        
-        ciudadTableModel.addColumn("Nombre de la Ciudad");
-        ciudadTableModel.addColumn("IdCiudad");
-        ciudadTableModel.addColumn("Seleccionar");
+         ciudadTableModel.addColumn("Nombre de la Ciudad");
+       ciudadTableModel.addColumn("IdCiudad");
+
         List<Ciudad> ciudadesDisponibles = ciudadData.listarCiudad(); 
         
         for (Ciudad ciudad : ciudadesDisponibles) {
-        ciudadTableModel.addRow(new Object[]{ciudad.getNombre(), ciudad.getIdCiudad(), true});
+         ciudadTableModel.addRow(new Object[]{ciudad.getNombre(), ciudad.getIdCiudad()});
         }
-         jTableCd.setModel(ciudadTableModel);
+        jTableCd.setModel(ciudadTableModel);
+        
     }
 
     /**
@@ -224,38 +219,36 @@ public class InsertCliente extends javax.swing.JInternalFrame {
     
     if (dniText.matches("\\d+")) {
         int dni = Integer.parseInt(dniText);
+      int filaSeleccionada = jTableCd.getSelectedRow(); // Obtén la fila seleccionada
+      if (filaSeleccionada != -1) {
+        String nombreCiudad = jTableCd.getValueAt(filaSeleccionada, 0).toString();
 
+        // Llama al método buscarCiudadPorNombre
+        CiudadData ciudadData = new CiudadData(Conexion.getConexion());
+        Ciudad ciudad = ciudadData.buscarCiudadPorNombre(nombreCiudad);
         
-        for (int i = 0; i < jTableCd.getRowCount(); i++) {
-            Boolean seleccionada = (Boolean) jTableCd.getValueAt(i, 2);
-            if (seleccionada) {
-            idCiudad = (int) jTableCd.getValueAt(i, 1);
-            System.out.println("IdCiudad seleccionada: " + idCiudad); // Agrega esta línea para imprimir el valor
-            break;
-          }
-        }
-        
-        if (idCiudad != null) {
-            Cliente cliente = new Cliente();
-            cliente.setNombre(nombre);
-            cliente.setApellido(apellido);
-            cliente.setDni(dni);
-            cliente.setCiudadOrigen(idCiudad);
-
+        if (ciudad != null) {
             try {
+                // Crea el objeto Cliente con los datos
+                Cliente cliente = new Cliente(ciudad);
+                cliente.setNombre(nombre);
+                cliente.setApellido(apellido);
+                cliente.setDni(dni);
+                cliente.setCiudadOrigen(ciudad.getIdCiudad()); // Establece el ID de la ciudad
+                
                 ClienteData.agregarCliente(cliente);
+                
                 JOptionPane.showMessageDialog(this, "Cliente agregado correctamente");
                 insert_Nombre_.setText("");
                 insert_Apellido_.setText("");
                 insert_DNI_.setText("");
-            } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(this, "Error al agregar cliente: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                
+                
+                  } catch (SQLException ex) {
+                Logger.getLogger(InsertCliente.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } else {
-            JOptionPane.showMessageDialog(this, "Por favor, seleccione una ciudad de origen.", "Error", JOptionPane.ERROR_MESSAGE);
-        }
-    } else {
-        JOptionPane.showMessageDialog(this, "El DNI debe contener solo números.", "Error", JOptionPane.ERROR_MESSAGE);
+        } 
+      }
     }
     }//GEN-LAST:event_jButtonInsertActionPerformed
 

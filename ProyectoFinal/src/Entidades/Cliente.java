@@ -5,10 +5,15 @@ public class Cliente {
    private String nombre ,apellido;
    private int dni;
    private int CiudadOrigen, idCliente;
+   private Ciudad Ciudad;//extra
 
     public Cliente() {
     }
 
+    public Cliente(Ciudad Ciudad) {
+        this.Ciudad = Ciudad;
+    }
+    
     public Cliente(String nombre, String apellido, int dni, int CiudadOrigen) {
         this.nombre = nombre;
         this.apellido = apellido;
