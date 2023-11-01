@@ -17,6 +17,8 @@ import java.util.Date;
 import java.util.List;
 import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
+import AccesoDatos.*;
+import Entidades.*;
 
 /**
  *

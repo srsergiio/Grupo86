@@ -14,6 +14,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JDesktopPane;
 import javax.swing.table.DefaultTableModel;
+import AccesoDatos.*;
+import Entidades.*;
 
 /**
  *
