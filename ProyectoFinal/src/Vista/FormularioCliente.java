@@ -73,6 +73,11 @@ public class FormularioCliente extends javax.swing.JInternalFrame {
         jLabel5 = new javax.swing.JLabel();
 
         jButton1.setText("Finalizar");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
 
         jLabel1.setText("Clientes");
 
@@ -236,6 +241,22 @@ public class FormularioCliente extends javax.swing.JInternalFrame {
 }
     }//GEN-LAST:event_jCBciudadActionPerformed
 
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        // TODO add your handling code here:
+        ///
+        
+        VistaReservas();
+        
+    }//GEN-LAST:event_jButton1MouseClicked
+         public  void VistaReservas(){
+        escritorio.removeAll();
+        escritorio.repaint();
+        VistaReservas VistaReservas = new VistaReservas(BaseDatos);
+        
+        VistaReservas.setVisible(true);
+        escritorio.add(VistaReservas);
+        escritorio.moveToFront(VistaReservas);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
