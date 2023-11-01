@@ -339,7 +339,7 @@ ArrayList<Object> BaseDatos = new ArrayList<>();
      public  void FormularioCliente(){
         escritorio.removeAll();
         escritorio.repaint();
-        FormularioCliente FormularioCliente = new FormularioCliente(BaseDatos);
+        FormularioCliente FormularioCliente = new FormularioCliente(BaseDatos,escritorio,0);
         
         FormularioCliente.setVisible(true);
         escritorio.add(FormularioCliente);

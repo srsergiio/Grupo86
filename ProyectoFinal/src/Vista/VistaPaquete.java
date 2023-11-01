@@ -27,7 +27,7 @@ public class VistaPaquete extends javax.swing.JInternalFrame {
     ArrayList<Paquete> ListarPaquete ;
     ArrayList<Pasaje> ListarPasaje ;
     ArrayList<Reserva> ListarReserva ;
-    
+    int idPaquete = 0;
     ArrayList<Object> metadatos;
     JDesktopPane escritorio;
     /**
@@ -85,6 +85,11 @@ public class VistaPaquete extends javax.swing.JInternalFrame {
         jScrollPane1.setViewportView(paquetes_Turisticos);
 
         jButton1.setText("Reservar");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -154,6 +159,31 @@ public class VistaPaquete extends javax.swing.JInternalFrame {
         Despegar();
     }//GEN-LAST:event_volverButtonMouseClicked
 
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        // TODO add your handling code here:
+        // Obtén la fila seleccionada
+        
+        
+    int selectedRow = paquetes_Turisticos.getSelectedRow();
+    // Comprueba si se seleccionó una fila
+    if (selectedRow != -1) {
+        // Obtén el valor de la primera celda (columna 0) de la fila seleccionada
+        this.idPaquete = (Integer) paquetes_Turisticos.getValueAt(selectedRow, 0);
+        FormularioCliente();
+    }else{
+        //no hacer nada
+    }
+        
+    }//GEN-LAST:event_jButton1MouseClicked
+     public  void FormularioCliente(){
+        escritorio.removeAll();
+        escritorio.repaint();
+        FormularioCliente FormularioCliente = new FormularioCliente(BaseDatos , escritorio, idPaquete );
+        
+        FormularioCliente.setVisible(true);
+        escritorio.add(FormularioCliente);
+        escritorio.moveToFront(FormularioCliente);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -220,7 +250,9 @@ public class VistaPaquete extends javax.swing.JInternalFrame {
             FechaV =  ListarPasaje.get(p).getFechaVuelta();
             
             // buscar Fecha Ida
-            }    
+            }  
+          
+          System.out.println("metadatos.get(3) : "+metadatos.get(3)+" <= row[4] : "+row[4] + " = "+metadatos.get(3)==row[4]);
         }
         
         row[1] = /*Origen*/CiudadOrigen;   
@@ -257,17 +289,31 @@ public class VistaPaquete extends javax.swing.JInternalFrame {
         // Continúa llenando el array con los datos que desees
         // Añade la fila al modelo
     
-        System.out.println("metadatos.get(0) : "+metadatos.get(0) +" == row[1] : "+row[1] );
-        System.out.println("metadatos.get(1) : "+metadatos.get(1) +" == row[2] : "+row[2] );
         Boolean mismaCiudades = metadatos.get(0).equals(row[1]) && metadatos.get(1).equals(row[2]);
-        Boolean mismaFecha = (metadatos.get(2)==row[3] && metadatos.get(3)==row[4])||(metadatos.get(2)==null ||metadatos.get(3)==null) ;
-        if( mismaCiudades && mismaFecha){
+        System.out.println("metadatos.get(3) : "+metadatos.get(3)+" <= row[4] : "+row[4] + " = "+metadatos.get(3)==row[4]);
+        //fechas
+        Date BD_FechaIda = FechaI;
+        Date BD_FechaVueta = FechaV;
+        Date MD_FechaIda = (Date)metadatos.get(2);
+        Date MD_FechaVueta = (Date)metadatos.get(3);
+        //Boolean mismaFecha = compareDates(BD_FechaIda,BD_FechaVueta,MD_FechaIda,MD_FechaVueta) ;
+        
+        if( mismaCiudades   ){
             model.addRow(row);
         }
     }
     // Asigna el modelo a la tabla
     paquetes_Turisticos.setModel(model);
   }  
+
+    public static boolean compareDates(Date BD_FechaIda, Date BD_FechaVueta, Date MD_FechaIda, Date MD_FechaVueta){
+        System.out.println(BD_FechaIda);
+         System.out.println(BD_FechaVueta);
+          System.out.println(MD_FechaIda);
+           System.out.println(MD_FechaVueta);
+        return BD_FechaIda.equals(MD_FechaIda) && BD_FechaVueta.equals(MD_FechaVueta);
+    }
+
 
 
        public   void Despegar(){
