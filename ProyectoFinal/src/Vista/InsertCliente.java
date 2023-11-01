@@ -41,15 +41,14 @@ public class InsertCliente extends javax.swing.JInternalFrame {
         ListarPasaje= ( ArrayList<Pasaje>) this.BaseDatos.get(4);
         ListarReserva= ( ArrayList<Reserva>) this.BaseDatos.get(5);
         initComponents();
-        
-        this.con=Conexion.getConexion(); 
+            this.con=Conexion.getConexion(); 
         Connection conexion = Conexion.getConexion();
         ClienteData ClienteData = new ClienteData(con);
         CiudadData ciudadData = new CiudadData(con);
         
         
-        DefaultTableModel ciudadTableModel = new DefaultTableModel();
-         ciudadTableModel.addColumn("Nombre de la Ciudad");
+       DefaultTableModel ciudadTableModel = new DefaultTableModel();
+       ciudadTableModel.addColumn("Nombre de la Ciudad");
        ciudadTableModel.addColumn("IdCiudad");
 
         List<Ciudad> ciudadesDisponibles = ciudadData.listarCiudad(); 
@@ -58,7 +57,7 @@ public class InsertCliente extends javax.swing.JInternalFrame {
          ciudadTableModel.addRow(new Object[]{ciudad.getNombre(), ciudad.getIdCiudad()});
         }
         jTableCd.setModel(ciudadTableModel);
-        
+          
     }
 
     /**
@@ -81,7 +80,7 @@ public class InsertCliente extends javax.swing.JInternalFrame {
         insert_Apellido_ = new javax.swing.JTextField();
         insert_DNI_ = new javax.swing.JTextField();
         Titulo = new javax.swing.JLabel();
-        jButtonInsert = new javax.swing.JButton();
+        Insert = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTableCd = new javax.swing.JTable();
         TituloDNI1 = new javax.swing.JLabel();
@@ -123,10 +122,10 @@ public class InsertCliente extends javax.swing.JInternalFrame {
 
         Titulo.setText("Nuevo Cliente");
 
-        jButtonInsert.setText("Insert");
-        jButtonInsert.addActionListener(new java.awt.event.ActionListener() {
+        Insert.setText("Insert");
+        Insert.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonInsertActionPerformed(evt);
+                InsertActionPerformed(evt);
             }
         });
 
@@ -151,7 +150,7 @@ public class InsertCliente extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButtonInsert)
+                .addComponent(Insert)
                 .addGap(51, 51, 51))
             .addGroup(layout.createSequentialGroup()
                 .addGap(31, 31, 31)
@@ -198,7 +197,7 @@ public class InsertCliente extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButtonInsert)
+                .addComponent(Insert)
                 .addGap(21, 21, 21))
         );
 
@@ -213,14 +212,18 @@ public class InsertCliente extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_insert_DNI_ActionPerformed
 
-    private void jButtonInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInsertActionPerformed
-       String nombre = insert_Nombre_.getText();
+    private void InsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InsertActionPerformed
+    String nombre = insert_Nombre_.getText();
     String apellido = insert_Apellido_.getText();
     String dniText = insert_DNI_.getText();
     Integer idCiudad = null;
     
+    
+    
     if (dniText.matches("\\d+")) {
         int dni = Integer.parseInt(dniText);
+    
+  
       int filaSeleccionada = jTableCd.getSelectedRow(); // Obtén la fila seleccionada
       if (filaSeleccionada != -1) {
         String nombreCiudad = jTableCd.getValueAt(filaSeleccionada, 0).toString();
@@ -251,11 +254,13 @@ public class InsertCliente extends javax.swing.JInternalFrame {
             }
         } 
       }
-    }
-    }//GEN-LAST:event_jButtonInsertActionPerformed
+  }
+        
+    }//GEN-LAST:event_InsertActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Insert;
     private javax.swing.JLabel Titulo;
     private javax.swing.JLabel TituloApellido;
     private javax.swing.JLabel TituloDNI;
@@ -264,7 +269,6 @@ public class InsertCliente extends javax.swing.JInternalFrame {
     private javax.swing.JTextField insert_Apellido_;
     private javax.swing.JTextField insert_DNI_;
     private javax.swing.JTextField insert_Nombre_;
-    private javax.swing.JButton jButtonInsert;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
