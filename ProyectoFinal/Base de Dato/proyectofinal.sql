@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 01-11-2023 a las 00:13:45
+-- Tiempo de generación: 01-11-2023 a las 13:50:47
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.0.28
 
@@ -118,7 +118,9 @@ INSERT INTO `paquete` (`idPaquete`, `idAlojamiento`, `idPasaje`) VALUES
 (1, 24, 27),
 (2, 25, 28),
 (3, 26, 29),
-(4, 27, 30);
+(4, 27, 30),
+(5, 27, 31),
+(6, 27, 32);
 
 -- --------------------------------------------------------
 
@@ -145,7 +147,9 @@ INSERT INTO `pasaje` (`idPasaje`, `tipoTransporte`, `fechaIda`, `fechaVuelta`, `
 (27, 'BUS ', '2024-06-20', '2024-09-20', 1, 100, 13, 15),
 (28, 'BUS', '2024-12-20', '2025-03-20', 1, 100, 13, 14),
 (29, 'BUS', '2025-06-20', '2025-09-20', 1, 100, 13, 15),
-(30, 'BUS', '2026-06-20', '2026-09-20', 1, 100, 13, 16);
+(30, 'BUS', '2026-06-20', '2026-09-20', 1, 100, 13, 16),
+(31, 'Avion', '2026-06-20', '2026-09-20', 1, 352, 13, 15),
+(32, 'Bus 2', '2026-06-20', '2026-09-20', 1, 200, 13, 15);
 
 -- --------------------------------------------------------
 
@@ -240,13 +244,13 @@ ALTER TABLE `cliente`
 -- AUTO_INCREMENT de la tabla `paquete`
 --
 ALTER TABLE `paquete`
-  MODIFY `idPaquete` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `idPaquete` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `pasaje`
 --
 ALTER TABLE `pasaje`
-  MODIFY `idPasaje` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `idPasaje` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT de la tabla `reserva`
