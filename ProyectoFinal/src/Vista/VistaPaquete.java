@@ -12,7 +12,10 @@ import AccesoDatos.ReservaData;
 import Entidades.*;
 import java.util.ArrayList;
 import java.util.Date;
+import javax.swing.JDesktopPane;
 import javax.swing.table.DefaultTableModel;
+import AccesoDatos.*;
+import Entidades.*;
 
 /**
  *
@@ -26,6 +29,9 @@ public class VistaPaquete extends javax.swing.JInternalFrame {
     ArrayList<Paquete> ListarPaquete ;
     ArrayList<Pasaje> ListarPasaje ;
     ArrayList<Reserva> ListarReserva ;
+    int idPaquete = 0;
+    ArrayList<Object> metadatos;
+    JDesktopPane escritorio;
     /**
      * Creates new form NewJInternalFrame
      */
@@ -34,7 +40,7 @@ public class VistaPaquete extends javax.swing.JInternalFrame {
     public VistaPaquete() {
     }
 
-    public VistaPaquete(ArrayList<Object> BaseDatos) {
+    public VistaPaquete(ArrayList<Object> BaseDatos, JDesktopPane escritorio, ArrayList<Object> metadatos) {
         this.BaseDatos = BaseDatos;
         ListarAlojamiento= ( ArrayList<Alojamiento>) this.BaseDatos.get(0);
         ListarCiudad= ( ArrayList<Ciudad>) this.BaseDatos.get(1);
@@ -43,6 +49,8 @@ public class VistaPaquete extends javax.swing.JInternalFrame {
         ListarPasaje= ( ArrayList<Pasaje>) this.BaseDatos.get(4);
         ListarReserva= ( ArrayList<Reserva>) this.BaseDatos.get(5);
         //ejecutar apenas aparece main
+        this.escritorio=escritorio;
+        this.metadatos=metadatos;
         initComponents();
         dibujar_Columna();
         modeloDeColocarItem();
@@ -60,6 +68,8 @@ public class VistaPaquete extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         paquetes_Turisticos = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        volverButton = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(648, 467));
 
@@ -77,9 +87,28 @@ public class VistaPaquete extends javax.swing.JInternalFrame {
         jScrollPane1.setViewportView(paquetes_Turisticos);
 
         jButton1.setText("Reservar");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("Seleciones uno de los Paquetres disponible :");
+
+        volverButton.setText("Volver");
+        volverButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                volverButtonMouseClicked(evt);
+            }
+        });
+        volverButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                volverButtonActionPerformed(evt);
             }
         });
 
@@ -91,18 +120,27 @@ public class VistaPaquete extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 482, Short.MAX_VALUE)
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(volverButton)
+                        .addGap(18, 18, 18)
                         .addComponent(jButton1))
-                    .addComponent(jScrollPane1))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 612, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addGap(5, 5, 5)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(volverButton))
                 .addContainerGap())
         );
 
@@ -113,11 +151,48 @@ public class VistaPaquete extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void volverButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_volverButtonActionPerformed
+
+    private void volverButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_volverButtonMouseClicked
+        // TODO add your handling code here:
+        
+        Despegar();
+    }//GEN-LAST:event_volverButtonMouseClicked
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        // TODO add your handling code here:
+        // Obtén la fila seleccionada
+        
+        
+    int selectedRow = paquetes_Turisticos.getSelectedRow();
+    // Comprueba si se seleccionó una fila
+    if (selectedRow != -1) {
+        // Obtén el valor de la primera celda (columna 0) de la fila seleccionada
+        this.idPaquete = (Integer) paquetes_Turisticos.getValueAt(selectedRow, 0);
+        FormularioCliente();
+    }else{
+        //no hacer nada
+    }
+        
+    }//GEN-LAST:event_jButton1MouseClicked
+     public  void FormularioCliente(){
+        escritorio.removeAll();
+        escritorio.repaint();
+        FormularioCliente FormularioCliente = new FormularioCliente(BaseDatos , escritorio, idPaquete );
+        
+        FormularioCliente.setVisible(true);
+        escritorio.add(FormularioCliente);
+        escritorio.moveToFront(FormularioCliente);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable paquetes_Turisticos;
+    private javax.swing.JButton volverButton;
     // End of variables declaration//GEN-END:variables
 
     
@@ -139,10 +214,6 @@ public class VistaPaquete extends javax.swing.JInternalFrame {
     
      for (int i = 0; i<ListarPaquete.size();i++){
          // Ajusta el tamaño del array según el número de columnas de tu tabla
-        
-        row[0] = /*ID*/ListarPaquete.get(i).getIdPaquete();
-        
-        
         int  idpasaje =ListarPaquete.get(i).getIdAlojamiento();
         int IdCiudadOrigen=0;
         int IdCiudadDestino=0;
@@ -150,6 +221,10 @@ public class VistaPaquete extends javax.swing.JInternalFrame {
         String CiudadDestino ="";
         Date FechaI = null ;
         Date FechaV = null ;
+        String Descripcion = "";
+        int IDalojamiento =ListarPaquete.get(i).getIdAlojamiento();
+        row[0] = /*ID*/ListarPaquete.get(i).getIdPaquete();
+   
         for(int p = 0 ;p<ListarPasaje.size();p++){
             
             
@@ -162,13 +237,13 @@ public class VistaPaquete extends javax.swing.JInternalFrame {
                //buscar Ciudad Origen en Pasaje/ciudad/nombre
                for(int c = 0 ; c<ListarCiudad.size();c++){
                    if(ListarCiudad.get(c).getIdCiudad()==IdCiudadOrigen){
-                        CiudadOrigen = ListarCiudad.get(c).getNombre()+ " "+ ListarCiudad.get(c).getProvincia()+ " "+ListarCiudad.get(c).getPais() ;
+                        CiudadOrigen = ListarCiudad.get(c).getNombre()+ ", "+ ListarCiudad.get(c).getProvincia()+ ", "+ListarCiudad.get(c).getPais() ;
                    }
                }
                //buscar Ciudad Destino en Pasaje/ciudad/nombre
                 for(int c = 0 ; c<ListarCiudad.size();c++){
                    if(ListarCiudad.get(c).getIdCiudad()==IdCiudadDestino){
-                        CiudadDestino = ListarCiudad.get(c).getNombre()+ " "+ ListarCiudad.get(c).getProvincia()+ " "+ListarCiudad.get(c).getPais() ;
+                        CiudadDestino = ListarCiudad.get(c).getNombre()+ ", "+ ListarCiudad.get(c).getProvincia()+ ", "+ListarCiudad.get(c).getPais() ;
                    }
                }
                 
@@ -177,7 +252,9 @@ public class VistaPaquete extends javax.swing.JInternalFrame {
             FechaV =  ListarPasaje.get(p).getFechaVuelta();
             
             // buscar Fecha Ida
-            }    
+            }  
+          
+          System.out.println("metadatos.get(3) : "+metadatos.get(3)+" <= row[4] : "+row[4] + " = "+metadatos.get(3)==row[4]);
         }
         
         row[1] = /*Origen*/CiudadOrigen;   
@@ -185,19 +262,74 @@ public class VistaPaquete extends javax.swing.JInternalFrame {
         
         row[3] = /*FechaI*/FechaI;
         row[4] = /*FechaV*/FechaV;
-        row[5] = /*Descripcion*/"";
-        row[6] = /*Costo*/"";
         
+        for(int a =0 ; a < ListarAlojamiento.size(); a++){
+            if(ListarAlojamiento.get(a).getIdAlojamiento()==IDalojamiento){
+                Descripcion = ListarAlojamiento.get(a).getServicio();
+            }
+        }
+        row[5] = /*Descripcion*/Descripcion;
+        
+        Double CostoPasaje =null;
+        Double CostoEstadia =null;
+        
+        int IdAlojamiento=ListarPaquete.get(i).getIdAlojamiento();
+        int IdPasaje=ListarPaquete.get(i).getIdPasaje();
+        for(int alo =0 ; alo<ListarAlojamiento.size();alo++){
+            if(ListarAlojamiento.get(alo).getIdAlojamiento()==IdAlojamiento){
+               CostoPasaje =  ListarAlojamiento.get(alo).getImporteD();
+            }
+        }
+        
+        for(int pas =0 ; pas<ListarPasaje.size();pas++){
+            if(ListarPasaje.get(pas).getIdPasaje()==IdPasaje){
+               CostoEstadia =  ListarPasaje.get(pas).getImporte();
+            }
+        }
+        row[6] = /*Costo*/+(CostoPasaje*(int)metadatos.get(4))+(CostoEstadia*(int)metadatos.get(5));
+
+        // Continúa llenando el array con los datos que desees
+        // Añade la fila al modelo
+    
+        Boolean mismaCiudades = metadatos.get(0).equals(row[1]) && metadatos.get(1).equals(row[2]);
+        System.out.println("metadatos.get(3) : "+metadatos.get(3)+" <= row[4] : "+row[4] + " = "+metadatos.get(3)==row[4]);
+        //fechas
+        Date BD_FechaIda = FechaI;
+        Date BD_FechaVueta = FechaV;
+        Date MD_FechaIda = (Date)metadatos.get(2);
+        Date MD_FechaVueta = (Date)metadatos.get(3);
+        //Boolean mismaFecha = compareDates(BD_FechaIda,BD_FechaVueta,MD_FechaIda,MD_FechaVueta) ;
+        
+        if( mismaCiudades   ){
+            model.addRow(row);
+        }
     }
-    // Continúa llenando el array con los datos que desees
-    // Añade la fila al modelo
-     model.addRow(row);
     // Asigna el modelo a la tabla
     paquetes_Turisticos.setModel(model);
   }  
 
+    public static boolean compareDates(Date BD_FechaIda, Date BD_FechaVueta, Date MD_FechaIda, Date MD_FechaVueta){
+        System.out.println(BD_FechaIda);
+         System.out.println(BD_FechaVueta);
+          System.out.println(MD_FechaIda);
+           System.out.println(MD_FechaVueta);
+        return BD_FechaIda.equals(MD_FechaIda) && BD_FechaVueta.equals(MD_FechaVueta);
+    }
 
-   
+
+
+       public   void Despegar(){
+        escritorio.removeAll();
+        escritorio.repaint();
+      
+        Despegar despegar = new Despegar(BaseDatos ,escritorio);
+        
+        despegar.setVisible(true);
+        escritorio.add(despegar);
+        escritorio.moveToFront(despegar);
+       
+        
+    }
 
 
   

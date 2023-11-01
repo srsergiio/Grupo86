@@ -15,7 +15,10 @@ import Entidades.Reserva;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
+import AccesoDatos.*;
+import Entidades.*;
 
 /**
  *
@@ -29,11 +32,15 @@ public class FormularioCliente extends javax.swing.JInternalFrame {
     ArrayList<Paquete> ListarPaquete ;
     ArrayList<Pasaje> ListarPasaje ;
     ArrayList<Reserva> ListarReserva ;
+    int idPaquete;
+    JDesktopPane escritorio;
     /**
      * Creates new form FormularioCliente
      */
-    public FormularioCliente(ArrayList<Object> BaseDatos) {
+    public FormularioCliente(ArrayList<Object> BaseDatos ,JDesktopPane escritorio, int idPaquete) {
         this.BaseDatos = BaseDatos;
+        this.escritorio = escritorio;
+        this.idPaquete= idPaquete;
         ListarAlojamiento= ( ArrayList<Alojamiento>) this.BaseDatos.get(0);
         ListarCiudad= ( ArrayList<Ciudad>) this.BaseDatos.get(1);
         ListarCliente= ( ArrayList<Cliente>) this.BaseDatos.get(2);

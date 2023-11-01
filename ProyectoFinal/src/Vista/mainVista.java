@@ -33,7 +33,7 @@ ArrayList<Object> BaseDatos = new ArrayList<>();
                 System.out.println(temp.get(j));
             }
         }
-        //Despegar();
+        Despegar();
         //main 
         
         
@@ -327,7 +327,7 @@ ArrayList<Object> BaseDatos = new ArrayList<>();
         escritorio.removeAll();
         escritorio.repaint();
       
-        Despegar despegar = new Despegar(BaseDatos);
+        Despegar despegar = new Despegar(BaseDatos ,escritorio);
         
         despegar.setVisible(true);
         escritorio.add(despegar);
@@ -339,7 +339,7 @@ ArrayList<Object> BaseDatos = new ArrayList<>();
      public  void VistaPaquete( ){
         escritorio.removeAll();
         escritorio.repaint();
-        VistaPaquete VistaPaquete = new VistaPaquete(BaseDatos);
+        VistaPaquete VistaPaquete = new VistaPaquete(BaseDatos ,escritorio,new ArrayList<>());
         
         VistaPaquete.setVisible(true);
         escritorio.add(VistaPaquete);
@@ -349,7 +349,7 @@ ArrayList<Object> BaseDatos = new ArrayList<>();
      public  void FormularioCliente(){
         escritorio.removeAll();
         escritorio.repaint();
-        FormularioCliente FormularioCliente = new FormularioCliente(BaseDatos);
+        FormularioCliente FormularioCliente = new FormularioCliente(BaseDatos,escritorio,0);
         
         FormularioCliente.setVisible(true);
         escritorio.add(FormularioCliente);
