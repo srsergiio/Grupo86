@@ -329,7 +329,7 @@ ArrayList<Object> BaseDatos = new ArrayList<>();
      public  void VistaPaquete( ){
         escritorio.removeAll();
         escritorio.repaint();
-        VistaPaquete VistaPaquete = new VistaPaquete(BaseDatos);
+        VistaPaquete VistaPaquete = new VistaPaquete(BaseDatos ,escritorio,new ArrayList<>());
         
         VistaPaquete.setVisible(true);
         escritorio.add(VistaPaquete);

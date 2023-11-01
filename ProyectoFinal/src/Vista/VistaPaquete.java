@@ -66,6 +66,8 @@ public class VistaPaquete extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         paquetes_Turisticos = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        volverButton = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(648, 467));
 
@@ -89,6 +91,20 @@ public class VistaPaquete extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel1.setText("Seleciones uno de los Paquetres disponible :");
+
+        volverButton.setText("Volver");
+        volverButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                volverButtonMouseClicked(evt);
+            }
+        });
+        volverButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                volverButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -97,18 +113,27 @@ public class VistaPaquete extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 482, Short.MAX_VALUE)
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(volverButton)
+                        .addGap(18, 18, 18)
                         .addComponent(jButton1))
-                    .addComponent(jScrollPane1))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 612, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addGap(5, 5, 5)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(volverButton))
                 .addContainerGap())
         );
 
@@ -119,11 +144,23 @@ public class VistaPaquete extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void volverButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_volverButtonActionPerformed
+
+    private void volverButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_volverButtonMouseClicked
+        // TODO add your handling code here:
+        
+        Despegar();
+    }//GEN-LAST:event_volverButtonMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable paquetes_Turisticos;
+    private javax.swing.JButton volverButton;
     // End of variables declaration//GEN-END:variables
 
     
@@ -215,27 +252,36 @@ public class VistaPaquete extends javax.swing.JInternalFrame {
                CostoEstadia =  ListarPasaje.get(pas).getImporte();
             }
         }
-        row[6] = /*Costo*/CostoPasaje+CostoEstadia;
-        
-    }
-     
-     
-    // Continúa llenando el array con los datos que desees
-    // Añade la fila al modelo
+        row[6] = /*Costo*/+(CostoPasaje*(int)metadatos.get(4))+(CostoEstadia*(int)metadatos.get(5));
+
+        // Continúa llenando el array con los datos que desees
+        // Añade la fila al modelo
     
-    System.out.println("metadatos.get(0) : "+metadatos.get(0) +" == row[1] : "+row[1] );
-    System.out.println("metadatos.get(1) : "+metadatos.get(1) +" == row[2] : "+row[2] );
-    
-    if(metadatos.get(0).equals(row[1]) && metadatos.get(1).equals(row[2]) ){
-        model.addRow(row);
+        System.out.println("metadatos.get(0) : "+metadatos.get(0) +" == row[1] : "+row[1] );
+        System.out.println("metadatos.get(1) : "+metadatos.get(1) +" == row[2] : "+row[2] );
+        Boolean mismaCiudades = metadatos.get(0).equals(row[1]) && metadatos.get(1).equals(row[2]);
+        Boolean mismaFecha = (metadatos.get(2)==row[3] && metadatos.get(3)==row[4])||(metadatos.get(2)==null ||metadatos.get(3)==null) ;
+        if( mismaCiudades && mismaFecha){
+            model.addRow(row);
+        }
     }
-     
     // Asigna el modelo a la tabla
     paquetes_Turisticos.setModel(model);
   }  
 
 
-   
+       public   void Despegar(){
+        escritorio.removeAll();
+        escritorio.repaint();
+      
+        Despegar despegar = new Despegar(BaseDatos ,escritorio);
+        
+        despegar.setVisible(true);
+        escritorio.add(despegar);
+        escritorio.moveToFront(despegar);
+       
+        
+    }
 
 
   

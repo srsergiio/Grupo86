@@ -249,12 +249,12 @@ BaseDatos.add(Desplegable_Origen.getSelectedItem());
 BaseDatos.add(Desplegable_fecha_ida.getDate());
 BaseDatos.add(Desplegable_fecha_vuelta.getDate());
        ArrayList<Object> metadatos =new ArrayList();
-       metadatos.add(Desplegable_Origen.getSelectedItem());
-       metadatos.add(Desplegable_Destino.getSelectedItem());
-       metadatos.add(Desplegable_fecha_ida.getDate());
-       metadatos.add(Desplegable_fecha_vuelta.getDate());
-       metadatos.add(Desplegable_Catidad_Persona.getValue());
-       metadatos.add(Desplegable_Catidad_Habitantes.getValue());
+       /*0.Origen*/metadatos.add(Desplegable_Origen.getSelectedItem());
+       /*1.Destino*/metadatos.add(Desplegable_Destino.getSelectedItem());
+       /*2.fecha_ida*/metadatos.add(Desplegable_fecha_ida.getDate());
+       /*3.fecha_vuelta*/metadatos.add(Desplegable_fecha_vuelta.getDate());
+       /*4.Catidad_Persona*/metadatos.add(Desplegable_Catidad_Persona.getValue());
+       /*5.Catidad_Habitantes*/metadatos.add(Desplegable_Catidad_Habitantes.getValue());
 // Imprimir los datos en la consola
 for (Object dato : BaseDatos) {
     System.out.println(dato);
@@ -306,7 +306,6 @@ public void CargarCiudades(){
         escritorio.removeAll();
         escritorio.repaint();
         VistaPaquete VistaPaquete = new VistaPaquete(BaseDatos ,escritorio,metadatos);
-  
         VistaPaquete.setVisible(true);
         escritorio.add(VistaPaquete);
         escritorio.moveToFront(VistaPaquete);
