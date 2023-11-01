@@ -6,7 +6,13 @@
 package Vista;
 
 import AccesoDatos.ReservaData;
+import Entidades.Alojamiento;
+import Entidades.Ciudad;
+import Entidades.Cliente;
+import Entidades.Paquete;
+import Entidades.Pasaje;
 import Entidades.Reserva;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
@@ -16,11 +22,25 @@ import javax.swing.table.DefaultTableModel;
  */
 public class VistaReservas extends javax.swing.JInternalFrame {
     private ReservaData ReservaData;
+    ArrayList<Object> BaseDatos ;
+    ArrayList<Alojamiento> ListarAlojamiento ;
+    ArrayList<Ciudad> ListarCiudad ;
+    ArrayList<Cliente> ListarCliente ;
+    ArrayList<Paquete> ListarPaquete ;
+    ArrayList<Pasaje> ListarPasaje ;
+    ArrayList<Reserva> ListarReserva ;
 
     /**
      * Creates new form VistaRersevas
      */
-    public VistaReservas() {
+    public VistaReservas(ArrayList<Object> BaseDatos) {
+        this.BaseDatos = BaseDatos;
+        ListarAlojamiento= ( ArrayList<Alojamiento>) this.BaseDatos.get(0);
+        ListarCiudad= ( ArrayList<Ciudad>) this.BaseDatos.get(1);
+        ListarCliente= ( ArrayList<Cliente>) this.BaseDatos.get(2);
+        ListarPaquete= ( ArrayList<Paquete>) this.BaseDatos.get(3);
+        ListarPasaje= ( ArrayList<Pasaje>) this.BaseDatos.get(4);
+        ListarReserva= ( ArrayList<Reserva>) this.BaseDatos.get(5);
         initComponents(); 
         ReservaData = new ReservaData();
         List<Reserva> reservas = new ReservaData().listarReserva();

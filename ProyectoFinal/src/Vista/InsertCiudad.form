@@ -24,18 +24,11 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Component id="Titulo_ciudad" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="135" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="Titulo_provincia" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="Titulo_pais" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="125" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="Titulo_ciudad" min="-2" max="-2" attributes="0"/>
+                          <Component id="Titulo_provincia" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="Titulo_pais" min="-2" max="-2" attributes="0"/>
                       </Group>
+                      <EmptySpace min="-2" pref="125" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="Insert_Ciudad_" max="32767" attributes="0"/>
                           <Component id="Insert_Provincia_" max="32767" attributes="0"/>

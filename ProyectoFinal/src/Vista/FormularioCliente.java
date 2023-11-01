@@ -5,16 +5,37 @@
  */
 package Vista;
 
+import Entidades.Alojamiento;
+import Entidades.Ciudad;
+import Entidades.Cliente;
+import Entidades.Paquete;
+import Entidades.Pasaje;
+import Entidades.Reserva;
+import java.util.ArrayList;
+
 /**
  *
  * @author Administrador
  */
 public class FormularioCliente extends javax.swing.JInternalFrame {
-
+    ArrayList<Object> BaseDatos ;
+    ArrayList<Alojamiento> ListarAlojamiento ;
+    ArrayList<Ciudad> ListarCiudad ;
+    ArrayList<Cliente> ListarCliente ;
+    ArrayList<Paquete> ListarPaquete ;
+    ArrayList<Pasaje> ListarPasaje ;
+    ArrayList<Reserva> ListarReserva ;
     /**
      * Creates new form FormularioCliente
      */
-    public FormularioCliente() {
+    public FormularioCliente(ArrayList<Object> BaseDatos) {
+        this.BaseDatos = BaseDatos;
+        ListarAlojamiento= ( ArrayList<Alojamiento>) this.BaseDatos.get(0);
+        ListarCiudad= ( ArrayList<Ciudad>) this.BaseDatos.get(1);
+        ListarCliente= ( ArrayList<Cliente>) this.BaseDatos.get(2);
+        ListarPaquete= ( ArrayList<Paquete>) this.BaseDatos.get(3);
+        ListarPasaje= ( ArrayList<Pasaje>) this.BaseDatos.get(4);
+        ListarReserva= ( ArrayList<Reserva>) this.BaseDatos.get(5);
         initComponents();
         
     }

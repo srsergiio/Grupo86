@@ -339,7 +339,7 @@ ArrayList<Object> BaseDatos = new ArrayList<>();
      public  void FormularioCliente(){
         escritorio.removeAll();
         escritorio.repaint();
-        FormularioCliente FormularioCliente = new FormularioCliente();
+        FormularioCliente FormularioCliente = new FormularioCliente(BaseDatos);
         
         FormularioCliente.setVisible(true);
         escritorio.add(FormularioCliente);
@@ -349,7 +349,7 @@ ArrayList<Object> BaseDatos = new ArrayList<>();
      public  void VistaReservas(){
         escritorio.removeAll();
         escritorio.repaint();
-        VistaReservas VistaReservas = new VistaReservas();
+        VistaReservas VistaReservas = new VistaReservas(BaseDatos);
         
         VistaReservas.setVisible(true);
         escritorio.add(VistaReservas);
@@ -362,7 +362,7 @@ ArrayList<Object> BaseDatos = new ArrayList<>();
     public  void VistaInsertCliente(){
         escritorio.removeAll();
         escritorio.repaint();
-        InsertCliente InsertCliente = new InsertCliente();
+        InsertCliente InsertCliente = new InsertCliente(BaseDatos);
         
         InsertCliente.setVisible(true);
         escritorio.add(InsertCliente);
@@ -373,7 +373,7 @@ ArrayList<Object> BaseDatos = new ArrayList<>();
     public  void VistaInsertCiudad(){
         escritorio.removeAll();
         escritorio.repaint();
-        InsertCiudad InsertCiudad = new InsertCiudad();
+        InsertCiudad InsertCiudad = new InsertCiudad(BaseDatos);
         
         InsertCiudad.setVisible(true);
         escritorio.add(InsertCiudad);

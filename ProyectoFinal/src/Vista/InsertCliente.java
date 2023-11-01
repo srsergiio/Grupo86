@@ -8,10 +8,15 @@ package Vista;
 import AccesoDatos.CiudadData;
 import AccesoDatos.Conexion;
 import AccesoDatos.ClienteData;
+import Entidades.Alojamiento;
 import Entidades.Ciudad;
 import Entidades.Cliente;
+import Entidades.Paquete;
+import Entidades.Pasaje;
+import Entidades.Reserva;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -21,9 +26,23 @@ import javax.swing.table.DefaultTableModel;
  * @author Administrador
  */
 public class InsertCliente extends javax.swing.JInternalFrame {
+    ArrayList<Object> BaseDatos ;
+    ArrayList<Alojamiento> ListarAlojamiento ;
+    ArrayList<Ciudad> ListarCiudad ;
+    ArrayList<Cliente> ListarCliente ;
+    ArrayList<Paquete> ListarPaquete ;
+    ArrayList<Pasaje> ListarPasaje ;
+    ArrayList<Reserva> ListarReserva ;
     private final Connection con;
     
-    public InsertCliente() {
+    public InsertCliente(ArrayList<Object> BaseDatos) {
+        this.BaseDatos = BaseDatos;
+        ListarAlojamiento= ( ArrayList<Alojamiento>) this.BaseDatos.get(0);
+        ListarCiudad= ( ArrayList<Ciudad>) this.BaseDatos.get(1);
+        ListarCliente= ( ArrayList<Cliente>) this.BaseDatos.get(2);
+        ListarPaquete= ( ArrayList<Paquete>) this.BaseDatos.get(3);
+        ListarPasaje= ( ArrayList<Pasaje>) this.BaseDatos.get(4);
+        ListarReserva= ( ArrayList<Reserva>) this.BaseDatos.get(5);
         initComponents();
         
         this.con=Conexion.getConexion(); 
