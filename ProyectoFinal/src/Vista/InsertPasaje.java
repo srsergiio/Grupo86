@@ -7,6 +7,7 @@ package Vista;
 
 import AccesoDatos.CiudadData;
 import AccesoDatos.Conexion;
+import AccesoDatos.PasajeData;
 import static AccesoDatos.PasajeData.guardarPasaje;
 import Entidades.Alojamiento;
 import Entidades.Ciudad;
@@ -20,6 +21,7 @@ import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -220,42 +222,50 @@ public class InsertPasaje extends javax.swing.JInternalFrame {
 
     private void InsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InsertActionPerformed
         // TODO add your handling code here:      
-       String tipoTransportes = tipoTransporte.getText();
-       java.util.Date utilFechaI = jDCFechaida.getDate();
-       java.util.Date utilFechaF = jDCFechav.getDate();
-       LocalDate Fechai = utilFechaI.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-       LocalDate Fechav = utilFechaF.toInstant().atZone(ZoneId.systemDefault()).toLocalDate(); 
-       int estadoPasaje = Integer.parseInt(estado.getSelectedItem().toString());
-       double importePasaje = Double.parseDouble(importe.getText());
-       String ciudadOrigen = CiudadOrigen.getSelectedItem().toString();
-       String ciudadDestino = CiudadDestino.getSelectedItem().toString();
-       
-       Pasaje nuevoPasaje = new Pasaje();
-       nuevoPasaje.setTipoTransporte(tipoTransportes);
-       nuevoPasaje.setFechaI(Fechai);
-       nuevoPasaje.setFechaV(Fechav);
-       nuevoPasaje.setEstado(estadoPasaje);
-       nuevoPasaje.setImporte(importePasaje);
-       
-       Ciudad ciudadO = null;
-       Ciudad ciudadD = null;
-       
-       for (Ciudad ciudad : ListarCiudad) {
-    if (ciudad.getNombre().equals(ciudadO)) {
-        ciudadO = ciudad;
-     }
-    if (ciudad.getNombre().equals(ciudadD)) {
-        ciudadD = ciudad;
-     }
- 
-    if (ciudadO != null && ciudadD != null) {
-        break;
-     }
+      String tipoTransportes = tipoTransporte.getText();
+    java.util.Date utilFechaI = jDCFechaida.getDate();
+    java.util.Date utilFechaF = jDCFechav.getDate();
+    LocalDate Fechai = utilFechaI.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+    LocalDate Fechav = utilFechaF.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+    int estadoPasaje = Integer.parseInt(estado.getSelectedItem().toString());
+    double importePasaje = Double.parseDouble(importe.getText());
+    String ciudadOrigen = CiudadOrigen.getSelectedItem().toString();
+    String ciudadDestino = CiudadDestino.getSelectedItem().toString();
+
+    Pasaje nuevoPasaje = new Pasaje();
+    nuevoPasaje.setTipoTransporte(tipoTransportes);
+    nuevoPasaje.setFechaI(Fechai);
+    nuevoPasaje.setFechaV(Fechav);
+    nuevoPasaje.setEstado(estadoPasaje);
+    nuevoPasaje.setImporte(importePasaje);
+
+    Ciudad ciudadO = null;
+    Ciudad ciudadD = null;
+
+    for (Ciudad ciudad : ListarCiudad) {
+        if (ciudad.getNombre().equals(ciudadOrigen)) {
+            ciudadO = ciudad;
+        }
+        if (ciudad.getNombre().equals(ciudadDestino)) {
+            ciudadD = ciudad;
+        }
+
+        if (ciudadO != null && ciudadD != null) {
+            break;
+        }
     }
-       nuevoPasaje.setCOrigen(ciudadD);
-       nuevoPasaje.setCDestino(ciudadO);
-       
-       guardarPasaje.add(nuevoPasaje);
+    nuevoPasaje.setCOrigen(ciudadO);
+    nuevoPasaje.setCDestino(ciudadD);
+
+    // Llama al método agregarPasaje de PasajeData para guardar el pasaje en la base de datos
+    PasajeData pasajeData = new PasajeData(con);
+    PasajeData.guardarPasaje(nuevoPasaje); // Llamada al método para guardar el pasaje en la base de datos
+
+// Ahora no hay una comparación en el if
+    JOptionPane.showMessageDialog(this, "Pasaje insertado correctamente en la base de datos.");
+
+   
+   
     }//GEN-LAST:event_InsertActionPerformed
 
 

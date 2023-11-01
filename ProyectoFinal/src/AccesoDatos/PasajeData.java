@@ -13,12 +13,19 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
+import javax.swing.JOptionPane;
 
 public class PasajeData {
     private static Connection con;
     
     public PasajeData() {
          this.con=Conexion.getConexion();
+    }
+
+    public PasajeData(Connection con) {
+        if (con == null) {
+            this.con = con; 
+        }
     }
     
     
@@ -270,7 +277,7 @@ public  int getCiudadOrigen(int id){
     }
 
     public static void guardarPasaje(Pasaje pasaje) {
-        String sql = "INSERT INTO Pasajes (tipoTransporte, fechaIda, fechaVuelta, estado, importe, ciudadOrigen, ciudadDestino) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO pasaje(tipoTransporte, fechaIda, fechaVuelta, estado, importe, ciudadOrigen, ciudadDestino) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
         try (PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setString(1, pasaje.getTipoTransporte());
@@ -280,10 +287,14 @@ public  int getCiudadOrigen(int id){
             ps.setDouble(5, pasaje.getImporte());
             ps.setInt(6, pasaje.getCOrigen().getIdCiudad());  // Asumiendo que Ciudad tiene un campo id
             ps.setInt(7, pasaje.getCDestino().getIdCiudad());  // Asumiendo que Ciudad tiene un campo id
-
             ps.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
+            ResultSet rs= ps.getGeneratedKeys();
+             if(rs.next()){
+                pasaje.setIdPasaje(rs.getInt(1));
+                JOptionPane.showMessageDialog(null, "Pasaje agregado con exito");
+            }
+        } catch (SQLException ex) {
+           
         }
     }
    
