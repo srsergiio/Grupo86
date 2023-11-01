@@ -64,8 +64,8 @@ public class CiudadData  {
                     }
         return ciudades;
     }
-    public List<Ciudad> listarCiudad2(){
-    List <Ciudad> ciudades = new ArrayList<>();
+    public ArrayList<Ciudad> listarCiudad2(){
+    ArrayList <Ciudad> ciudades = new ArrayList<>();
     try{
         String sql = "SELECT * FROM ciudad WHERE estado=1";
         PreparedStatement ps= con.prepareStatement(sql);

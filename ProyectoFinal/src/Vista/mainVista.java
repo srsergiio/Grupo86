@@ -5,6 +5,7 @@ import AccesoDatos.*;
 import Entidades.*;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class mainVista extends javax.swing.JFrame {
     
@@ -16,6 +17,9 @@ ArrayList<Object> BaseDatos = new ArrayList<>();
     
     public mainVista() {
         initComponents();
+
+        
+        
         BaseDatos.add((ArrayList<Alojamiento>)new AlojamientoData().ListarAlojamientos());
         BaseDatos.add(new CiudadData().listarCiudad2());
         BaseDatos.add(new ClienteData().ListarClientes());
@@ -312,6 +316,7 @@ ArrayList<Object> BaseDatos = new ArrayList<>();
     public   void Despegar(){
         escritorio.removeAll();
         escritorio.repaint();
+      
         Despegar despegar = new Despegar(BaseDatos);
         
         despegar.setVisible(true);
@@ -324,7 +329,7 @@ ArrayList<Object> BaseDatos = new ArrayList<>();
      public  void VistaPaquete( ){
         escritorio.removeAll();
         escritorio.repaint();
-        VistaPaquete VistaPaquete = new VistaPaquete();
+        VistaPaquete VistaPaquete = new VistaPaquete(BaseDatos);
         
         VistaPaquete.setVisible(true);
         escritorio.add(VistaPaquete);

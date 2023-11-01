@@ -5,7 +5,8 @@
  */
 package Vista;
 
-import AccesoDatos.CiudadData;
+
+import Entidades.*;
 import java.util.ArrayList;
 import java.util.List;
 import Entidades.Ciudad;
@@ -15,23 +16,33 @@ import Entidades.Ciudad;
  * @author Administrador
  */
 public class Despegar extends javax.swing.JInternalFrame {
-    ArrayList<Object> datos = new ArrayList<>();
-
-   
-    public ArrayList<Object> getDatos() {
-        return datos;
-    }
-
-    public void setDatos(ArrayList<Object> datos) {
-        this.datos = datos;
-    }
+    //Paso1 : Creamos un atributo baseDatos Cada Pantalla
+    ArrayList<Object> BaseDatos ;
+    ArrayList<Alojamiento> ListarAlojamiento ;
+    ArrayList<Ciudad> ListarCiudad ;
+    ArrayList<Cliente> ListarCliente ;
+    ArrayList<Paquete> ListarPaquete ;
+    ArrayList<Pasaje> ListarPasaje ;
+    ArrayList<Reserva> ListarReserva ;
+    
+    
+    
+  
     /**
      * Creates new form Despegar
      */
-    public   Despegar(ArrayList<Object> BaseDatos) {
+    public   Despegar(ArrayList<Object> BaseDatos) {//1.1modificamos el constructor para resivir la basededatos
         initComponents();
+       //Paso2 : Cargamos la Basededatos con la base de dato del constuctor modificado 
+        this.BaseDatos = BaseDatos;
+       //Carga individual
+        ListarAlojamiento= ( ArrayList<Alojamiento>) this.BaseDatos.get(0);
+        ListarCiudad= ( ArrayList<Ciudad>) this.BaseDatos.get(1);
+        ListarCliente= ( ArrayList<Cliente>) this.BaseDatos.get(2);
+        ListarPaquete= ( ArrayList<Paquete>) this.BaseDatos.get(3);
+        ListarPasaje= ( ArrayList<Pasaje>) this.BaseDatos.get(4);
+        ListarReserva= ( ArrayList<Reserva>) this.BaseDatos.get(5);
         CargarCiudades();
-        datos = BaseDatos;
     }
 
     /**
@@ -223,19 +234,19 @@ public class Despegar extends javax.swing.JInternalFrame {
         
 
 // Obtener los valores de los JSpinners
-datos.add(Desplegable_Catidad_Habitantes.getValue());
-datos.add(Desplegable_Catidad_Persona.getValue());
+BaseDatos.add(Desplegable_Catidad_Habitantes.getValue());
+BaseDatos.add(Desplegable_Catidad_Persona.getValue());
 
 // Obtener los valores seleccionados en los JComboBox
-datos.add(Desplegable_Destino.getSelectedItem());
-datos.add(Desplegable_Origen.getSelectedItem());
+BaseDatos.add(Desplegable_Destino.getSelectedItem());
+BaseDatos.add(Desplegable_Origen.getSelectedItem());
 
 // Obtener las fechas seleccionadas en los JDateChoosers
-datos.add(Desplegable_fecha_ida.getDate());
-datos.add(Desplegable_fecha_vuelta.getDate());
+BaseDatos.add(Desplegable_fecha_ida.getDate());
+BaseDatos.add(Desplegable_fecha_vuelta.getDate());
 
 // Imprimir los datos en la consola
-for (Object dato : datos) {
+for (Object dato : BaseDatos) {
     System.out.println(dato);
    
 }
@@ -276,13 +287,17 @@ for (Object dato : datos) {
 public void CargarCiudades(){
      Desplegable_Origen.removeAllItems();
      Desplegable_Destino.removeAllItems();
-     CiudadData c = new CiudadData();
-     List ciudades = c.listarCiudad2();
-        for(int i=0;i<ciudades.size();i++){
-            String nombreCiudad = ((Ciudad)ciudades.get(i)).getNombre() +", "+((Ciudad)ciudades.get(i)).getProvincia()+", "+((Ciudad)ciudades.get(i)).getPais();
+    
+     //modificando la base de datos para resivir solo el ( ArrayList<Ciudad>) que esta en la posicion 1 
+
+        for(int i=0;i<ListarCiudad.size();i++){
+            String nombreCiudad = ((Ciudad)ListarCiudad.get(i)).getNombre() +", "+((Ciudad)ListarCiudad.get(i)).getProvincia()+", "+((Ciudad)ListarCiudad.get(i)).getPais();
             Desplegable_Origen.addItem(nombreCiudad);
             Desplegable_Destino.addItem(nombreCiudad);
-       }  
+        } 
+     
+     
+
         
 }
 

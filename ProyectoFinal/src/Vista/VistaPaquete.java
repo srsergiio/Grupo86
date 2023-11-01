@@ -9,7 +9,9 @@ import AccesoDatos.CiudadData;
 import AccesoDatos.PaqueteData;
 import AccesoDatos.PasajeData;
 import AccesoDatos.ReservaData;
+import Entidades.*;
 import java.util.ArrayList;
+import java.util.Date;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -17,19 +19,33 @@ import javax.swing.table.DefaultTableModel;
  * @author Administrador
  */
 public class VistaPaquete extends javax.swing.JInternalFrame {
-
+    ArrayList<Object> BaseDatos ;
+    ArrayList<Alojamiento> ListarAlojamiento ;
+    ArrayList<Ciudad> ListarCiudad ;
+    ArrayList<Cliente> ListarCliente ;
+    ArrayList<Paquete> ListarPaquete ;
+    ArrayList<Pasaje> ListarPasaje ;
+    ArrayList<Reserva> ListarReserva ;
     /**
      * Creates new form NewJInternalFrame
      */
    
        
     public VistaPaquete() {
+    }
+
+    public VistaPaquete(ArrayList<Object> BaseDatos) {
+        this.BaseDatos = BaseDatos;
+        ListarAlojamiento= ( ArrayList<Alojamiento>) this.BaseDatos.get(0);
+        ListarCiudad= ( ArrayList<Ciudad>) this.BaseDatos.get(1);
+        ListarCliente= ( ArrayList<Cliente>) this.BaseDatos.get(2);
+        ListarPaquete= ( ArrayList<Paquete>) this.BaseDatos.get(3);
+        ListarPasaje= ( ArrayList<Pasaje>) this.BaseDatos.get(4);
+        ListarReserva= ( ArrayList<Reserva>) this.BaseDatos.get(5);
         //ejecutar apenas aparece main
         initComponents();
         dibujar_Columna();
         modeloDeColocarItem();
- 
-        
     }
 
     /**
@@ -117,15 +133,58 @@ public class VistaPaquete extends javax.swing.JInternalFrame {
     // Obtén el modelo de la tabla
     DefaultTableModel model = (DefaultTableModel) paquetes_Turisticos.getModel();
     // Crea un array con los datos de la fila
+   
+   
     Object[] row = new Object[7];
-    PaqueteData ListPaquete = new PaqueteData();
-     for (int i = 0; i<ListPaquete.ListarPaqueteData().size();i++){
+    
+     for (int i = 0; i<ListarPaquete.size();i++){
          // Ajusta el tamaño del array según el número de columnas de tu tabla
-        row[0] = /*ID*/ListPaquete.ListarPaqueteData().get(i).getIdPaquete();
-        row[1] = /*Origen*/"";
-        row[2] = /*Destino*/"";
-        row[3] = /*FechaI*/"";
-        row[4] = /*FechaV*/"";
+        
+        row[0] = /*ID*/ListarPaquete.get(i).getIdPaquete();
+        
+        
+        int  idpasaje =ListarPaquete.get(i).getIdAlojamiento();
+        int IdCiudadOrigen=0;
+        int IdCiudadDestino=0;
+        String CiudadOrigen ="";
+        String CiudadDestino ="";
+        Date FechaI = null ;
+        Date FechaV = null ;
+        for(int p = 0 ;p<ListarPasaje.size();p++){
+            
+            
+            
+          if (idpasaje==ListarPasaje.get(p).getIdPasaje()){
+
+            
+               IdCiudadOrigen = ListarPasaje.get(p).getCiudadOrigen();
+               IdCiudadDestino = ListarPasaje.get(p).getCiudadDestino();
+               //buscar Ciudad Origen en Pasaje/ciudad/nombre
+               for(int c = 0 ; c<ListarCiudad.size();c++){
+                   if(ListarCiudad.get(c).getIdCiudad()==IdCiudadOrigen){
+                        CiudadOrigen = ListarCiudad.get(c).getNombre()+ " "+ ListarCiudad.get(c).getProvincia()+ " "+ListarCiudad.get(c).getPais() ;
+                   }
+               }
+               //buscar Ciudad Destino en Pasaje/ciudad/nombre
+                for(int c = 0 ; c<ListarCiudad.size();c++){
+                   if(ListarCiudad.get(c).getIdCiudad()==IdCiudadDestino){
+                        CiudadDestino = ListarCiudad.get(c).getNombre()+ " "+ ListarCiudad.get(c).getProvincia()+ " "+ListarCiudad.get(c).getPais() ;
+                   }
+               }
+                
+            //buscar Fecha Ida
+            FechaI = ListarPasaje.get(p).getFechaIda();
+            FechaV =  ListarPasaje.get(p).getFechaVuelta();
+            
+            // buscar Fecha Ida
+            }    
+        }
+        
+        row[1] = /*Origen*/CiudadOrigen;   
+        row[2] = /*Destino*/CiudadDestino;
+        
+        row[3] = /*FechaI*/FechaI;
+        row[4] = /*FechaV*/FechaV;
         row[5] = /*Descripcion*/"";
         row[6] = /*Costo*/"";
         
@@ -135,5 +194,12 @@ public class VistaPaquete extends javax.swing.JInternalFrame {
      model.addRow(row);
     // Asigna el modelo a la tabla
     paquetes_Turisticos.setModel(model);
-  }    
+  }  
+
+
+   
+
+
+  
 }
+
