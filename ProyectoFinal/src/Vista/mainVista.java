@@ -178,6 +178,11 @@ ArrayList<Object> BaseDatos = new ArrayList<>();
         insert_BD.add(Cliente);
 
         Pasaje.setText("Pasaje");
+        Pasaje.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PasajeActionPerformed(evt);
+            }
+        });
         insert_BD.add(Pasaje);
 
         Ciudad.setText("Ciudad");
@@ -278,6 +283,11 @@ ArrayList<Object> BaseDatos = new ArrayList<>();
         
         VistaInsertCiudad();
     }//GEN-LAST:event_CiudadActionPerformed
+
+    private void PasajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PasajeActionPerformed
+        // TODO add your handling code here:
+        VistaInsertPasaje();
+    }//GEN-LAST:event_PasajeActionPerformed
 
     public static void main(String args[])  {
         try {
@@ -400,4 +410,16 @@ ArrayList<Object> BaseDatos = new ArrayList<>();
         
     
     }
+     public void VistaInsertPasaje(){
+        escritorio.removeAll();
+        escritorio.repaint();
+        InsertPasaje InsertPasaje = new InsertPasaje(BaseDatos);
+        
+        InsertPasaje.setVisible(true);
+        escritorio.add(InsertPasaje);
+        escritorio.moveToFront(InsertPasaje);
+        
+    
+    }
+    
 }

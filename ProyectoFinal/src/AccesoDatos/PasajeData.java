@@ -15,11 +15,12 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class PasajeData {
-    private final Connection con;
+    private static Connection con;
     
     public PasajeData() {
          this.con=Conexion.getConexion();
     }
+    
     
     public ArrayList<Pasaje> ListarPasajes() {
         String sql = "SELECT * FROM `pasaje`";
@@ -268,6 +269,22 @@ public  int getCiudadOrigen(int id){
         }
     }
 
+    public static void guardarPasaje(Pasaje pasaje) {
+        String sql = "INSERT INTO Pasajes (tipoTransporte, fechaIda, fechaVuelta, estado, importe, ciudadOrigen, ciudadDestino) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
+        try (PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setString(1, pasaje.getTipoTransporte());
+            ps.setDate(2, java.sql.Date.valueOf(pasaje.getFechaI()));
+            ps.setDate(3, java.sql.Date.valueOf(pasaje.getFechaV()));
+            ps.setInt(4, pasaje.getEstado());
+            ps.setDouble(5, pasaje.getImporte());
+            ps.setInt(6, pasaje.getCOrigen().getIdCiudad());  // Asumiendo que Ciudad tiene un campo id
+            ps.setInt(7, pasaje.getCDestino().getIdCiudad());  // Asumiendo que Ciudad tiene un campo id
+
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
    
 }
