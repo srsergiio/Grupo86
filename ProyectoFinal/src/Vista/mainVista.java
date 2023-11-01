@@ -57,7 +57,7 @@ ArrayList<Object> BaseDatos = new ArrayList<>();
         Cliente = new javax.swing.JMenuItem();
         Pasaje = new javax.swing.JMenuItem();
         Ciudad = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        Alojamiento = new javax.swing.JMenuItem();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -67,7 +67,6 @@ ArrayList<Object> BaseDatos = new ArrayList<>();
         jMenuItem4.setText("jMenuItem4");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(700, 550));
 
         escritorio.setPreferredSize(new java.awt.Dimension(400, 400));
         escritorio.addAncestorListener(new javax.swing.event.AncestorListener() {
@@ -92,7 +91,7 @@ ArrayList<Object> BaseDatos = new ArrayList<>();
             .addGroup(escritorioLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(fondo, javax.swing.GroupLayout.PREFERRED_SIZE, 694, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(0, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         escritorioLayout.setVerticalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -189,13 +188,13 @@ ArrayList<Object> BaseDatos = new ArrayList<>();
         });
         insert_BD.add(Ciudad);
 
-        jMenuItem2.setText("Alojamiento");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        Alojamiento.setText("Alojamiento");
+        Alojamiento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                AlojamientoActionPerformed(evt);
             }
         });
-        insert_BD.add(jMenuItem2);
+        insert_BD.add(Alojamiento);
 
         jMenuBar1.add(insert_BD);
 
@@ -221,9 +220,10 @@ ArrayList<Object> BaseDatos = new ArrayList<>();
 
     }//GEN-LAST:event_escritorioAncestorRemoved
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+    private void AlojamientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AlojamientoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+        VistaInsertAlojamiento();
+    }//GEN-LAST:event_AlojamientoActionPerformed
 
     private void Pantallas_ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Pantallas_ActionPerformed
 
@@ -305,6 +305,7 @@ ArrayList<Object> BaseDatos = new ArrayList<>();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem Alojamiento;
     private javax.swing.JMenuItem Ciudad;
     private javax.swing.JMenuItem Cliente;
     private javax.swing.JMenuItem Pantalla_Despegar_;
@@ -319,7 +320,6 @@ ArrayList<Object> BaseDatos = new ArrayList<>();
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem4;
     // End of variables declaration//GEN-END:variables
 
@@ -388,5 +388,16 @@ ArrayList<Object> BaseDatos = new ArrayList<>();
         InsertCiudad.setVisible(true);
         escritorio.add(InsertCiudad);
         escritorio.moveToFront(InsertCiudad);
+    }
+    public void VistaInsertAlojamiento(){
+        escritorio.removeAll();
+        escritorio.repaint();
+        InsertAlojamiento InsertAlojamiento = new InsertAlojamiento(BaseDatos);
+        
+        InsertAlojamiento.setVisible(true);
+        escritorio.add(InsertAlojamiento);
+        escritorio.moveToFront(InsertAlojamiento);
+        
+    
     }
 }

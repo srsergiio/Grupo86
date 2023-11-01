@@ -1,5 +1,6 @@
 package Entidades;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Alojamiento {
@@ -13,11 +14,33 @@ public class Alojamiento {
     private int estado;
     private Date inicioTemporada;
     private Date finTemporada;
+    private Ciudad ciudades;
+    private LocalDate fechai;
+    private LocalDate fechaf;
     
     public Alojamiento() {
     }
 
-    public Alojamiento(int idAlojamiento, Date fechaI, Date fechaF, String tipo, String servicio, double importeD, int ciudad, int estado, Date inicioTemporada, Date finTemporada) {
+    public Alojamiento(Ciudad ciudades) {
+        this.ciudades = ciudades;
+    }
+
+    public Alojamiento(int idAlojamiento, Date fechaI, Date fechaF, String tipo, String servicio, double importeD, int ciudad, int estado, Date inicioTemporada, Date finTemporada, LocalDate fechai, LocalDate fechaf) {
+        this.idAlojamiento = idAlojamiento;
+        this.fechaI = fechaI;
+        this.fechaF = fechaF;
+        this.tipo = tipo;
+        this.servicio = servicio;
+        this.importeD = importeD;
+        this.ciudad = ciudad;
+        this.estado = estado;
+        this.inicioTemporada = inicioTemporada;
+        this.finTemporada = finTemporada;
+        this.fechai = fechai;
+        this.fechaf = fechaf;
+    }
+
+    public Alojamiento(int idAlojamientoEnBD, java.sql.Date fechaI, java.sql.Date fechaF, String tipo, String servicio, double importeD, int ciudad, int estado, Date inicioTemporada, Date finTemporada) {
         this.idAlojamiento = idAlojamiento;
         this.fechaI = fechaI;
         this.fechaF = fechaF;
@@ -29,6 +52,9 @@ public class Alojamiento {
         this.inicioTemporada = inicioTemporada;
         this.finTemporada = finTemporada;
     }
+
+   
+
 
     public int getIdAlojamiento() {
         return idAlojamiento;
@@ -110,10 +136,33 @@ public class Alojamiento {
         this.finTemporada = finTemporada;
     }
 
-    @Override
-    public String toString() {
-        return "Alojamiento{" + "idAlojamiento=" + idAlojamiento + ", fechaI=" + fechaI + ", fechaF=" + fechaF + ", tipo=" + tipo + ", servicio=" + servicio + ", importeD=" + importeD + ", ciudad=" + ciudad + ", estado=" + estado + ", inicioTemporada=" + inicioTemporada + ", finTemporada=" + finTemporada + '}';
+    public Ciudad getCiudades() {
+        return ciudades;
     }
 
+    public void setCiudades(Ciudad ciudades) {
+        this.ciudades = ciudades;
+    }
+    
+     public LocalDate getFechai() {
+        return fechai;
+    }
+
+    public void setFechai(LocalDate fechai) {
+        this.fechai = fechai;
+    }
+
+    public LocalDate getFechaf() {
+        return fechaf;
+    }
+
+    public void setFechaf(LocalDate fechaf) {
+        this.fechaf = fechaf;
+    }
+
+    @Override
+    public String toString() {
+        return "Alojamiento{" + "idAlojamiento=" + idAlojamiento + ", fechaI=" + fechaI + ", fechaF=" + fechaF + ", tipo=" + tipo + ", servicio=" + servicio + ", importeD=" + importeD + ", ciudad=" + ciudad + ", estado=" + estado + ", inicioTemporada=" + inicioTemporada + ", finTemporada=" + finTemporada + ", ciudades=" + ciudades + ", fechai=" + fechai + ", fechaf=" + fechaf + '}';
+    }
    
 }
