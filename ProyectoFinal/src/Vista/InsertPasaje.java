@@ -7,8 +7,8 @@ package Vista;
 
 import AccesoDatos.CiudadData;
 import AccesoDatos.Conexion;
-import AccesoDatos.PasajeData;
-import static AccesoDatos.PasajeData.guardarPasaje;
+import AccesoDatos.PasajeData2;
+import static AccesoDatos.PasajeData2.guardarPasaje;
 import Entidades.Alojamiento;
 import Entidades.Ciudad;
 import Entidades.Cliente;
@@ -258,8 +258,8 @@ public class InsertPasaje extends javax.swing.JInternalFrame {
     nuevoPasaje.setCDestino(ciudadD);
 
     // Llama al método agregarPasaje de PasajeData para guardar el pasaje en la base de datos
-    PasajeData pasajeData = new PasajeData(con);
-    PasajeData.guardarPasaje(nuevoPasaje); // Llamada al método para guardar el pasaje en la base de datos
+    PasajeData2 pasajeData = new PasajeData2(con);
+    PasajeData2.guardarPasaje(nuevoPasaje); // Llamada al método para guardar el pasaje en la base de datos
 
 // Ahora no hay una comparación en el if
     JOptionPane.showMessageDialog(this, "Pasaje insertado correctamente en la base de datos.");

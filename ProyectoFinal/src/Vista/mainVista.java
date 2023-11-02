@@ -18,8 +18,6 @@ ArrayList<Object> BaseDatos = new ArrayList<>();
     public mainVista() {
         initComponents();
      
-        
-        
         BaseDatos.add((ArrayList<Alojamiento>)new AlojamientoData().ListarAlojamientos());
         BaseDatos.add(new CiudadData().listarCiudad2());
         BaseDatos.add(new ClienteData().ListarClientes());
@@ -88,17 +86,11 @@ ArrayList<Object> BaseDatos = new ArrayList<>();
         escritorio.setLayout(escritorioLayout);
         escritorioLayout.setHorizontalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(escritorioLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(fondo, javax.swing.GroupLayout.PREFERRED_SIZE, 694, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(fondo, javax.swing.GroupLayout.PREFERRED_SIZE, 719, Short.MAX_VALUE)
         );
         escritorioLayout.setVerticalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(escritorioLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(fondo, javax.swing.GroupLayout.PREFERRED_SIZE, 512, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(fondo, javax.swing.GroupLayout.PREFERRED_SIZE, 511, Short.MAX_VALUE)
         );
 
         Pantallas_.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imaneges/1491313934-more_83000.png"))); // NOI18N
@@ -210,13 +202,11 @@ ArrayList<Object> BaseDatos = new ArrayList<>();
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(escritorio, javax.swing.GroupLayout.PREFERRED_SIZE, 699, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 1, Short.MAX_VALUE))
+            .addComponent(escritorio, javax.swing.GroupLayout.DEFAULT_SIZE, 719, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(escritorio, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 511, Short.MAX_VALUE)
+            .addComponent(escritorio, javax.swing.GroupLayout.DEFAULT_SIZE, 511, Short.MAX_VALUE)
         );
 
         pack();

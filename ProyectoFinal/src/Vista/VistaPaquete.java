@@ -7,7 +7,7 @@ package Vista;
 
 import AccesoDatos.CiudadData;
 import AccesoDatos.PaqueteData;
-import AccesoDatos.PasajeData;
+import AccesoDatos.PasajeData2;
 import AccesoDatos.ReservaData;
 import Entidades.*;
 import java.util.ArrayList;
