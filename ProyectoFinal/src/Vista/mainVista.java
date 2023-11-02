@@ -129,6 +129,7 @@ ArrayList<Object> BaseDatos = new ArrayList<>();
         Pantallas_.add(Pantalla_Despegar_);
 
         Pantalla_Paquetes_.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        Pantalla_Paquetes_.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imaneges/package_box_10801.png"))); // NOI18N
         Pantalla_Paquetes_.setText("Paquete");
         Pantalla_Paquetes_.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
