@@ -38,6 +38,7 @@ public class ClienteData {
     }
     
     public List<Cliente> ListarClientes() {
+    
         String sql = "SELECT * FROM `cliente`";
         try {
             Statement stmt = con.createStatement();
@@ -53,13 +54,7 @@ public class ClienteData {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-//        } finally {
-//            try {
-//                if(con != null) con.close();
-//            } catch (SQLException e) {
-//                e.printStackTrace();
-//            }
-        }
+        } 
         return clientes;
     }
    

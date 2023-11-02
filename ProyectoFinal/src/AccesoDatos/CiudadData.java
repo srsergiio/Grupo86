@@ -44,6 +44,7 @@ public class CiudadData  {
         }
     }
     public static List<Ciudad> listarCiudad(){
+     
           List <Ciudad> ciudades =new ArrayList<>();
           try{
              String sql = "SELECT * FROM ciudad WHERE estado=1";
@@ -79,7 +80,7 @@ public class CiudadData  {
             ciudad.setEstado(rs.getInt("estado"));
             ciudades.add(ciudad);
         }
-//        ps.close();
+        ps.close();
     }catch(SQLException ex){
         JOptionPane.showMessageDialog(null, "Error al acceder a la tabla ciudad"+ex.getMessage());
     }

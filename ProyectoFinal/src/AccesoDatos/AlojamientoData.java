@@ -47,6 +47,7 @@ public class AlojamientoData {
     }
 
   public List<Alojamiento> ListarAlojamientos() {
+      
         String sql = "SELECT * FROM `alojamiento`";
         try {
             Statement stmt = con.createStatement();
@@ -69,13 +70,7 @@ public class AlojamientoData {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-//        } finally {
-//            try {
-//                if(con != null) con.close();
-//            } catch (SQLException e) {
-//                e.printStackTrace();
-//            }
-        }
+        } 
         return alojamientos;
     }
 

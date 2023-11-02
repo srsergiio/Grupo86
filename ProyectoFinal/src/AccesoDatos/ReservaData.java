@@ -43,7 +43,7 @@ public class ReservaData {
                 
                 reservas.add(reserva);
             }
-               // ps.close();
+                ps.close();
             }catch(SQLException ex){
                     JOptionPane.showMessageDialog(null, "Error al acceder a la tabla reserva"+ex.getMessage());
                     }
@@ -76,6 +76,29 @@ public class ReservaData {
          System.out.println(ListaReservaData.get(i));
      }
  }
+
+    public void guardarReservaBD(int idCliente, int idPaquete){
+        if (con == null) {con=Conexion.getConexion();}
+        PreparedStatement ps = null;
+        try{
+            String sql = "INSERT INTO reserva (idCliente, idPaquete) VALUES (?, ?)";
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, idCliente);
+            ps.setInt(2, idPaquete);
+            ps.executeUpdate();
+        }catch(SQLException ex){
+            JOptionPane.showMessageDialog(null, "Error al insertar en la tabla reserva"+ex.getMessage());
+        }finally{
+            try{
+                if(ps != null){
+                    ps.close();
+                }
+            }catch(SQLException ex){
+                JOptionPane.showMessageDialog(null, "Error al cerrar el PreparedStatement"+ex.getMessage());
+            }
+        }
+    }
+
 }
 
 

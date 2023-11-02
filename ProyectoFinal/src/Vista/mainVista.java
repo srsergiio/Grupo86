@@ -22,7 +22,7 @@ ArrayList<Object> BaseDatos = new ArrayList<>();
         BaseDatos.add(new CiudadData().listarCiudad2());
         BaseDatos.add(new ClienteData().ListarClientes());
         BaseDatos.add(new PaqueteData().ListarPaqueteData());
-        BaseDatos.add(new PasajeData().ListarPasajes());
+        BaseDatos.add(new PasajeData2().ListarPasajes());
         BaseDatos.add(new ReservaData().listarReserva());
         
         for(int i = 0 ;i<BaseDatos.size();i++){
@@ -78,7 +78,6 @@ ArrayList<Object> BaseDatos = new ArrayList<>();
         });
 
         fondo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imaneges/fondo.jpg"))); // NOI18N
 
         escritorio.setLayer(fondo, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
@@ -86,14 +85,14 @@ ArrayList<Object> BaseDatos = new ArrayList<>();
         escritorio.setLayout(escritorioLayout);
         escritorioLayout.setHorizontalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(fondo, javax.swing.GroupLayout.PREFERRED_SIZE, 719, Short.MAX_VALUE)
+            .addComponent(fondo, javax.swing.GroupLayout.DEFAULT_SIZE, 719, Short.MAX_VALUE)
         );
         escritorioLayout.setVerticalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(fondo, javax.swing.GroupLayout.PREFERRED_SIZE, 511, Short.MAX_VALUE)
+            .addComponent(fondo, javax.swing.GroupLayout.DEFAULT_SIZE, 524, Short.MAX_VALUE)
         );
 
-        Pantallas_.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imaneges/1491313934-more_83000.png"))); // NOI18N
+        Pantallas_.setText("Cliente");
         Pantallas_.addMouseWheelListener(new java.awt.event.MouseWheelListener() {
             public void mouseWheelMoved(java.awt.event.MouseWheelEvent evt) {
                 Pantallas_MouseWheelMoved(evt);
@@ -111,7 +110,6 @@ ArrayList<Object> BaseDatos = new ArrayList<>();
         });
 
         Pantalla_Despegar_.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_D, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
-        Pantalla_Despegar_.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imaneges/business_ticket_2363.png"))); // NOI18N
         Pantalla_Despegar_.setText("Boleteria");
         Pantalla_Despegar_.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -121,7 +119,6 @@ ArrayList<Object> BaseDatos = new ArrayList<>();
         Pantallas_.add(Pantalla_Despegar_);
 
         Pantalla_Paquetes_.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
-        Pantalla_Paquetes_.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imaneges/package_box_10801.png"))); // NOI18N
         Pantalla_Paquetes_.setText("Paquete");
         Pantalla_Paquetes_.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -206,7 +203,7 @@ ArrayList<Object> BaseDatos = new ArrayList<>();
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(escritorio, javax.swing.GroupLayout.DEFAULT_SIZE, 511, Short.MAX_VALUE)
+            .addComponent(escritorio, javax.swing.GroupLayout.DEFAULT_SIZE, 524, Short.MAX_VALUE)
         );
 
         pack();

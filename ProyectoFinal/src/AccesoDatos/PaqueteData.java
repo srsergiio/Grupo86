@@ -43,13 +43,7 @@ public class PaqueteData {
         }
     } catch (SQLException e) {
         e.printStackTrace();
-    }// finally {
-//        try {
-//            if(con != null) con.close();
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//    }
+    } 
     return lista;
 }
 public static void main (String [] main){
